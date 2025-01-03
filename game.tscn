@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bcavdlbw8g54h"]
 
 [ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="1_bwjs7"]
-[ext_resource type="Texture2D" uid="uid://bsffbi1klv2ue" path="res://Assets/Art/Sprites/player/player.png" id="2_b5bjd"]
+[ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_b5bjd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_241ry"]
 
