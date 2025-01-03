@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c717vupvaxgcc"
-path="res://.godot/imported/DevMorningStar.png-392859b576bf55244ed682780b5931aa.ctex"
+uid="uid://dsxw00tdqu3ih"
+path="res://.godot/imported/portrait_gui.png-b108284a77b5df97067a84a95d5ea3b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Mace/DevMorningStar.png"
-dest_files=["res://.godot/imported/DevMorningStar.png-392859b576bf55244ed682780b5931aa.ctex"]
+source_file="res://Assets/Art/GUI/portrait_gui.png"
+dest_files=["res://.godot/imported/portrait_gui.png-b108284a77b5df97067a84a95d5ea3b1.ctex"]
 
 [params]
 
