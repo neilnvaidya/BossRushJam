@@ -1,9 +1,12 @@
 extends CharacterBody2D
+const ARC_POINTS := 10
 
 # chidren
 @onready var anim_player :AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $PlayerSprite
 @onready var collision_shape :CollisionShape2D = $PlayerCollisionShape
+@onready var flail = $Flail
+@onready var string = $CanvasLayer/String
 
 # movement Trackers
 @export var move_dir : Vector2 = Vector2.ZERO
@@ -29,8 +32,8 @@ func _physics_process(delta):
 	handle_input()
 	handle_movement(delta)
 	handle_collisions(delta)
-
-	print("state:" , move_state.keys()[current_move_state])
+	string.points = _get_points()
+	#print("state:" , move_state.keys()[current_move_state])
 	
 func handle_collisions(delta:float):
 	var col = move_and_collide(move_dir*move_speed*delta)
@@ -80,3 +83,20 @@ func near_zero_v(vec: Vector2) -> bool:
 	
 func near_zero_f(val : float) ->bool:
 	return abs(val) < epsilon
+
+func _get_points() -> Array:
+	var points := []
+	var start := self.global_position as Vector2
+	var target = flail.global_position as Vector2
+	var distance = (target - start) as Vector2
+	for i in range(ARC_POINTS):
+		var t := (1.0 / ARC_POINTS) * i
+		var x = start.x + (distance.x / ARC_POINTS) * i
+		var y = start.y + ease_out_cubic(t) * distance.y
+		points.append(Vector2(x,y))
+	points.append(target)
+	
+	return points
+	
+func ease_out_cubic(number:float) -> float:
+	return 1.0 - pow(1.0 - number, 3.0)

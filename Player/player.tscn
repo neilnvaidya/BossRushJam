@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfx77vprqrctc"]
+[gd_scene load_steps=14 format=3 uid="uid://cfx77vprqrctc"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_18k2p"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
+[ext_resource type="PackedScene" uid="uid://d0trk4efubyp8" path="res://Scenes/flail.tscn" id="3_kuaox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdi2m"]
 size = Vector2(8, 14)
@@ -138,6 +139,8 @@ _data = {
 "up": SubResource("Animation_u4ibw")
 }
 
+[sub_resource type="Curve" id="Curve_qk2iy"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_18k2p")
 
@@ -155,3 +158,18 @@ hframes = 51
 libraries = {
 "": SubResource("AnimationLibrary_qx06p")
 }
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../Flail")
+bias = 0.044
+softness = 16.0
+
+[node name="Flail" parent="." instance=ExtResource("3_kuaox")]
+position = Vector2(45, 0)
+mass = 0.271
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="String" type="Line2D" parent="CanvasLayer"]
+width_curve = SubResource("Curve_qk2iy")
