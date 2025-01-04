@@ -1,31 +1,48 @@
-extends Area2D
+extends Node2D
 
-@export var damage: int
-@export var weight: int
-@export var min_radius: int
-@export var max_radius: int
-@export var min_speed: float
-@export var max_speed: float
-@export var current_speed: float = 0.0
+@export var neutral_distance: float = 50.0  # Neutral spring length
+@export var max_distance: float = 200.0  # Maximum allowable distance
+@export var elasticity: float = 2.0  # Spring stiffness
+@export var damping: float = 0.997  # Friction-like effect
 
-# Circular motion parameters
-var angle: float = 0.0  # Current angle in radians
+@export var spring_force: Vector2 = Vector2.ZERO  # Current calculated spring force (exported for debugging)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	print("Initialized Weapon - ", name, 
-		  ":\n   Damage: ", damage, " | Weight: ", weight)
-	position = Vector2(0, min_radius)  # Start at min_radius along the y-axis
-	current_speed = min_speed
+var velocity: Vector2 = Vector2.ZERO  # Weapon's velocity
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	angle += current_speed * delta  # Increment the angle based on speed and delta time
-	position.x = cos(angle) * min_radius  # Update x-coordinate
-	position.y = sin(angle) * min_radius  # Update y-coordinate
+func _physics_process(delta):
+	var player_position = get_parent().player.position
+	var to_player = player_position - position
+	var distance = to_player.length()
+	var radial_velocity = velocity.project(to_player)
+	var tangential_velocity = velocity - radial_velocity
+	
+	velocity = apply_spring_force(velocity,delta, to_player, distance)
+	
+	## Constrain to max distance
+	if distance + velocity.length()*delta >= max_distance:
+		position = player_position - to_player.normalized()*max_distance
 
-func _on_area_entered(area):
-	# Calling directly is sloppy, 
-	# will be better to set up signals
-	# and a manager to handle enemy recieving damage.
-	area.on_hit(damage)
+	# Apply damping to reduce velocity over time
+	#velocity *= damping
+
+	# Update position based on velocity
+	position += velocity * delta
+
+	# Update spring force visualization
+	set_spring_force_line()
+	
+func apply_spring_force(vel, delta, to_player, distance):
+	# Apply spring force if distance > neutral_distance
+	if distance > neutral_distance:
+		var stretch = distance - neutral_distance
+		spring_force = to_player.normalized() * elasticity * stretch
+		vel += spring_force * delta
+	else:
+		spring_force = Vector2.ZERO  # No spring force if within neutral range
+	return vel
+	
+func set_spring_force_line():
+	# Visualize the spring force with Line2D
+	$Line2D.clear_points()
+	$Line2D.add_point(Vector2.ZERO)  # Start at weapon's position
+	$Line2D.add_point(spring_force / elasticity)  # Scaled force vector for visualization

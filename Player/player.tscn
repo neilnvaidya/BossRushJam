@@ -1,6 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://cfx77vprqrctc"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_18k2p"]
+[ext_resource type="Script" path="res://Player/player_controller.gd" id="1_ih5x6"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
 [ext_resource type="Script" path="res://Resources/player_stats.gd" id="2_jpii7"]
 [ext_resource type="Script" path="res://Resources/yoyo.gd" id="3_edpm0"]
@@ -186,21 +187,26 @@ _data = {
 "up": SubResource("Animation_u4ibw")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="PlayerController" type="Node2D"]
+script = ExtResource("1_ih5x6")
+
+[node name="Weapon" parent="." instance=ExtResource("3_ivkjo")]
+
+[node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_18k2p")
 player_stats = SubResource("Resource_05n2a")
 
-[node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
+[node name="PlayerCollisionShape" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_tdi2m")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
 texture_filter = 1
 texture = ExtResource("2_frmg2")
 flip_h = true
 hframes = 51
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 libraries = {
 "": SubResource("AnimationLibrary_qx06p")
 }
