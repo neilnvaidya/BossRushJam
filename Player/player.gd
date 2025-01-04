@@ -5,8 +5,9 @@ const ARC_POINTS := 10
 @onready var anim_player :AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $PlayerSprite
 @onready var collision_shape :CollisionShape2D = $PlayerCollisionShape
-@onready var flail = $Flail
-@onready var string = $CanvasLayer/String
+@onready var yoyos = $YoyoHandler
+@onready var strings = $Strings
+const STRING = preload("res://Scenes/String.tscn")
 
 # movement Trackers
 @export var move_dir : Vector2 = Vector2.ZERO
@@ -26,13 +27,20 @@ var current_move_state = move_state.idle
 
 func _ready():
 	anim_player.play("idle")
+	for i in get_yoyos().size():
+		var new_string_child := STRING.instantiate() as CanvasLayer
+		strings.add_child(new_string_child)
 
 #basic WASD movement
 func _physics_process(delta):
 	handle_input()
 	handle_movement(delta)
 	handle_collisions(delta)
-	string.points = _get_points()
+	for i in get_yoyos().size():
+		var string = strings.get_child(i)
+		string.points = _get_points(YoYo)
+		
+	#string.points = _get_points()
 	#print("state:" , move_state.keys()[current_move_state])
 	
 func handle_collisions(delta:float):
@@ -84,10 +92,14 @@ func near_zero_v(vec: Vector2) -> bool:
 func near_zero_f(val : float) ->bool:
 	return abs(val) < epsilon
 
-func _get_points() -> Array:
+func get_yoyos() -> Array[YoYo]:
+	var array_of_yoyos = get_children(yoyos)
+	return array_of_yoyos
+	
+func _get_points(YoYo) -> Array:
 	var points := []
 	var start := self.global_position as Vector2
-	var target = flail.global_position as Vector2
+	var target = YoYo.global_position as Vector2
 	var distance = (target - start) as Vector2
 	for i in range(ARC_POINTS):
 		var t := (1.0 / ARC_POINTS) * i
