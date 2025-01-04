@@ -6,14 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqanx"]
 size = Vector2(12, 14)
 
-[node name="WeaponBase" type="Area2D"]
+[node name="Weapon" type="Area2D"]
 script = ExtResource("1_fk81s")
-damage = 1
-weight = 1
-min_radius = 40
-max_radius = 400
-min_speed = 10.0
-max_speed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -23,5 +17,9 @@ texture = ExtResource("2_rvybh")
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_tqanx")
 
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 3.0
+default_color = Color(0.901961, 0.196078, 0.619608, 1)
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
