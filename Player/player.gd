@@ -2,7 +2,6 @@ extends CharacterBody2D
 const ARC_POINTS := 10
 
 # movement Trackers
-@export var move_dir : Vector2 = Vector2.ZERO
 @export var move_speed : float =100.0
 
 # Dead zone value
