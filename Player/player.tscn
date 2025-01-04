@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfx77vprqrctc"]
+[gd_scene load_steps=13 format=3 uid="uid://cfx77vprqrctc"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_18k2p"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
+[ext_resource type="PackedScene" uid="uid://6kal0i1alwoq" path="res://Weapon/weapon_base_prefab.tscn" id="3_ivkjo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdi2m"]
 size = Vector2(8, 14)
@@ -191,3 +192,5 @@ hframes = 51
 libraries = {
 "": SubResource("AnimationLibrary_qx06p")
 }
+
+[node name="WeaponBase" parent="." instance=ExtResource("3_ivkjo")]
