@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bcavdlbw8g54h"]
 
 [ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="1_bwjs7"]
-[ext_resource type="Texture2D" uid="uid://dneqi6wfcrako" path="res://icon.svg" id="2_bla2r"]
+[ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_b5bjd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_241ry"]
 
@@ -24,6 +24,29 @@ shape = SubResource("RectangleShape2D_mnaqu")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 modulate = Color(0, 0, 0, 1)
-texture = ExtResource("2_bla2r")
+texture_filter = 1
+texture = ExtResource("2_b5bjd")
+hframes = 6
+vframes = 6
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Art/Sprites/player",
+"o_name": "",
+"only_visible": false,
+"player": "Player/AnimationPlayer",
+"slice": "",
+"source": "C:/Asesprite/Projects/bossrush/sprites/player.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "055321feb3190d6d7b0387b2791b7e35"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="StaticBody2D"]
+root_node = NodePath("../../Player")
 
 [node name="Camera2D" type="Camera2D" parent="."]

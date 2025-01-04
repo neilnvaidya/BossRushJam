@@ -28,6 +28,13 @@ window/stretch/scale_mode="integer"
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Assets/Art/": "blue",
+"res://Assets/music/": "red"
+}
+
 [input]
 
 move_up={
