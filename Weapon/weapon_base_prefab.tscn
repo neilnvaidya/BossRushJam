@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://6kal0i1alwoq"]
+
+[ext_resource type="Script" path="res://Weapon/weapon.gd" id="1_fk81s"]
+[ext_resource type="Texture2D" uid="uid://betug5ivv18kc" path="res://Assets/Art/Sprites/items/item_mace.png" id="2_rvybh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqanx"]
+size = Vector2(12, 14)
+
+[node name="Weapon" type="Area2D"]
+script = ExtResource("1_fk81s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_rvybh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_tqanx")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 3.0
+default_color = Color(0.901961, 0.196078, 0.619608, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
