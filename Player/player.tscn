@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_18k2p"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
-[ext_resource type="PackedScene" uid="uid://d0trk4efubyp8" path="res://Scenes/yoyo.tscn" id="3_kuaox"]
+[ext_resource type="PackedScene" uid="uid://d0trk4efubyp8" path="res://Scenes/yoyosprite.tscn" id="3_kuaox"]
 [ext_resource type="Script" path="res://Player/yoyo_handler.gd" id="3_tsj4p"]
 [ext_resource type="PackedScene" uid="uid://cmso6u38ed3ca" path="res://Scenes/String.tscn" id="5_ity4w"]
 
@@ -159,19 +159,21 @@ libraries = {
 "": SubResource("AnimationLibrary_qx06p")
 }
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-node_a = NodePath("..")
-node_b = NodePath("../YoyoHandler/Yoyo")
-bias = 0.044
-softness = 16.0
-
 [node name="YoyoHandler" type="Node" parent="."]
 script = ExtResource("3_tsj4p")
 
 [node name="Yoyo" parent="YoyoHandler" instance=ExtResource("3_kuaox")]
-position = Vector2(45, 0)
-mass = 0.271
+position = Vector2(82, 0)
+mass = 0.117
 
 [node name="Strings" type="Node" parent="."]
 
 [node name="CanvasLayer" parent="Strings" instance=ExtResource("5_ity4w")]
+
+[node name="Pinjoints" type="Node" parent="."]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Pinjoints"]
+node_a = NodePath("../..")
+node_b = NodePath("../../YoyoHandler/Yoyo")
+bias = 0.021
+softness = 16.0

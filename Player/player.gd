@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 const ARC_POINTS := 10
 
@@ -27,6 +28,8 @@ var current_move_state = move_state.idle
 
 func _ready():
 	anim_player.play("idle")
+	for yoyo in get_yoyos():
+		yoyo.position = self.global_position
 	for i in get_yoyos().size():
 		var new_string_child := STRING.instantiate() as CanvasLayer
 		strings.add_child(new_string_child)
@@ -37,8 +40,9 @@ func _physics_process(delta):
 	handle_movement(delta)
 	handle_collisions(delta)
 	for i in get_yoyos().size():
-		var string = strings.get_child(i)
-		string.points = _get_points(YoYo)
+		var stringcanvas = strings.get_child(i)
+		var stringline = stringcanvas.get_child(0)
+		stringline.points = _get_points(get_yoyos()[i])
 		
 	#string.points = _get_points()
 	#print("state:" , move_state.keys()[current_move_state])
@@ -93,7 +97,9 @@ func near_zero_f(val : float) ->bool:
 	return abs(val) < epsilon
 
 func get_yoyos() -> Array[YoYo]:
-	var array_of_yoyos = get_children(yoyos)
+	var array_of_yoyos : Array[YoYo]
+	for child: YoYo in (yoyos.get_children() as Array[YoYo]):
+		array_of_yoyos.append(child)
 	return array_of_yoyos
 	
 func _get_points(YoYo) -> Array:

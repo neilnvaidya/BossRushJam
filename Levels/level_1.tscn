@@ -572,6 +572,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_nyfae")
 
 [node name="level 1" type="Node2D"]
+position = Vector2(0, -1)
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -586,4 +587,3 @@ tile_map_data = PackedByteArray("AAANAAAAAAAMAAIAAAANAAEAAAAMAAMAAAANAAIAAAAMAAQ
 tile_set = SubResource("TileSet_uia72")
 
 [node name="Player" parent="Node2D" instance=ExtResource("1_c1hw2")]
-position = Vector2(221, 153)
