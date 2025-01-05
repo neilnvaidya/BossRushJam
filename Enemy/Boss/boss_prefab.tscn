@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://dub307joo07su"]
+
+[ext_resource type="Script" path="res://Enemy/Boss/boss_prefab.gd" id="1_8mhcv"]
+[ext_resource type="Texture2D" uid="uid://dneqi6wfcrako" path="res://icon.svg" id="2_udi2u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q518u"]
+size = Vector2(119, 120)
+
+[sub_resource type="Animation" id="Animation_ie8q2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["LABEL"]
+}
+
+[sub_resource type="Animation" id="Animation_nxm5s"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["LABEL"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l0xol"]
+_data = {
+"RESET": SubResource("Animation_ie8q2"),
+"idle": SubResource("Animation_nxm5s")
+}
+
+[node name="BossPrefab" type="CharacterBody2D"]
+script = ExtResource("1_8mhcv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q518u")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -18.0
+offset_top = -88.0
+offset_right = 30.0
+offset_bottom = -65.0
+text = "LABEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_udi2u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l0xol")
+}
