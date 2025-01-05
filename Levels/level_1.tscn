@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://ci02668sg1245"]
+[gd_scene load_steps=7 format=4 uid="uid://ci02668sg1245"]
 
 [ext_resource type="Script" path="res://Levels/level_1.gd" id="1_b05xp"]
 [ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="1_c1hw2"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="2_5fqd2"]
+[ext_resource type="PackedScene" uid="uid://kf4ulr72cvgh" path="res://GUI/gui.tscn" id="4_d8vdy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyfae"]
 texture = ExtResource("2_5fqd2")
@@ -591,20 +592,9 @@ tile_set = SubResource("TileSet_uia72")
 position = Vector2(221, 153)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(317, 134)
 position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.5
 
-[node name="GUI" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 528.0
-offset_bottom = 384.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="PortraitRect" type="TextureRect" parent="CanvasLayer/GUI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("4_d8vdy")]
