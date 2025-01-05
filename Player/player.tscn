@@ -163,7 +163,7 @@ libraries = {
 script = ExtResource("3_tsj4p")
 
 [node name="Yoyo" parent="YoyoHandler" instance=ExtResource("3_kuaox")]
-position = Vector2(82, 0)
+position = Vector2(109, 0)
 mass = 0.117
 
 [node name="Strings" type="Node" parent="."]
@@ -175,5 +175,4 @@ mass = 0.117
 [node name="PinJoint2D" type="PinJoint2D" parent="Pinjoints"]
 node_a = NodePath("../..")
 node_b = NodePath("../../YoyoHandler/Yoyo")
-bias = 0.021
-softness = 16.0
+disable_collision = false
