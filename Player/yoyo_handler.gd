@@ -1,10 +1,14 @@
 class_name YoYoHandler
 extends Node
+const YOYOSPRITE = preload("res://Scenes/yoyosprite.tscn")
+@export var player_stats : PlayerStats
+var active_yoyos: Array[YoYo]
 
-var active_yoyos: Array[YoYo] = []
+func set_yoyos():
+	active_yoyos = player_stats.yoyo_collection
 
-
-func get_yoyos() -> Array[YoYo]:
-	for child: YoYo in (self.get_children() as Array[YoYo]):
-		active_yoyos.append(child)
-	return active_yoyos
+func create_children():
+	for yoyo in active_yoyos:
+		var new_yoyo_child := YOYOSPRITE.instantiate() as RigidBody2D
+		new_yoyo_child.yoyo = yoyo
+		self.add_child(new_yoyo_child)

@@ -1,13 +1,15 @@
 class_name Player
 extends CharacterBody2D
 const ARC_POINTS := 10
-
+@export var player_stats : PlayerStats
+const TEST_YOYO = preload("res://yoyos/test_yoyo.tres")
 # chidren
 @onready var anim_player :AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $PlayerSprite
 @onready var collision_shape :CollisionShape2D = $PlayerCollisionShape
 @onready var yoyo_handler = $YoyoHandler
 @onready var strings = $Strings
+@onready var pinjoints = $Pinjoints
 const STRING = preload("res://Scenes/String.tscn")
 
 # movement Trackers
@@ -27,19 +29,31 @@ enum move_state {
 var current_move_state = move_state.idle
 
 func _ready():
+	yoyo_handler.player_stats = player_stats
+	yoyo_handler.set_yoyos()
+	#remove
+	yoyo_handler.active_yoyos.append(TEST_YOYO)
+	#this
 	anim_player.play("idle")
-	for yoyo in yoyo_handler.get_yoyos():
-		yoyo.position = self.global_position
-	for i in yoyo_handler.get_yoyos().size():
+	yoyo_handler.create_children()
+	for yoyo in yoyo_handler.get_children():
+		yoyo.position = self.global_position + Vector2(0,50)
+		var joint = PinJoint2D.new()
+		joint.softness = 16
+		joint.node_a = self.get_path()
+		joint.node_b = yoyo.get_path()
+		pinjoints.add_child(joint)
+	for i in yoyo_handler.active_yoyos.size():
 		var new_string_child := STRING.instantiate() as CanvasLayer
 		strings.add_child(new_string_child)
+
 
 #basic WASD movement
 func _physics_process(delta):
 	handle_input()
 	handle_movement(delta)
 	handle_collisions(delta)
-	for i in yoyo_handler.get_yoyos().size():
+	for i in yoyo_handler.get_children().size():
 		var stringcanvas = strings.get_child(i)
 		var stringline = stringcanvas.get_child(0)
 		stringline.points = _get_points(yoyo_handler.get_children()[i])

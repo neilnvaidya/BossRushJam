@@ -7,3 +7,6 @@ signal stats_changed
 
 var yoyo_collection : Array[YoYo] = []
 var health := 3
+
+func _ready():
+	yoyo_collection.append(starting_yoyo)

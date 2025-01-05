@@ -11,6 +11,7 @@
 [node name="YoYoSprite" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_ewplv")
 gravity_scale = 0.0
+inertia = 1.52
 script = ExtResource("1_h1o2x")
 yoyo = ExtResource("2_e2ax8")
 

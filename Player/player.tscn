@@ -1,10 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfx77vprqrctc"]
+[gd_scene load_steps=16 format=3 uid="uid://cfx77vprqrctc"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_18k2p"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
-[ext_resource type="PackedScene" uid="uid://d0trk4efubyp8" path="res://Scenes/yoyosprite.tscn" id="3_kuaox"]
+[ext_resource type="Script" path="res://Resources/player_stats.gd" id="2_jpii7"]
+[ext_resource type="Resource" uid="uid://cd4e2cf101s7m" path="res://yoyos/test_yoyo.tres" id="3_2pjfg"]
 [ext_resource type="Script" path="res://Player/yoyo_handler.gd" id="3_tsj4p"]
-[ext_resource type="PackedScene" uid="uid://cmso6u38ed3ca" path="res://Scenes/String.tscn" id="5_ity4w"]
+
+[sub_resource type="Resource" id="Resource_t84ll"]
+script = ExtResource("2_jpii7")
+starting_yoyo = ExtResource("3_2pjfg")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdi2m"]
 size = Vector2(8, 14)
@@ -143,6 +147,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_18k2p")
+player_stats = SubResource("Resource_t84ll")
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -162,17 +167,6 @@ libraries = {
 [node name="YoyoHandler" type="Node" parent="."]
 script = ExtResource("3_tsj4p")
 
-[node name="Yoyo" parent="YoyoHandler" instance=ExtResource("3_kuaox")]
-position = Vector2(109, 0)
-mass = 0.117
-
 [node name="Strings" type="Node" parent="."]
 
-[node name="CanvasLayer" parent="Strings" instance=ExtResource("5_ity4w")]
-
 [node name="Pinjoints" type="Node" parent="."]
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Pinjoints"]
-node_a = NodePath("../..")
-node_b = NodePath("../../YoyoHandler/Yoyo")
-disable_collision = false
