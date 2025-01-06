@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://Levels/level_1.gd" id="1_1u5im"]
 
+
 [ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="1_c1hw2"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="2_5fqd2"]
-[ext_resource type="PackedScene" uid="uid://kf4ulr72cvgh" path="res://GUI/gui.tscn" id="4_d8vdy"]
+[ext_resource type="PackedScene" path="res://Mob/mob_test.tscn" id="3_qv0mp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyfae"]
 texture = ExtResource("2_5fqd2")
@@ -578,7 +579,7 @@ sources/0 = SubResource("TileSetAtlasSource_nyfae")
 position = Vector2(0, -1)
 script = ExtResource("1_1u5im")
 
-[node name="TerrainContainer" type="Node2D" parent="."]
+[node name="Terrain" type="Node2D" parent="."]
 
 [node name="Ground" type="TileMapLayer" parent="Node2D"]
 
@@ -587,6 +588,7 @@ tile_map_data = PackedByteArray("AAANAAAAAAAEAA4AAAANAAEAAAAEAA8AAAAOAAAAAAAFAA4
 tile_set = SubResource("TileSet_uia72")
 
 [node name="Walls" type="TileMapLayer" parent="Node2D"]
+
 
 texture_filter = 1
 position = Vector2(0, 1)
@@ -597,10 +599,5 @@ tile_set = SubResource("TileSet_uia72")
 
 position = Vector2(221, 153)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_scale = 0.5
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource("4_d8vdy")]
+[node name="MobTest" parent="." instance=ExtResource("3_qv0mp")]
+position = Vector2(348, 148)

@@ -16,6 +16,7 @@ tootip_text = ""
 script = ExtResource("2_jpii7")
 starting_yoyo = SubResource("Resource_11i0t")
 
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdi2m"]
 size = Vector2(8, 14)
 
