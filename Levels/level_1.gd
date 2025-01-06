@@ -1,5 +1,7 @@
 extends Node2D
 
+# ONLY CAMERON SHOULD EDIT THIS FROM NOW ON
+
 @onready var player : CharacterBody2D = $Player
 @onready var camera : Camera2D = $Camera2D
 

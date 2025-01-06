@@ -15,17 +15,22 @@ run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Assets/Audio/default_bus_layout.tres"
+
 [autoload]
 
 Messenger="*res://Messenger.gd"
-AudioPlayer="*res://audio_player.gd"
+AudioPlayer="*res://Assets/Audio/audio_player.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/mode=2
 window/stretch/mode="viewport"
+window/stretch/scale=3.0
 window/stretch/scale_mode="integer"
 
 [editor_plugins]

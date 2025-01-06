@@ -1,8 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://cfx77vprqrctc"]
+[gd_scene load_steps=16 format=3 uid="uid://cfx77vprqrctc"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_18k2p"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
-[ext_resource type="PackedScene" path="res://Scenes/yoyo.tscn" id="3_kuaox"]
+[ext_resource type="Script" path="res://Resources/player_stats.gd" id="2_jpii7"]
+[ext_resource type="Resource" path="res://yoyos/test_yoyo.tres" id="3_2pjfg"]
+[ext_resource type="Script" path="res://Player/yoyo_handler.gd" id="3_tsj4p"]
+
+[sub_resource type="Resource" id="Resource_t84ll"]
+script = ExtResource("2_jpii7")
+starting_yoyo = ExtResource("3_2pjfg")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdi2m"]
 size = Vector2(8, 14)
@@ -139,10 +145,17 @@ _data = {
 "up": SubResource("Animation_u4ibw")
 }
 
-[sub_resource type="Curve" id="Curve_qk2iy"]
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_18k2p")
+player_stats = SubResource("Resource_t84ll")
+current_move_state = null
+move_dir = null
+move_input_multiplier = null
+input_vec = null
+can_move = null
+facing = null
+last_nonzero_x = null
+speed_modifier = null
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -159,17 +172,9 @@ libraries = {
 "": SubResource("AnimationLibrary_qx06p")
 }
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-node_a = NodePath("..")
-node_b = NodePath("../Flail")
-bias = 0.044
-softness = 16.0
+[node name="YoyoHandler" type="Node" parent="."]
+script = ExtResource("3_tsj4p")
 
-[node name="Flail" parent="." instance=ExtResource("3_kuaox")]
-position = Vector2(45, 0)
-mass = 0.271
+[node name="Strings" type="Node" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="String" type="Line2D" parent="CanvasLayer"]
-width_curve = SubResource("Curve_qk2iy")
+[node name="Pinjoints" type="Node" parent="."]
