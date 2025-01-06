@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Messenger="*res://Messenger.gd"
+AudioPlayer="*res://audio_player.gd"
 
 [display]
 
@@ -35,6 +36,7 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
 folder_colors={
 "res://Assets/Art/": "blue",
+"res://Assets/Audio/": "pink",
 "res://Assets/music/": "red"
 }
 
