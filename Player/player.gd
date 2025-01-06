@@ -42,7 +42,6 @@ enum move_state {
 	down_right
 }
 
-
 func _ready():
 	anim_player.play("idle")
 	
@@ -71,6 +70,7 @@ func _ready():
 	#################
 	# TODO ENDS
 	
+
 func _physics_process(delta):
 	handle_input()
 	handle_movement(delta)
@@ -82,6 +82,7 @@ func _physics_process(delta):
 		var stringline = stringcanvas.get_child(0)
 		stringline.points = _get_points(yoyo_handler.get_children()[i])
 		
+
 	
 func handle_collisions(delta: float):
 	var col = move_and_collide(move_dir * move_input_multiplier * speed_modifier * delta)
@@ -92,6 +93,7 @@ func handle_input():
 	
 	if abs(move_dir.x) > epsilon:
 		last_nonzero_x = move_dir.x
+
 
 func handle_movement(delta):
 	if !can_move : 
@@ -140,6 +142,7 @@ func set_state(new_state):
 	set_facing()
 	if new_state == current_move_state:
 		return
+
 	if new_state == move_state.right or new_state == move_state.down_right:
 		anim_player.play("right")
 
@@ -161,6 +164,7 @@ func _get_points(node) -> Array:
 	var points := []
 	var start := self.global_position as Vector2
 	var target = node.global_position as Vector2
+
 	var distance = (target - start) as Vector2
 	for i in range(ARC_POINTS):
 		var t := (1.0 / ARC_POINTS) * i

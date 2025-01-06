@@ -89,6 +89,7 @@ tracks/0/keys = {
 resource_name = "idle"
 length = 0.5
 loop_mode = 1
+
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -190,6 +191,7 @@ _data = {
 "laughing": SubResource("Animation_7a4p7"),
 "splitting": SubResource("Animation_ugs4n"),
 "transform": SubResource("Animation_tttbh")
+
 }
 
 [node name="BossPrefab" type="CharacterBody2D"]

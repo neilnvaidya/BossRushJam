@@ -28,6 +28,7 @@ window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 window/stretch/scale=2.0
+
 window/stretch/scale_mode="integer"
 
 [editor_plugins]
@@ -38,6 +39,7 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
 folder_colors={
 "res://Assets/Art/": "blue",
+"res://Assets/Audio/": "pink",
 "res://Assets/music/": "red"
 }
 

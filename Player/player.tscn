@@ -190,6 +190,7 @@ _data = {
 [node name="PlayerController" type="Node2D"]
 script = ExtResource("1_ih5x6")
 
+
 [node name="Weapon" parent="." instance=ExtResource("3_ivkjo")]
 
 [node name="Player" type="CharacterBody2D" parent="."]
