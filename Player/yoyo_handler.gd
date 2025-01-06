@@ -33,7 +33,7 @@ func _ready():
 	create_children()
 	
 	for yoyo in yoyos.get_children():
-		#yoyo.position = self.global_position + Vector2(0,50)
+		yoyo.position = get_parent().global_position + Vector2(0,50)
 		var joint = PinJoint2D.new()
 		joint.softness = 16
 		joint.node_a = get_parent().get_path()
