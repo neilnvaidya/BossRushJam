@@ -15,6 +15,7 @@ script = ExtResource("1_f8io0")
 [node name="Player" parent="." instance=ExtResource("1_bwjs7")]
 position = Vector2(24, 32)
 motion_mode = 1
+player_stats = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(457, 221)

@@ -604,3 +604,4 @@ tile_set = SubResource("TileSet_uia72")
 
 [node name="Player" parent="Node2D" instance=ExtResource("2_kxe46")]
 position = Vector2(240, 264)
+player_stats = null
