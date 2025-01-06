@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 const ARC_POINTS := 10
 
@@ -8,9 +9,9 @@ const epsilon = 0.05
 @onready var anim_player :AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $PlayerSprite
 @onready var collision_shape :CollisionShape2D = $PlayerCollisionShape
-
-@onready var flail = $Flail
-@onready var string = $CanvasLayer/String
+@onready var yoyos = $YoyoHandler
+@onready var strings = $Strings
+const STRING = preload("res://Scenes/String.tscn")
 
 # GROUP FOR DEBUG PURPOSE
 @export_group('Debug Trackers')
@@ -38,12 +39,22 @@ enum move_state {
 
 func _ready():
 	anim_player.play("idle")
+	for yoyo in get_yoyos():
+		yoyo.position = self.global_position
+	for i in get_yoyos().size():
+		var new_string_child := STRING.instantiate() as CanvasLayer
+		strings.add_child(new_string_child)
+	
 #basic WASD movement
 func _physics_process(delta):
 	handle_input()
 	handle_movement(delta)
 	handle_collisions(delta)
-	string.points = _get_points()
+	for i in get_yoyos().size():
+		var stringcanvas = strings.get_child(i)
+		var stringline = stringcanvas.get_child(0)
+		stringline.points = _get_points(get_yoyos()[i])
+		
 	#print("state:" , move_state.keys()[current_move_state])
 	
 func handle_collisions(delta: float):
@@ -106,8 +117,6 @@ func set_state(new_state):
 	if new_state == current_move_state:
 		return
 	
-
-	
 	if new_state == move_state.right or new_state == move_state.down_right:
 		anim_player.play("right")
 
@@ -124,11 +133,18 @@ func set_state(new_state):
 		anim_player.play("up")
 
 	current_move_state = new_state
-
-func _get_points() -> Array:
+	
+	
+func get_yoyos() -> Array[YoYo]:
+	var array_of_yoyos : Array[YoYo]
+	for child: YoYo in (yoyos.get_children() as Array[YoYo]):
+		array_of_yoyos.append(child)
+	return array_of_yoyos
+	
+func _get_points(YoYo) -> Array:
 	var points := []
 	var start := self.global_position as Vector2
-	var target = flail.global_position as Vector2
+	var target = YoYo.global_position as Vector2
 	var distance = (target - start) as Vector2
 	for i in range(ARC_POINTS):
 		var t := (1.0 / ARC_POINTS) * i
