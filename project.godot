@@ -15,13 +15,22 @@ run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Assets/Audio/default_bus_layout.tres"
+
+[autoload]
+
+Messenger="*res://Messenger.gd"
+AudioPlayer="*res://Assets/Audio/audio_player.gd"
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_height"
-window/stretch/scale=2.0
+window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/scale=3.0
 window/stretch/scale_mode="integer"
 
 [editor_plugins]
@@ -32,6 +41,7 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
 folder_colors={
 "res://Assets/Art/": "blue",
+"res://Assets/Audio/": "pink",
 "res://Assets/music/": "red"
 }
 
