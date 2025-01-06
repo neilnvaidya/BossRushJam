@@ -1,9 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
-const ARC_POINTS := 10
+
 @export var player_stats : PlayerStats
-const TEST_YOYO = preload("res://yoyos/test_yoyo.tres")
+
 
 # Dead zone value
 const epsilon = 0.05
@@ -13,9 +13,7 @@ const epsilon = 0.05
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var collision_shape: CollisionShape2D = $PlayerCollisionShape
 @onready var yoyo_handler = $YoyoHandler
-@onready var strings = $Strings
-@onready var pinjoints = $Pinjoints
-const STRING = preload("res://Scenes/String.tscn")
+
 
 
 # GROUP FOR DEBUG PURPOSE
@@ -44,29 +42,14 @@ enum move_state {
 
 func _ready():
 	anim_player.play("idle")
-	
+	yoyo_handler.player_stats = player_stats
 	###########################
 	# TODO:
 	# This should all be inside the yoyo handler not in palyer
 	# Yoyo handler needs to self initialise a resource as default for safety
 	# the positioning doesnt work if we load the player off the origin, 
 	# this means that the position calculations are not effective
-	yoyo_handler.player_stats = player_stats
-	yoyo_handler.set_yoyos()
-	#remove
-	yoyo_handler.active_yoyos.append(TEST_YOYO)
-	yoyo_handler.create_children()
-	
-	for yoyo in yoyo_handler.get_children():
-		yoyo.position = self.global_position + Vector2(0,50)
-		var joint = PinJoint2D.new()
-		joint.softness = 16
-		joint.node_a = self.get_path()
-		joint.node_b = yoyo.get_path()
-		pinjoints.add_child(joint)
-	for i in yoyo_handler.active_yoyos.size():
-		var new_string_child := STRING.instantiate() as CanvasLayer
-		strings.add_child(new_string_child)
+
 	#################
 	# TODO ENDS
 	
@@ -76,11 +59,7 @@ func _physics_process(delta):
 	handle_movement(delta)
 	handle_collisions(delta)
 	
-	# TODO: Not clear what you're doing here, please make functions for readability
-	for i in yoyo_handler.get_children().size():
-		var stringcanvas = strings.get_child(i)
-		var stringline = stringcanvas.get_child(0)
-		stringline.points = _get_points(yoyo_handler.get_children()[i])
+
 		
 
 	
@@ -159,21 +138,3 @@ func set_state(new_state):
 		anim_player.play("up")
 
 	current_move_state = new_state
-
-func _get_points(node) -> Array:
-	var points := []
-	var start := self.global_position as Vector2
-	var target = node.global_position as Vector2
-
-	var distance = (target - start) as Vector2
-	for i in range(ARC_POINTS):
-		var t := (1.0 / ARC_POINTS) * i
-		var x = start.x + (distance.x / ARC_POINTS) * i
-		var y = start.y + ease_out_cubic(t) * distance.y
-		points.append(Vector2(x,y))
-	points.append(target)
-	
-	return points
-
-func ease_out_cubic(number:float) -> float:
-	return 1.0 - pow(1.0 - number, 3.0)
