@@ -590,14 +590,6 @@ tile_set = SubResource("TileSet_uia72")
 
 [node name="Player" parent="." instance=ExtResource("1_c1hw2")]
 position = Vector2(221, 153)
-current_move_state = null
-move_dir = null
-move_input_multiplier = null
-input_vec = null
-can_move = null
-facing = null
-last_nonzero_x = null
-speed_modifier = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
