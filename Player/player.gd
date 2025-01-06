@@ -38,7 +38,6 @@ enum move_state {
 
 func _ready():
 	anim_player.play("idle")
-
 #basic WASD movement
 func _physics_process(delta):
 	handle_input()
