@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
 [ext_resource type="Script" path="res://Resources/player_stats.gd" id="2_jpii7"]
 [ext_resource type="Resource" uid="uid://cd4e2cf101s7m" path="res://yoyos/test_yoyo.tres" id="3_2pjfg"]
-[ext_resource type="PackedScene" uid="uid://bsfklt6yt1r5p" path="res://Scenes/yoyo_handler.tscn" id="5_21bod"]
+[ext_resource type="PackedScene" path="res://Scenes/yoyo_handler.tscn" id="5_21bod"]
 
 [sub_resource type="Resource" id="Resource_t84ll"]
 script = ExtResource("2_jpii7")

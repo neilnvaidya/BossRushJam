@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 @export var player_stats : PlayerStats
 
-
 # Dead zone value
 const epsilon = 0.05
 
@@ -13,7 +12,6 @@ const epsilon = 0.05
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var collision_shape: CollisionShape2D = $PlayerCollisionShape
 @onready var yoyo_handler = $YoyoHandler
-
 
 
 # GROUP FOR DEBUG PURPOSE
@@ -42,25 +40,12 @@ enum move_state {
 
 func _ready():
 	anim_player.play("idle")
-	yoyo_handler.player_stats = player_stats
-	###########################
-	# TODO:
-	# This should all be inside the yoyo handler not in palyer
-	# Yoyo handler needs to self initialise a resource as default for safety
-	# the positioning doesnt work if we load the player off the origin, 
-	# this means that the position calculations are not effective
-
-	#################
-	# TODO ENDS
-	
+	yoyo_handler.player_stats = player_stats	
 
 func _physics_process(delta):
 	handle_input()
 	handle_movement(delta)
 	handle_collisions(delta)
-	
-
-		
 
 	
 func handle_collisions(delta: float):
