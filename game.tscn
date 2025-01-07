@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcavdlbw8g54h"]
+[gd_scene load_steps=6 format=3 uid="uid://bcavdlbw8g54h"]
 
 [ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="1_bwjs7"]
+[ext_resource type="Script" path="res://game.gd" id="1_f8io0"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_b5bjd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_241ry"]
@@ -8,11 +9,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnaqu"]
 size = Vector2(125, 126)
 
-[node name="Node2D" type="Node2D"]
+[node name="Run" type="Node2D"]
+script = ExtResource("1_f8io0")
 
 [node name="Player" parent="." instance=ExtResource("1_bwjs7")]
 position = Vector2(24, 32)
 motion_mode = 1
+current_move_state = 0
+move_dir = Vector2(0, 0)
+move_input_multiplier = 0.0
+input_vec = Vector2(0, 0)
+can_move = true
+facing = 1
+last_nonzero_x = 0.0
+speed_modifier = 100.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(457, 221)
