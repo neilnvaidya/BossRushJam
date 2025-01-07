@@ -1,5 +1,4 @@
-
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://bwvg46r0l6kn6"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://bkroe6xvhdihi"]
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_8s368"]
 resource_name = "Amplify"
@@ -20,7 +19,6 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
-
 bus/3/name = &"YoYoLoop"
 bus/3/solo = false
 bus/3/mute = false
