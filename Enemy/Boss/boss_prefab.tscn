@@ -8,18 +8,6 @@ radius = 18.4783
 
 [sub_resource type="Animation" id="Animation_ie8q2"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["LABEL"]
-}
 
 [sub_resource type="Animation" id="Animation_ge58q"]
 length = 1.3
@@ -92,22 +80,10 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:text")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["LABEL"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
@@ -200,21 +176,12 @@ position = Vector2(-8, 35)
 scale = Vector2(1.29297, 1.3327)
 shape = SubResource("CircleShape2D_wjdh3")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -18.0
-offset_top = -88.0
-offset_right = 30.0
-offset_bottom = -65.0
-text = "LABEL"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_h01a5")
 hframes = 10
 vframes = 10
-frame = 30
+frame = 32
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
