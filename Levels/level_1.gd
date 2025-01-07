@@ -1,15 +1,17 @@
 extends Node2D
 
-# ONLY CAMERON SHOULD EDIT THIS FROM NOW ON
+# SgtChilli Test Level
 
-@onready var player : CharacterBody2D = $Player
-@onready var camera : Camera2D = $Camera2D
+@onready var player : CharacterBody2D
+@onready var camera : Camera2D 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	camera.position = player.position
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	camera.position = player.position
+	pass
+
+func _on_door_on_player_enter(player, direction):
+	print("LEVEL 1 - door player enter: ", player.name, direction)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhthiwa1bko2c"]
+
+[ext_resource type="Script" path="res://Levels/TestLevels/game_root.gd" id="1_edkbg"]
+[ext_resource type="PackedScene" uid="uid://cwy24bnsmca6h" path="res://Levels/TestLevels/test_level_1.tscn" id="2_n8b3k"]
+[ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="3_ysj6v"]
+[ext_resource type="PackedScene" uid="uid://kf4ulr72cvgh" path="res://GUI/gui.tscn" id="4_27yul"]
+
+[node name="GameRoot" type="Node2D"]
+script = ExtResource("1_edkbg")
+
+[node name="Level 1" parent="." instance=ExtResource("2_n8b3k")]
+
+[node name="Player" parent="." instance=ExtResource("3_ysj6v")]
+position = Vector2(221, 153)
+current_move_state = 0
+move_dir = Vector2(0, 0)
+move_input_multiplier = 0.0
+input_vec = Vector2(0, 0)
+can_move = true
+facing = 1
+last_nonzero_x = 0.0
+speed_modifier = 100.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.5
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("4_27yul")]
