@@ -2,6 +2,7 @@ extends Node
 
 @export var MUSIC_BUS : StringName = "Music"
 @export var SOUND_BUS : StringName = "Sound"
+@export var YOYO_BUS : StringName = "YoYoLoop"
 
 @export_subgroup("Default Configuration")
 @export var music_process : ProcessMode = PROCESS_MODE_ALWAYS
@@ -10,11 +11,23 @@ extends Node
 func play_sound(sound_path: String, volume: float = 1.0) -> AudioStreamPlayer:
 	return play_stream(load(sound_path), volume)
 
+func play_yoyoloop(sound_path: String, volume: float = 1.0) -> AudioStreamPlayer:
+	return play_yoyostream(load(sound_path), volume)
+
 func play_sound_at_point(sound_path: String, position: Vector2, volume: float = 1.0) -> AudioStreamPlayer2D:
 	return play_stream_at_point(load(sound_path), position, volume)
 
 func play_stream(stream : AudioStream, volume : float = 1.0) -> AudioStreamPlayer:
 	var audio_player := _create_default_sound_player()
+	audio_player.stream = stream
+	audio_player.volume_db = linear_to_db(volume)
+	add_child(audio_player)
+	audio_player.finished.connect(audio_player.queue_free)
+	audio_player.play()
+	return audio_player
+	
+func play_yoyostream(stream : AudioStream, volume : float = 1.0) -> AudioStreamPlayer:
+	var audio_player := _create_yoyo_sound_player()
 	audio_player.stream = stream
 	audio_player.volume_db = linear_to_db(volume)
 	add_child(audio_player)
@@ -69,6 +82,12 @@ func _create_default_music_player() -> AudioStreamPlayer:
 func _create_default_sound_player() -> AudioStreamPlayer:
 	var audio_player = AudioStreamPlayer.new()
 	audio_player.bus = SOUND_BUS
+	audio_player.process_mode = sound_process
+	return audio_player
+	
+func _create_yoyo_sound_player() -> AudioStreamPlayer:
+	var audio_player = AudioStreamPlayer.new()
+	audio_player.bus = YOYO_BUS
 	audio_player.process_mode = sound_process
 	return audio_player
 

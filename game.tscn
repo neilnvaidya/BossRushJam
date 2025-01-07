@@ -15,14 +15,6 @@ script = ExtResource("1_f8io0")
 [node name="Player" parent="." instance=ExtResource("1_bwjs7")]
 position = Vector2(24, 32)
 motion_mode = 1
-current_move_state = 0
-move_dir = Vector2(0, 0)
-move_input_multiplier = 0.0
-input_vec = Vector2(0, 0)
-can_move = true
-facing = 1
-last_nonzero_x = 0.0
-speed_modifier = 100.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(457, 221)
