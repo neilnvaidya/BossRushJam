@@ -10,6 +10,11 @@ const ARC_POINTS := 10
 const TEST_YOYO = preload("res://yoyos/test_yoyo.tres")
 const STRING = preload("res://Scenes/String.tscn")
 
+func handler_setup():
+	set_yoyos()
+	create_children()
+	assignjoints()
+
 func _physics_process(delta):
 	# TODO: Not clear what you're doing here, please make functions for readability
 	#Dan -> this assigns the lines for each yoyo and moves them with the yoyo
@@ -27,16 +32,12 @@ func create_children():
 		new_yoyo_child.yoyo = yoyo
 		yoyos.add_child(new_yoyo_child)
 
-func _ready():
-	set_yoyos()
-	#remove
-	create_children()
-	
+func assignjoints():
 	for yoyo in yoyos.get_children():
-		yoyo.position = get_parent().global_position + Vector2(0,50)
+		yoyo.position = get_tree().get_nodes_in_group("Player")[0].position + Vector2(0,50)
 		var joint = PinJoint2D.new()
 		joint.softness = 16
-		joint.node_a = get_parent().get_path()
+		joint.node_a = get_tree().get_nodes_in_group("Player")[0].get_path()
 		joint.node_b = yoyo.get_path()
 		pinjoints.add_child(joint)
 	for i in active_yoyos.size():
@@ -45,8 +46,8 @@ func _ready():
 
 func _get_points(node) -> Array:
 	var points := []
-	var start := get_parent().global_position as Vector2
-	var target = node.global_position as Vector2
+	var start := get_tree().get_nodes_in_group("Player")[0].position as Vector2
+	var target = node.position as Vector2
 
 	var distance = (target - start) as Vector2
 	for i in range(ARC_POINTS):

@@ -12,7 +12,6 @@ const epsilon = 0.05
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var collision_shape: CollisionShape2D = $PlayerCollisionShape
-@onready var yoyo_handler = $YoyoHandler
 
 
 
@@ -42,7 +41,6 @@ enum move_state {
 
 func _ready():
 	anim_player.play("idle")
-	yoyo_handler.player_stats = player_stats
 	###########################
 	# TODO:
 	# This should all be inside the yoyo handler not in palyer

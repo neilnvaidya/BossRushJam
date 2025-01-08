@@ -9,7 +9,6 @@ extends Node2D
 func _ready():
 	camera.position = player.position
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	camera.position = player.position
