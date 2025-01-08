@@ -2,7 +2,7 @@ extends Node2D
 
 # SgtChilli Test Level (Acting as Game Root)
 
-@onready var player : CharacterBody2D = $Player
+@onready var player : CharacterBody2D = $Player_duplicate
 @onready var camera : Camera2D = $Camera2D
 
 

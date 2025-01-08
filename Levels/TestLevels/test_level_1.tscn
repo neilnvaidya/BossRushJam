@@ -24,5 +24,4 @@ tile_set = ExtResource("3_fif4m")
 position = Vector2(256, 15)
 collision_layer = 8
 
-[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
 [connection signal="on_player_enter" from="Door" to="." method="_on_door_on_player_enter"]

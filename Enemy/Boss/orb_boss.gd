@@ -43,7 +43,7 @@ func _on_state_tick(state):
 func _on_state_enter(state):
 	super(state)
 	if state == boss_states.idle_human:
-		anim_player.play("idle1")
+		anim_player.play("idle")
 		
 	# TODO: implement facing 
 	if state ==boss_states.idle_monster:
