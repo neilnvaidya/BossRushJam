@@ -1,7 +1,4 @@
 extends Node2D
-
-# SgtChilli Test Level
-
 @onready var player : CharacterBody2D = $Player
 @onready var camera : Camera2D = $Camera2D
 @onready var mark: Marker2D = $Marker2D
@@ -18,5 +15,5 @@ func _process(delta):
 
 
 func _on_door_player_enter_door(body: Variant) -> void:
-	print("going to lvl 2")
-	get_tree().change_scene_to_file("res://Levels/level_2.tscn")
+	print("going to lvl 1")
+	get_tree().change_scene_to_file("res://Levels/level_1.tscn")
