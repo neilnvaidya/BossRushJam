@@ -605,5 +605,5 @@ tile_set = SubResource("TileSet_uia72")
 [node name="Door" parent="." instance=ExtResource("2_a4b3v")]
 position = Vector2(640, 192)
 
-[node name="NorthDoor" type="Marker2D" parent="."]
+[node name="Mark" type="Marker2D" parent="."]
 position = Vector2(685, 375)
