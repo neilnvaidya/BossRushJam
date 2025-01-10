@@ -5,7 +5,7 @@ extends Resource
 @export var id: String
 @export_multiline var tootip_text: String
 @export var sound: AudioStream
-
+@export var base_damage : int
 @export_group("Card Visuals")
 @export var icon: Texture
 
