@@ -1,22 +1,8 @@
 extends Node2D
 
-# SgtChilli Test Level
+signal go_to_level(level)
+@export var level:String
 
-@onready var player : CharacterBody2D = $Player
-@onready var camera : Camera2D = $Camera2D
-@onready var mark: Marker2D = $Marker2D
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	player.position = mark.position
-	camera.position = player.position
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	camera.position = player.position
-
-
-func _on_door_player_enter_door(body: Variant) -> void:
-	print("going to lvl 2")
-	get_tree().change_scene_to_file("res://Levels/level_2.tscn")
+func _on_door_go_to_level(lvl: Variant) -> void:
+	print("void")
+	emit_signal("go_to_level", load(level))

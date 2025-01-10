@@ -1,10 +1,11 @@
 extends Area2D
 
-#signal to know what lvl the player is at
-signal player_enter_door(body)
+#signal to know what level the player is at
+signal go_to_level()
 
 @onready var blockage: CollisionShape2D = $StaticBody2D/CollisionShape2D2
 @onready var door: TileMapLayer = $StaticBody2D/TileMapLayer
+@export var level:String
 
 var is_open:bool = false
 
@@ -14,8 +15,8 @@ func _on_timer_timeout():
 	blockage.disabled = is_open
 	door.clear()
 
-
-func _on_body_entered(body: Node2D):
-	print(body.name+" entered")
+func _on_body_entered(body: PhysicsBody2D):
+	print(body.name)
 	if body.name == "Player":
-		emit_signal("player_enter_door",body)
+		print("going")
+		emit_signal("go_to_level", load(level))
