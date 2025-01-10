@@ -29,7 +29,7 @@ func _on_go_to_level(scene:PackedScene):
 	$Levels.add_child(new_level)
 	spawn_point()
 	old_level=current_level
-	new_level.connect("go_to_level",Callable(self,"_on_goto_level"))
+	new_level.connect("go_to_level",Callable(self,"_on_go_to_level"))
 	current_level=new_level
 	get_tree().paused=false
 	old_level.queue_free()
