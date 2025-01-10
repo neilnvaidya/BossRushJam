@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0trk4efubyp8"]
+[gd_scene load_steps=6 format=3 uid="uid://cic73rcyp8td8"]
 
 [ext_resource type="Script" path="res://Scenes/yoyosprite.gd" id="1_h1o2x"]
 [ext_resource type="Resource" uid="uid://cd4e2cf101s7m" path="res://yoyos/test_yoyo.tres" id="2_e2ax8"]

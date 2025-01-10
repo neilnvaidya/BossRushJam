@@ -11,8 +11,6 @@ const TEST_YOYO = preload("res://yoyos/test_yoyo.tres")
 const STRING = preload("res://Scenes/String.tscn")
 
 func _physics_process(delta):
-	# TODO: Not clear what you're doing here, please make functions for readability
-	#Dan -> this assigns the lines for each yoyo and moves them with the yoyo
 	for i in yoyos.get_children().size():
 		var stringcanvas = strings.get_child(i)
 		var stringline = stringcanvas.get_child(0)

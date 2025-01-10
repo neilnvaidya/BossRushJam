@@ -12,3 +12,13 @@ func _set_yoyo(value: YoYo) ->void:
 		await ready
 	yoyo = value
 	sprite_2d.texture = value.icon
+<<<<<<< Updated upstream
+=======
+
+func _on_body_entered(body):
+	if not has_hit:
+		if body.name == "Boss":
+			var calculated_damage = damage_multiplier * yoyo.base_damage
+			Messenger.HIT.emit(body, calculated_damage)
+			has_hit = true
+>>>>>>> Stashed changes
