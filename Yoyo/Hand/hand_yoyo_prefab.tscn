@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlm0buk661rbo"]
+
+[ext_resource type="Script" path="res://Yoyo/yoyo.gd" id="1_fl583"]
+[ext_resource type="Resource" uid="uid://cyjkdwquqsoe4" path="res://Yoyo/Hand/hand_yoyo_resource.tres" id="2_dvmrt"]
+[ext_resource type="Texture2D" uid="uid://daqklroqq7ewj" path="res://Assets/Art/Sprites/items/item_hand.png" id="3_kw0rh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewplv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hus6c"]
+
+[node name="HandPrefab" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_ewplv")
+gravity_scale = 0.0
+inertia = 1.52
+script = ExtResource("1_fl583")
+yoyo_stats = ExtResource("2_dvmrt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_kw0rh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hus6c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

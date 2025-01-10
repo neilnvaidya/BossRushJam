@@ -51,8 +51,10 @@ func _physics_process(delta):
 
 	
 func handle_collisions(delta: float):
-	var col = move_and_collide(move_dir * move_input_multiplier * speed_modifier * delta)
-	if col: print(col.get_collider().name)
+	velocity = move_dir * move_input_multiplier * speed_modifier
+	#var col = move_and_slide()
+	move_and_slide()
+	#if col: print(col.get_collider().name)
 
 func handle_input():
 	input_vec = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))

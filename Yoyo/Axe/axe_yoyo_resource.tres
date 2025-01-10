@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="YoYo" load_steps=3 format=3 uid="uid://j2kyh26o5gy7"]
+[gd_resource type="Resource" script_class="YoyoStats" load_steps=3 format=3 uid="uid://j2kyh26o5gy7"]
 
-[ext_resource type="Texture2D" uid="uid://c717vupvaxgcc" path="res://Assets/Art/Sprites/items/DevMorningStar.png" id="1_k6m0k"]
+[ext_resource type="Texture2D" uid="uid://bguqfyu3fbxqn" path="res://Assets/Art/Sprites/items/item_axe.png" id="1_wqgmb"]
 [ext_resource type="Script" path="res://Yoyo/yoyo_resource.gd" id="2_g5uib"]
 
 [resource]
@@ -8,4 +8,4 @@ script = ExtResource("2_g5uib")
 id = "test_yoyo"
 tootip_text = ""
 base_damage = 20
-icon = ExtResource("1_k6m0k")
+icon = ExtResource("1_wqgmb")

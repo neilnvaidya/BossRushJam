@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="YoyoStats" load_steps=3 format=3 uid="uid://bn52tjenwe40d"]
+
+[ext_resource type="Texture2D" uid="uid://dq0i2gmapopu7" path="res://Assets/Art/Sprites/items/item_punchingglove.png" id="1_3am4u"]
+[ext_resource type="Script" path="res://Yoyo/yoyo_resource.gd" id="2_nlye1"]
+
+[resource]
+script = ExtResource("2_nlye1")
+id = "test_yoyo"
+tootip_text = ""
+base_damage = 20
+icon = ExtResource("1_3am4u")

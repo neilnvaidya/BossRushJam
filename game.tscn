@@ -13,8 +13,12 @@ script = ExtResource("1_f8io0")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_bwjs7")]
+position = Vector2(178, 120)
+collision_mask = 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.5
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("4_fth0p")]
+
+[connection signal="boss_health_gui_update" from="Level 1" to="CanvasLayer/GUI" method="_on_level_1_boss_health_gui_update"]

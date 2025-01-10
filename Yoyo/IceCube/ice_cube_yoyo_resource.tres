@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="YoyoStats" load_steps=3 format=3 uid="uid://btrcsf05q6usf"]
+
+[ext_resource type="Texture2D" uid="uid://d01e3lxishplw" path="res://Assets/Art/Sprites/items/item_icecube.png" id="1_sp1o6"]
+[ext_resource type="Script" path="res://Yoyo/yoyo_resource.gd" id="2_obyvx"]
+
+[resource]
+script = ExtResource("2_obyvx")
+id = "test_yoyo"
+tootip_text = ""
+base_damage = 20
+icon = ExtResource("1_sp1o6")

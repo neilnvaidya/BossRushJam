@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://0cbebba0xc0j"]
+
+[ext_resource type="Script" path="res://Yoyo/yoyo.gd" id="1_oihqd"]
+[ext_resource type="Resource" uid="uid://bn52tjenwe40d" path="res://Yoyo/Glove/glove_yoyo_resource.tres" id="2_1v4h6"]
+[ext_resource type="Texture2D" uid="uid://dq0i2gmapopu7" path="res://Assets/Art/Sprites/items/item_punchingglove.png" id="2_nyu0r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewplv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hus6c"]
+
+[node name="GlovePrefab" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_ewplv")
+gravity_scale = 0.0
+inertia = 1.52
+script = ExtResource("1_oihqd")
+yoyo_stats = ExtResource("2_1v4h6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nyu0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hus6c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -10,6 +10,8 @@ friction = 0.0
 
 [node name="YoyoPrefab" type="RigidBody2D"]
 position = Vector2(-2, 0)
+collision_layer = 16
+collision_mask = 6
 physics_material_override = SubResource("PhysicsMaterial_ewplv")
 gravity_scale = 0.0
 inertia = 1.02

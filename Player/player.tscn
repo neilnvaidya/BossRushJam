@@ -139,7 +139,8 @@ _data = {
 "up": SubResource("Animation_u4ibw")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_mask = 14
 script = ExtResource("1_18k2p")
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
