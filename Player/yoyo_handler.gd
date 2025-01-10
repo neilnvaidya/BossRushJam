@@ -1,44 +1,55 @@
 class_name YoYoHandler
-extends Node
-const YOYOSPRITE = preload("res://Scenes/yoyosprite.tscn")
-@export var player_stats : PlayerStats
-var active_yoyos: Array[YoYo]
+#extends Node
+extends Node2D
+
+#const YOYOSPRITE = preload("res://Yoyo/yoyo_prefab.tscn")
+#@export var player_stats : PlayerStats
+
+var active_yoyos: Array[YoyoStats]
 @onready var yoyos = $Yoyos
 @onready var strings = $Strings
 @onready var pinjoints = $Pinjoints
-const ARC_POINTS := 10
-const TEST_YOYO = preload("res://yoyos/test_yoyo.tres")
-const STRING = preload("res://Scenes/String.tscn")
 
+const ARC_POINTS := 10
+#const TEST_YOYO = preload("res://Resources/YoYo/test_yoyo.tres")
+const STRING = preload("res://Yoyo/String.tscn")
+const TEST_YOYO = preload("res://Yoyo/TestYoyo/test_yoyo.tres")
+const YOYO_PREFAB = preload("res://Yoyo/TestYoyo/test_yoyo.tscn")
+
+func _ready():
+	print(get_parent())
+	
 func handler_setup():
-	set_yoyos()
+	set_initial_yoyos()
 	create_children()
 	assignjoints()
 
 func _physics_process(delta):
-	# TODO: Not clear what you're doing here, please make functions for readability
-	#Dan -> this assigns the lines for each yoyo and moves them with the yoyo
 	for i in yoyos.get_children().size():
 		var stringcanvas = strings.get_child(i)
 		var stringline = stringcanvas.get_child(0)
 		stringline.points = _get_points(yoyos.get_children()[i])
-func set_yoyos():
-	player_stats.yoyo_collection.append(player_stats.starting_yoyo)
-	active_yoyos = player_stats.yoyo_collection
+		
 
+func set_initial_yoyos():
+	active_yoyos.append(TEST_YOYO)
+	
 func create_children():
 	for yoyo in active_yoyos:
-		var new_yoyo_child := YOYOSPRITE.instantiate() as RigidBody2D
-		new_yoyo_child.yoyo = yoyo
+		var new_yoyo_child := YOYO_PREFAB.instantiate() as RigidBody2D
+		new_yoyo_child.yoyo_stats = yoyo
 		yoyos.add_child(new_yoyo_child)
+
 
 func assignjoints():
 	for yoyo in yoyos.get_children():
-		yoyo.position = get_tree().get_nodes_in_group("Player")[0].position + Vector2(0,50)
+		yoyo.position = position + Vector2(0,50)
 		var joint = PinJoint2D.new()
 		joint.softness = 16
-		joint.node_a = get_tree().get_nodes_in_group("Player")[0].get_path()
+		joint.node_a = get_parent().get_path()
+		print(joint.node_a)
 		joint.node_b = yoyo.get_path()
+		print(joint.node_b)
 		pinjoints.add_child(joint)
 	for i in active_yoyos.size():
 		var new_string_child := STRING.instantiate() as CanvasLayer
@@ -46,8 +57,8 @@ func assignjoints():
 
 func _get_points(node) -> Array:
 	var points := []
-	var start := get_tree().get_nodes_in_group("Player")[0].position as Vector2
-	var target = node.position as Vector2
+	var start := get_parent().position as Vector2
+	var target = node.position  + get_parent().position as Vector2
 
 	var distance = (target - start) as Vector2
 	for i in range(ARC_POINTS):
@@ -56,6 +67,8 @@ func _get_points(node) -> Array:
 		var y = start.y + ease_out_cubic(t) * distance.y
 		points.append(Vector2(x,y))
 	points.append(target)
+	
+	#print(points[0], points[-1])
 	
 	return points
 

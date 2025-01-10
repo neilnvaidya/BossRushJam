@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://xtg21amigi83"]
+
+[ext_resource type="Script" path="res://Yoyo/yoyo.gd" id="1_50wye"]
+[ext_resource type="Resource" uid="uid://cd4e2cf101s7m" path="res://Yoyo/TestYoyo/test_yoyo.tres" id="2_tvgnk"]
+[ext_resource type="Texture2D" uid="uid://c717vupvaxgcc" path="res://Assets/Art/Sprites/items/DevMorningStar.png" id="3_7oped"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewplv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hus6c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rw6sa"]
+
+[node name="YoyoPrefab" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_ewplv")
+gravity_scale = 0.0
+inertia = 1.52
+script = ExtResource("1_50wye")
+yoyo = ExtResource("2_tvgnk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_7oped")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hus6c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rw6sa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

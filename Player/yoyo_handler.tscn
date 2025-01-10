@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8txnbjn0suvl"]
+
+[ext_resource type="Script" path="res://Player/yoyo_handler.gd" id="1_pmnct"]
+
+[node name="YoyoHandler" type="Node2D"]
+script = ExtResource("1_pmnct")
+
+[node name="Yoyos" type="Node2D" parent="."]
+
+[node name="Strings" type="Node2D" parent="."]
+
+[node name="Pinjoints" type="Node2D" parent="."]

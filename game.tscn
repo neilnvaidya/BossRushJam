@@ -1,56 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcavdlbw8g54h"]
+[gd_scene load_steps=5 format=3 uid="uid://bcavdlbw8g54h"]
 
 [ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="1_bwjs7"]
 [ext_resource type="Script" path="res://game.gd" id="1_f8io0"]
-[ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_b5bjd"]
-[ext_resource type="PackedScene" uid="uid://bsfklt6yt1r5p" path="res://Scenes/yoyo_handler.tscn" id="4_7w7je"]
+[ext_resource type="PackedScene" uid="uid://ci02668sg1245" path="res://Levels/level_1.tscn" id="4_5q4rh"]
+[ext_resource type="PackedScene" uid="uid://kf4ulr72cvgh" path="res://GUI/gui.tscn" id="4_fth0p"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_241ry"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnaqu"]
-size = Vector2(125, 126)
-
-[node name="Run" type="Node2D"]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_f8io0")
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_bwjs7")]
-motion_mode = 1
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(457, 221)
-physics_material_override = SubResource("PhysicsMaterial_241ry")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_mnaqu")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-texture = ExtResource("2_b5bjd")
-hframes = 6
-vframes = 6
-metadata/_aseprite_wizard_interface_config_ = {
-"output_section": true,
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"i_mode": -1,
-"keep_anim_length": false,
-"layers": [],
-"o_ex_p": "",
-"o_folder": "res://Assets/Art/Sprites/player",
-"o_name": "",
-"only_visible": false,
-"player": "Player/AnimationPlayer",
-"slice": "",
-"source": "C:/Asesprite/Projects/bossrush/sprites/player.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "055321feb3190d6d7b0387b2791b7e35"
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="StaticBody2D"]
-root_node = NodePath("../../Player")
+[node name="Level 1" parent="." instance=ExtResource("4_5q4rh")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="YoyoHandler" parent="." instance=ExtResource("4_7w7je")]
+[node name="Player" parent="." instance=ExtResource("1_bwjs7")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.5
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("4_fth0p")]

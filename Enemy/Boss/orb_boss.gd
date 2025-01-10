@@ -48,8 +48,11 @@ func _on_state_enter(state):
 	# TODO: implement facing 
 	if state ==boss_states.idle_monster:
 		anim_player.play("idle2")
-		
-		
 
 func _on_state_exit(state):
 	super(state)
+
+func _on_area_2d_body_entered(body):
+	print('body entered :' , body.name)
+	if body is Yoyo:
+		print(body.yoyo_stats.base_damage)

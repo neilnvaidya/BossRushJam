@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://GUI/portrait.gd" id="1_nngm5"]
 [ext_resource type="Texture2D" uid="uid://dsxw00tdqu3ih" path="res://Assets/Art/GUI/portrait_gui.png" id="2_otfw2"]
 [ext_resource type="Texture2D" uid="uid://8ssoum6d3wwj" path="res://Assets/Art/GUI/Expressions/portrait_expression1.png" id="3_wxt4i"]
-[ext_resource type="PackedScene" uid="uid://o0utinwbjo1k" path="res://GUI/boss_health_bar.tscn" id="4_otjng"]
+[ext_resource type="PackedScene" path="res://GUI/boss_health_bar.tscn" id="4_otjng"]
 [ext_resource type="Texture2D" uid="uid://coq6e6hqmonk3" path="res://Assets/Art/Sprites/items/icons/icon_anchor.png" id="4_tipod"]
 [ext_resource type="Texture2D" uid="uid://bms6yqwrfgt1j" path="res://Assets/Art/Sprites/items/icons/icon_axe.png" id="5_xsf8o"]
 [ext_resource type="Texture2D" uid="uid://ccynxmrm3yihp" path="res://Assets/Art/Sprites/items/icons/icon_icecube.png" id="6_fqekh"]

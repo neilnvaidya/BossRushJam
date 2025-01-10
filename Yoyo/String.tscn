@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv1rdxj167jq8"]
+
+[ext_resource type="Curve" uid="uid://d0btpj3oto5cd" path="res://Yoyo/string.tres" id="1_wce2g"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="String" type="Line2D" parent="."]
+width_curve = ExtResource("1_wce2g")

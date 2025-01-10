@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://buatnjyns8suo"]
+[gd_scene load_steps=24 format=3 uid="uid://buatnjyns8suo"]
 
 [ext_resource type="Script" path="res://Enemy/Boss/orb_boss.gd" id="1_xd02q"]
 [ext_resource type="Texture2D" uid="uid://c1b87fwkn5ded" path="res://Assets/Art/Sprites/bosses/Boss1/orb_boss.png" id="2_sxjll"]
@@ -304,6 +304,9 @@ _data = {
 "transform": SubResource("Animation_tttbh")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qm4wp"]
+radius = 25.02
+
 [node name="OrbBoss" type="CharacterBody2D"]
 script = ExtResource("1_xd02q")
 
@@ -311,6 +314,7 @@ script = ExtResource("1_xd02q")
 position = Vector2(-8, 35)
 scale = Vector2(1.29297, 1.3327)
 shape = SubResource("CircleShape2D_wjdh3")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -340,3 +344,11 @@ metadata/_aseprite_wizard_source_file_hash_ = "6a1397afa83a2fe43c8522de5e4dc847"
 libraries = {
 "": SubResource("AnimationLibrary_l0xol")
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-8, 35)
+shape = SubResource("CircleShape2D_qm4wp")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

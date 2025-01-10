@@ -2,8 +2,6 @@ class_name Player
 extends CharacterBody2D
 
 
-@export var player_stats : PlayerStats
-
 # Dead zone value
 const epsilon = 0.05
 
@@ -11,7 +9,7 @@ const epsilon = 0.05
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var collision_shape: CollisionShape2D = $PlayerCollisionShape
-
+@onready var yoyo_handler : YoYoHandler = $YoyoHandler
 
 # GROUP FOR DEBUG PURPOSE
 @export_group('Debug Trackers')
@@ -27,6 +25,9 @@ const epsilon = 0.05
 @export_group('Balace Variables')
 @export var speed_modifier: float = 100.0
 
+
+
+
 # Enum for movement, may be joined to greater state machine later.
 enum move_state {
 	idle,
@@ -39,7 +40,8 @@ enum move_state {
 
 func _ready():
 	anim_player.play("idle")
-	yoyo_handler.player_stats = player_stats	
+	yoyo_handler.handler_setup()
+	#yoyo_handler.player_stats = player_stats
 
 
 func _physics_process(delta):

@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://ci02668sg1245"]
+[gd_scene load_steps=8 format=4 uid="uid://ci02668sg1245"]
 
-[ext_resource type="Script" path="res://Levels/level_1.gd" id="1_b05xp"]
-[ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="1_c1hw2"]
+[ext_resource type="Script" path="res://Levels/level.gd" id="1_b05xp"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="2_5fqd2"]
 [ext_resource type="Texture2D" uid="uid://gnq1pt1qgxl3" path="res://Assets/Art/Tilemaps/foreground_classroom.png" id="3_r3kk0"]
-[ext_resource type="PackedScene" uid="uid://kf4ulr72cvgh" path="res://GUI/gui.tscn" id="4_d8vdy"]
+[ext_resource type="PackedScene" uid="uid://buatnjyns8suo" path="res://Enemy/Boss/orb_boss.tscn" id="4_oqlks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyfae"]
 texture = ExtResource("2_5fqd2")
@@ -723,7 +722,7 @@ physics_layer_0/collision_layer = 0
 sources/0 = SubResource("TileSetAtlasSource_nyfae")
 sources/2 = SubResource("TileSetAtlasSource_fx3lm")
 
-[node name="Level 1" type="Node2D"]
+[node name="Level_1" type="Node2D"]
 script = ExtResource("1_b05xp")
 
 [node name="TerrainContainer" type="Node2D" parent="."]
@@ -748,14 +747,5 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAFAA8AAgAOAAYAAAAFABAAAgAOAAcAAAAFABEAAgAOAAgAAAAGAA8AAgAPAAYAAAAGABAAAgAPAAcAAAAGABEAAgAPAAgAAAATAAkAAgAMAAcAAAATAAoAAgAMAAgAAAATAAwAAgAMAAcAAAATAA0AAgAMAAgAAAATAA8AAgAMAAcAAAATABAAAgAMAAgAAAAUAAkAAgANAAcAAAAUAAoAAgANAAgAAAAUAAwAAgANAAcAAAAUAA0AAgANAAgAAAAUAA8AAgANAAcAAAAUABAAAgANAAgAAAAWAAkAAgAMAAcAAAAWAAoAAgAMAAgAAAAWAAwAAgAMAAcAAAAWAA0AAgAMAAgAAAAWAA8AAgAMAAcAAAAWABAAAgAMAAgAAAAXAAkAAgANAAcAAAAXAAoAAgANAAgAAAAXAAwAAgANAAcAAAAXAA0AAgANAAgAAAAXAA8AAgANAAcAAAAXABAAAgANAAgAAAAZAAkAAgAMAAcAAAAZAAoAAgAMAAgAAAAZAAwAAgAMAAcAAAAZAA0AAgAMAAgAAAAZAA8AAgAMAAcAAAAZABAAAgAMAAgAAAAaAAkAAgANAAcAAAAaAAoAAgANAAgAAAAaAAwAAgANAAcAAAAaAA0AAgANAAgAAAAaAA8AAgANAAcAAAAaABAAAgANAAgAAAA=")
 tile_set = SubResource("TileSet_uia72")
 
-[node name="Player" parent="." instance=ExtResource("1_c1hw2")]
-
-position = Vector2(221, 153)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_scale = 0.5
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource("4_d8vdy")]
+[node name="OrbBoss" parent="." instance=ExtResource("4_oqlks")]
+position = Vector2(312, 139)
