@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://o0utinwbjo1k"]
+
+[ext_resource type="Script" path="res://GUI/boss_health_bar.gd" id="1_batcj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7esvp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdkn3"]
+bg_color = Color(1, 0.160784, 0.203922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rshvu"]
+bg_color = Color(0.305882, 0.305882, 0.305882, 0.662745)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cou33"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="BossHealthBar" type="ProgressBar"]
+custom_minimum_size = Vector2(300, 15)
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_7esvp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wdkn3")
+value = 87.64
+show_percentage = false
+script = ExtResource("1_batcj")
+
+[node name="DamageBar" type="ProgressBar" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rshvu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cou33")
+value = 90.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.478
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

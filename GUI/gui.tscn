@@ -1,17 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://kf4ulr72cvgh"]
+[gd_scene load_steps=8 format=3 uid="uid://kf4ulr72cvgh"]
 
 [ext_resource type="Script" path="res://GUI/portrait.gd" id="1_nngm5"]
 [ext_resource type="Texture2D" uid="uid://dsxw00tdqu3ih" path="res://Assets/Art/GUI/portrait_gui.png" id="2_otfw2"]
 [ext_resource type="Texture2D" uid="uid://8ssoum6d3wwj" path="res://Assets/Art/GUI/Expressions/portrait_expression1.png" id="3_wxt4i"]
+[ext_resource type="PackedScene" uid="uid://o0utinwbjo1k" path="res://GUI/boss_health_bar.tscn" id="4_otjng"]
 [ext_resource type="Texture2D" uid="uid://coq6e6hqmonk3" path="res://Assets/Art/Sprites/items/icons/icon_anchor.png" id="4_tipod"]
 [ext_resource type="Texture2D" uid="uid://bms6yqwrfgt1j" path="res://Assets/Art/Sprites/items/icons/icon_axe.png" id="5_xsf8o"]
 [ext_resource type="Texture2D" uid="uid://ccynxmrm3yihp" path="res://Assets/Art/Sprites/items/icons/icon_icecube.png" id="6_fqekh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sks6m"]
-bg_color = Color(0.00820202, 0.00820203, 0.00820202, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdkn3"]
-bg_color = Color(1, 0.160784, 0.203922, 1)
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -53,14 +48,6 @@ offset_bottom = 39.0
 grow_horizontal = 2
 theme_override_constants/separation = 0
 
-[node name="BossHealthBar" type="ProgressBar" parent="BossStatsContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_sks6m")
-theme_override_styles/fill = SubResource("StyleBoxFlat_wdkn3")
-value = 87.64
-show_percentage = false
-
 [node name="Control" type="Control" parent="BossStatsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -76,6 +63,10 @@ offset_bottom = 17.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 12
 text = "BOSS NAME"
+
+[node name="BossHealthBar" parent="BossStatsContainer" instance=ExtResource("4_otjng")]
+layout_mode = 2
+step = 1.0
 
 [node name="Control2" type="Control" parent="."]
 layout_mode = 1

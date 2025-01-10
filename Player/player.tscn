@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfx77vprqrctc"]
+[gd_scene load_steps=15 format=3 uid="uid://cfx77vprqrctc"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_18k2p"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
 [ext_resource type="Script" path="res://Resources/player_stats.gd" id="2_jpii7"]
 [ext_resource type="Resource" uid="uid://cd4e2cf101s7m" path="res://yoyos/test_yoyo.tres" id="3_2pjfg"]
 [ext_resource type="PackedScene" uid="uid://c8txnbjn0suvl" path="res://Scenes/yoyo_handler.tscn" id="5_21bod"]
+
 
 [sub_resource type="Resource" id="Resource_t84ll"]
 script = ExtResource("2_jpii7")
@@ -145,10 +146,6 @@ _data = {
 "up": SubResource("Animation_u4ibw")
 }
 
-[sub_resource type="Resource" id="Resource_m18im"]
-script = ExtResource("2_jpii7")
-starting_yoyo = ExtResource("3_2pjfg")
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_18k2p")
 player_stats = SubResource("Resource_t84ll")
@@ -167,6 +164,3 @@ hframes = 51
 libraries = {
 "": SubResource("AnimationLibrary_qx06p")
 }
-
-[node name="YoyoHandler" parent="." instance=ExtResource("5_21bod")]
-player_stats = SubResource("Resource_m18im")

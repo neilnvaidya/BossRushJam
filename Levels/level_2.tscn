@@ -604,11 +604,3 @@ tile_set = SubResource("TileSet_uia72")
 
 [node name="Player" parent="Node2D" instance=ExtResource("2_kxe46")]
 position = Vector2(240, 264)
-current_move_state = 0
-move_dir = Vector2(0, 0)
-move_input_multiplier = 0.0
-input_vec = Vector2(0, 0)
-can_move = true
-facing = 1
-last_nonzero_x = 0.0
-speed_modifier = 100.0

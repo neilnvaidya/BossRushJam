@@ -11,7 +11,6 @@ const epsilon = 0.05
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var collision_shape: CollisionShape2D = $PlayerCollisionShape
-@onready var yoyo_handler = $YoyoHandler
 
 
 # GROUP FOR DEBUG PURPOSE
@@ -41,6 +40,7 @@ enum move_state {
 func _ready():
 	anim_player.play("idle")
 	yoyo_handler.player_stats = player_stats	
+
 
 func _physics_process(delta):
 	handle_input()
