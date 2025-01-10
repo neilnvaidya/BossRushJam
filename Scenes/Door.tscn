@@ -362,10 +362,3 @@ shape = SubResource("RectangleShape2D_apvbq")
 [node name="TileMapLayer" type="TileMapLayer" parent="StaticBody2D"]
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 14, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 15, 0, 2, 0, 0, 0, 1, 0, 1, 0, 0, 0, 15, 0, 3, 0, 0, 0)
 tile_set = SubResource("TileSet_xn3x3")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

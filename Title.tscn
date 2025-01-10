@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://djgs0q54yaxv6"]
+
+[ext_resource type="Script" path="res://title.gd" id="1_xivxg"]
+
+[node name="Control" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1049.0
+offset_bottom = -569.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xivxg")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 0
+offset_left = 47.0
+offset_top = 19.0
+offset_right = 176.0
+offset_bottom = 78.0
+text = "Test Start"
+
+[connection signal="pressed" from="Button" to="." method="start_game"]

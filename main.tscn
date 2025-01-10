@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt68npylfihdg"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_0yus1"]
+[ext_resource type="PackedScene" uid="uid://djgs0q54yaxv6" path="res://Title.tscn" id="2_2nn0i"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0yus1")
+game_scene = "res://Scenes/Game_World.tscn"
+
+[node name="MainMenu" parent="." instance=ExtResource("2_2nn0i")]
+offset_left = 556.0
+offset_top = 284.0
+offset_right = -493.0
+offset_bottom = -285.0
+
+[connection signal="starting" from="MainMenu" to="." method="_on_game_starting"]

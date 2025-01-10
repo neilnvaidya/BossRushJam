@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://rh5l52celgvr"]
+[gd_scene load_steps=5 format=4 uid="uid://rh5l52celgvr"]
 
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="1_43n2o"]
-[ext_resource type="Script" path="res://Levels/level_2.gd" id="1_kxi8p"]
 [ext_resource type="PackedScene" uid="uid://c4cnbs0vquxq" path="res://Scenes/Door.tscn" id="2_a4b3v"]
-[ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="2_kxe46"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyfae"]
 texture = ExtResource("1_43n2o")
@@ -586,7 +584,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_nyfae")
 
 [node name="level 2" type="Node2D"]
-script = ExtResource("1_kxi8p")
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -608,10 +605,5 @@ tile_set = SubResource("TileSet_uia72")
 [node name="Door" parent="." instance=ExtResource("2_a4b3v")]
 position = Vector2(640, 192)
 
-[node name="Player" parent="." instance=ExtResource("2_kxe46")]
-position = Vector2(469, 330)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(467, 333)
+[node name="NorthDoor" type="Marker2D" parent="."]
+position = Vector2(685, 375)
