@@ -68,6 +68,7 @@ text = "BOSS NAME"
 
 [node name="BossHealthBar" parent="BossStatsContainer" instance=ExtResource("4_otjng")]
 layout_mode = 2
+step = 1.0
 
 [node name="Control2" type="Control" parent="."]
 layout_mode = 1
