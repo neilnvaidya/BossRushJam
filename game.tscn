@@ -20,5 +20,10 @@ collision_mask = 6
 follow_viewport_scale = 0.5
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("4_fth0p")]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="boss_health_gui_update" from="Level 1" to="CanvasLayer/GUI" method="_on_level_1_boss_health_gui_update"]
