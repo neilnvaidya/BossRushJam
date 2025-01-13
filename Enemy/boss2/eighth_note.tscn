@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://dx4qiemy14kbc"]
+
+[ext_resource type="Texture2D" uid="uid://bwj7mot6547eu" path="res://Assets/Art/Sprites/bosses/boss2/eighth_note.png" id="1_q37av"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d02om"]
+
+[sub_resource type="Animation" id="Animation_7ccce"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_eo2hh"]
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 13, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sjt27"]
+_data = {
+"aoe": SubResource("Animation_eo2hh"),
+"static": SubResource("Animation_7ccce")
+}
+
+[node name="eighth_note" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 11)
+scale = Vector2(-2.56147, -1.85799)
+shape = SubResource("CircleShape2D_d02om")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_q37av")
+hframes = 4
+vframes = 4
+frame = 1
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Art/Sprites/bosses/boss2",
+"o_name": "",
+"only_visible": false,
+"player": "Sprite2D/AnimationPlayer",
+"slice": "",
+"source": "C:/Asesprite/Projects/bossrush/sprites/boss2/eighth_note.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "f60ecbd616fcb4901912fa2ec11b3deb"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_sjt27")
+}
