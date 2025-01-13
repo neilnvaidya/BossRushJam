@@ -1472,5 +1472,8 @@ collision_enabled = false
 [node name="OrbBoss" parent="." instance=ExtResource("4_oqlks")]
 position = Vector2(312, 139)
 
+[node name="MimicContainer" type="Node2D" parent="."]
+
+[connection signal="create_mimic" from="OrbBoss" to="." method="_on_orb_boss_create_mimic"]
 [connection signal="ready_to_fight" from="OrbBoss" to="." method="_on_orb_boss_ready_to_fight"]
 [connection signal="take_damage" from="OrbBoss" to="." method="_on_orb_boss_take_damage"]

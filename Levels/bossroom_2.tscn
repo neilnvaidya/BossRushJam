@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=4 uid="uid://co1otcvcv8xkh"]
 
-[ext_resource type="Script" path="res://Levels/level_1.gd" id="1_h3k7v"]
+[ext_resource type="Script" path="res://Levels/level.gd" id="1_h3k7v"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="1_ybj0y"]
 [ext_resource type="Texture2D" uid="uid://gnq1pt1qgxl3" path="res://Assets/Art/Tilemaps/foreground_classroom.png" id="2_0jp4t"]
 [ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="3_b16v5"]

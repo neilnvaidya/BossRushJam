@@ -24,7 +24,7 @@ func handler_setup():
 	create_children()
 	assignjoints()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	for i in yoyos.get_children().size():
 		var stringcanvas = strings.get_child(i)
 		var stringline = stringcanvas.get_child(0)

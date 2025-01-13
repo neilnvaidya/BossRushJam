@@ -12,7 +12,7 @@ func _ready():
 	pass
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var current_speed = self.linear_velocity.length()
 	current_speed = int(current_speed)
 	damage_multiplier = current_speed / 100

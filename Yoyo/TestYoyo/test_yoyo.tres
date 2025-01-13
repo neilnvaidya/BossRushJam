@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="YoYo" load_steps=3 format=3 uid="uid://cd4e2cf101s7m"]
+[gd_resource type="Resource" script_class="YoyoStats" load_steps=3 format=3 uid="uid://cd4e2cf101s7m"]
 
 [ext_resource type="Texture2D" uid="uid://c717vupvaxgcc" path="res://Assets/Art/Sprites/items/DevMorningStar.png" id="1_aj1bh"]
 [ext_resource type="Script" path="res://Yoyo/yoyo_resource.gd" id="2_2kwwd"]
@@ -7,5 +7,5 @@
 script = ExtResource("2_2kwwd")
 id = "test_yoyo"
 tootip_text = ""
-base_damage = 20
+base_damage = 4
 icon = ExtResource("1_aj1bh")

@@ -26,7 +26,7 @@ const epsilon = 0.05
 @export var speed_modifier: float = 100.0
 
 
-
+signal announce_position(pos)
 
 # Enum for movement, may be joined to greater state machine later.
 enum move_state {
@@ -48,9 +48,10 @@ func _physics_process(delta):
 	handle_input()
 	handle_movement(delta)
 	handle_collisions(delta)
+	announce_position.emit(position)
 
 	
-func handle_collisions(delta: float):
+func handle_collisions(_delta: float):
 	velocity = move_dir * move_input_multiplier * speed_modifier
 	#var col = move_and_slide()
 	move_and_slide()
@@ -63,7 +64,7 @@ func handle_input():
 		last_nonzero_x = move_dir.x
 
 
-func handle_movement(delta):
+func handle_movement(_delta):
 	if !can_move : 
 		# Zero out movement
 		move_dir = Vector2.ZERO
