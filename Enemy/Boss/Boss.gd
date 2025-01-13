@@ -11,8 +11,8 @@ func _init():
 func _ready():
 	pass
 	
-func _physics_process(_delta):
-	_on_state_tick(current_state)
+func _physics_process(delta):
+	_on_state_tick(current_state, delta)
 
 # use _ prefix to indicate overide function
 func _set_state(new_state):
@@ -22,7 +22,7 @@ func _set_state(new_state):
 	_on_state_enter(new_state)
 	current_state = new_state
 	
-func _on_state_tick(_state):
+func _on_state_tick(_state,delta):
 	if current_state ==null:
 		print("On State Tick - Current State Null")
 
