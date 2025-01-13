@@ -93,3 +93,4 @@ func _on_ready_timer_timeout():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "transform" and current_state == boss_states.transform:
 		_set_state(boss_states.idle_monster)
+		
