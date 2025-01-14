@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bguq6ntbq5txe"
+path="res://.godot/imported/yoyo_ballydeath1.wav-31e9f183d9026dedee614d2e642c1fe5.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/enemy/ball boss/yoyo_ballydeath1.wav"
+dest_files=["res://.godot/imported/yoyo_ballydeath1.wav-31e9f183d9026dedee614d2e642c1fe5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

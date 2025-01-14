@@ -1,7 +1,22 @@
-[gd_scene load_steps=25 format=3 uid="uid://buatnjyns8suo"]
+[gd_scene load_steps=31 format=3 uid="uid://buatnjyns8suo"]
 
 [ext_resource type="Script" path="res://Enemy/Boss/OrbBoss/orb_boss.gd" id="1_xd02q"]
+[ext_resource type="AudioStream" uid="uid://br7qrctgmnhxr" path="res://Assets/Audio/enemy/ball boss/yoyo_ballylaugh1.wav" id="2_iynlc"]
+[ext_resource type="AudioStream" uid="uid://dnu5s1xbq05jn" path="res://Assets/Audio/enemy/ball boss/yoyo_ballyhurt1.wav" id="2_oatiw"]
 [ext_resource type="Texture2D" uid="uid://c1b87fwkn5ded" path="res://Assets/Art/Sprites/bosses/Boss1/orb_boss.png" id="2_sxjll"]
+[ext_resource type="AudioStream" uid="uid://br1yost22r4w2" path="res://Assets/Audio/enemy/ball boss/yoyo_ballylaugh2.wav" id="3_14sbk"]
+[ext_resource type="AudioStream" uid="uid://b6ub6thjtkxtw" path="res://Assets/Audio/enemy/ball boss/yoyo_ballyhurt2.wav" id="3_ig7ac"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5tabs"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("2_iynlc")
+stream_1/stream = ExtResource("3_14sbk")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dbv48"]
+streams_count = 2
+stream_0/stream = ExtResource("2_oatiw")
+stream_1/stream = ExtResource("3_ig7ac")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjdh3"]
 radius = 18.4783
@@ -328,6 +343,8 @@ radius = 15.4865
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_xd02q")
+bally_laugh = SubResource("AudioStreamRandomizer_5tabs")
+bally_hurt = SubResource("AudioStreamRandomizer_dbv48")
 min_idle_timer = 3.51
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

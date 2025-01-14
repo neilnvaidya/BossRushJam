@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://ci02668sg1245"]
+[gd_scene load_steps=14 format=4 uid="uid://ci02668sg1245"]
 
 [ext_resource type="Script" path="res://Levels/level.gd" id="1_b05xp"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="2_5fqd2"]
 [ext_resource type="Texture2D" uid="uid://gnq1pt1qgxl3" path="res://Assets/Art/Tilemaps/foreground_classroom.png" id="3_r3kk0"]
 [ext_resource type="PackedScene" uid="uid://buatnjyns8suo" path="res://Enemy/Boss/OrbBoss/orb_boss.tscn" id="4_oqlks"]
+[ext_resource type="AudioStream" uid="uid://br7qrctgmnhxr" path="res://Assets/Audio/enemy/ball boss/yoyo_ballylaugh1.wav" id="5_xuuq2"]
+[ext_resource type="AudioStream" uid="uid://br1yost22r4w2" path="res://Assets/Audio/enemy/ball boss/yoyo_ballylaugh2.wav" id="6_q3cmh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyfae"]
 texture = ExtResource("2_5fqd2")
@@ -1441,6 +1443,11 @@ physics_layer_0/collision_mask = 5
 sources/0 = SubResource("TileSetAtlasSource_q0ink")
 sources/2 = SubResource("TileSetAtlasSource_ttq7o")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e7bhg"]
+streams_count = 2
+stream_0/stream = ExtResource("5_xuuq2")
+stream_1/stream = ExtResource("6_q3cmh")
+
 [node name="Level_1" type="Node2D"]
 script = ExtResource("1_b05xp")
 
@@ -1471,6 +1478,7 @@ collision_enabled = false
 
 [node name="OrbBoss" parent="." node_paths=PackedStringArray("move_target_container") instance=ExtResource("4_oqlks")]
 position = Vector2(312, 139)
+bally_laugh = SubResource("AudioStreamRandomizer_e7bhg")
 move_target_container = NodePath("../MoveTargetContainer")
 
 [node name="MimicContainer" type="Node2D" parent="."]

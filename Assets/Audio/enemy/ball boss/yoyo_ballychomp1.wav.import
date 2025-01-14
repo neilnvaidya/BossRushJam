@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bnfi2wjehv6ul"
+path="res://.godot/imported/yoyo_ballychomp1.wav-38d3d78a3cac0b9140b4c51e966a2bb9.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/enemy/ball boss/yoyo_ballychomp1.wav"
+dest_files=["res://.godot/imported/yoyo_ballychomp1.wav-38d3d78a3cac0b9140b4c51e966a2bb9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

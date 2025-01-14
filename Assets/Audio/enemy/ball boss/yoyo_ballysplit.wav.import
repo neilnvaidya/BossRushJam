@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c3y5i4vbp68w5"
+path="res://.godot/imported/yoyo_ballysplit.wav-f9985aec315d98979691e6b258826429.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/enemy/ball boss/yoyo_ballysplit.wav"
+dest_files=["res://.godot/imported/yoyo_ballysplit.wav-f9985aec315d98979691e6b258826429.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

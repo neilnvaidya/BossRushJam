@@ -9,6 +9,10 @@ var is_mimic: bool = false
 var is_ready : bool = false
 var facing_changed: bool = false
 
+#Audio Stream Setup
+@export var bally_laugh: AudioStream
+@export var bally_hurt: AudioStream
+
 @export var current_phase : int = 1
 
 @export var facing: int = 1
@@ -126,13 +130,18 @@ func _on_state_enter(state) -> void:
 		
 	if state == boss_states.transform:
 		anim_player.play("transform")
+		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballytransform1.wav")
+		AudioPlayer.play_music("res://Assets/Audio/music/worm boss updated drums.mp3", 0.2, true)
+		
 	if state == boss_states.splitting:
 		anim_player.play("splitting")
+		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballysplit.wav")
 	if state == boss_states.laughing:
 		anim_player.play("laughing")
+		AudioPlayer.play_stream(bally_laugh)
 	if state == boss_states.death:
 		anim_player.play("death")
-		
+		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballydeath1.wav")
 	if state== boss_states.destroy_object:
 		queue_free()
 		
@@ -143,17 +152,23 @@ func _on_state_enter(state) -> void:
 	if state == boss_states.bite:
 		if facing ==-1:
 			anim_player.play("bite_left")
+			AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballychomp1.wav")
 		else: anim_player.play("bite_right")
+		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballychomp1.wav")
+		
 	if state == boss_states.projectile:
 		if facing ==-1:
 			anim_player.play("projectile_left")
 			print('pojectile left')
+			AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballyshoot1.wav")
 		elif facing == 1 : 
 			anim_player.play("projectile_right")
 			print('pojectile right')
+			AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballyshoot1.wav")
 		else: 
 			anim_player.play("projectile_up")
 			print('pojectile up')
+			AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballyshoot1.wav")
 		create_projectile()
 		
 		
@@ -168,6 +183,8 @@ func _on_state_exit(state) -> void:
 		create_mimic.emit($MimicSpawnLocation.position + position)
 
 func on_take_damage(damage):
+	AudioPlayer.play_stream(bally_hurt, 0.5)
+	AudioPlayer.play_sound("res://Assets/Audio/enemy/yoyo_enemyhit1.wav", 0.75)
 	if is_mimic:
 		_set_state(boss_states.death)
 		print("Mimic Destroyed")
