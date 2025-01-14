@@ -6,6 +6,7 @@ extends Node2D
 #@export var player_stats : PlayerStats
 
 var active_yoyos: Array[YoyoStats]
+var yoyo_speed: int
 @onready var yoyos = $Yoyos
 @onready var strings = $Strings
 @onready var pinjoints = $Pinjoints
@@ -15,6 +16,8 @@ const ARC_POINTS := 10
 const STRING = preload("res://Yoyo/String.tscn")
 const TEST_YOYO = preload("res://Yoyo/TestYoyo/test_yoyo.tres")
 const YOYO_PREFAB = preload("res://Yoyo/TestYoyo/test_yoyo.tscn")
+
+
 
 func _ready():
 	print(get_parent())

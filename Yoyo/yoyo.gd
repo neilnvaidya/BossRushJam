@@ -6,6 +6,7 @@ extends RigidBody2D
 @onready var collision_shape_2d = $CollisionShape2D
 var damage_multiplier : int
 var has_hit = false
+var current_speed 
 
 
 func _ready(): 
@@ -13,7 +14,7 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var current_speed = self.linear_velocity.length()
+	current_speed = self.linear_velocity.length()
 	current_speed = int(current_speed)
 	damage_multiplier = current_speed / 100
 	if has_hit == true:

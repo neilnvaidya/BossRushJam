@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8txnbjn0suvl"]
+[gd_scene load_steps=2 format=3 uid="uid://cxm3mfndtqwrq"]
 
 [ext_resource type="Script" path="res://Player/yoyo_handler.gd" id="1_pmnct"]
 
