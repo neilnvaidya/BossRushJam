@@ -1,3 +1,5 @@
+#TODO: I belive this is defunct now, if so remove it and the scene - Neil
+
 extends Area2D
 
 enum Compass {North, South, East, West}

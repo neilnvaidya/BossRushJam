@@ -1,3 +1,4 @@
+#Prefab is made to be copied, not used directly in game
 extends Boss
 
 @onready var anim_player :AnimationPlayer = $AnimationPlayer
@@ -18,8 +19,8 @@ func _process(delta):
 func _set_state(new_state):
 	super(new_state)
 	
-func _on_state_tick(state):
-	super(state)
+func _on_state_tick(state,delta):
+	super(state,delta)
 	
 func _on_state_enter(state):
 	super(state)

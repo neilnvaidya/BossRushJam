@@ -3,30 +3,31 @@
 [ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="1_bwjs7"]
 [ext_resource type="Script" path="res://game.gd" id="1_f8io0"]
 [ext_resource type="PackedScene" uid="uid://do52xs7ajhxbj" path="res://Levels/hallway2.tscn" id="2_6s6bk"]
+[ext_resource type="PackedScene" uid="uid://bephq6udd0wpe" path="res://Levels/bossroom_1.tscn" id="2_kxx3s"]
 [ext_resource type="PackedScene" uid="uid://ci02668sg1245" path="res://Levels/tutorial.tscn" id="4_5q4rh"]
 [ext_resource type="PackedScene" uid="uid://kf4ulr72cvgh" path="res://GUI/gui.tscn" id="4_fth0p"]
 [ext_resource type="PackedScene" uid="uid://co1otcvcv8xkh" path="res://Levels/bossroom_2.tscn" id="4_yy38h"]
-[ext_resource type="Script" path="res://Levels/level.gd" id="5_q7hef"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_f8io0")
 
 [node name="LevelsContainer" type="Node2D" parent="."]
 
+[node name="tutorial" parent="LevelsContainer" instance=ExtResource("4_5q4rh")]
+position = Vector2(-80, 473)
+
+[node name="bossroom_1" parent="LevelsContainer" instance=ExtResource("2_kxx3s")]
+
+[node name="bossrom_2" parent="LevelsContainer" instance=ExtResource("4_yy38h")]
+position = Vector2(368, -878)
+
 [node name="Hall1" parent="LevelsContainer" instance=ExtResource("2_6s6bk")]
-position = Vector2(14, -353)
-script = null
-
-[node name="Level 2" parent="LevelsContainer" instance=ExtResource("4_yy38h")]
-position = Vector2(-35, -1074)
-
-[node name="Level 1" parent="LevelsContainer" instance=ExtResource("4_5q4rh")]
-script = ExtResource("5_q7hef")
+position = Vector2(416, -159)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_bwjs7")]
-position = Vector2(178, 119)
+position = Vector2(93, 634)
 collision_mask = 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -39,4 +40,11 @@ offset_right = 1.0
 offset_bottom = 1.0
 metadata/_edit_use_anchors_ = true
 
-[connection signal="announce_position" from="Player" to="LevelsContainer/Level 1" method="_on_player_announce_position"]
+[connection signal="tutorial_complete" from="LevelsContainer/tutorial" to="." method="_on_tutorial_tutorial_complete"]
+[connection signal="boss_death_gui_update" from="LevelsContainer/bossroom_1" to="CanvasLayer/GUI" method="_on_bossroom_1_boss_death_gui_update"]
+[connection signal="boss_health_gui_update" from="LevelsContainer/bossroom_1" to="CanvasLayer/GUI" method="_on_boss_health_gui_update"]
+[connection signal="boss_start_fight_gui_update" from="LevelsContainer/bossroom_1" to="CanvasLayer/GUI" method="_on_bossroom_1_boss_start_fight_gui_update"]
+[connection signal="level_complete" from="LevelsContainer/bossroom_1" to="." method="_on_bossroom_1_level_complete"]
+[connection signal="boss_health_gui_update" from="LevelsContainer/bossrom_2" to="CanvasLayer/GUI" method="_on_boss_health_gui_update"]
+[connection signal="announce_position" from="Player" to="LevelsContainer/bossroom_1" method="_on_player_announce_position"]
+[connection signal="announce_position" from="Player" to="LevelsContainer/bossrom_2" method="_on_player_announce_position"]

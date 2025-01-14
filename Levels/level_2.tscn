@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://6wgxj1vqt0c3"]
+[gd_scene load_steps=7 format=4 uid="uid://c4kj1qhyi3d15"]
 
 [ext_resource type="Script" path="res://Levels/level.gd" id="1_03qln"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="1_43n2o"]

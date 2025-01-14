@@ -1,9 +1,7 @@
 class_name YoYoHandler
 #extends Node
 extends Node2D
-
-#const YOYOSPRITE = preload("res://Yoyo/yoyo_prefab.tscn")
-#@export var player_stats : PlayerStats
+#TODO: Big todo of moving this back to a single yoyo instead of an array of theem
 
 var active_yoyos: Array[YoyoStats]
 var yoyo_speed: int

@@ -348,6 +348,7 @@ bally_hurt = SubResource("AudioStreamRandomizer_dbv48")
 min_idle_timer = 3.51
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-8, 35)
 scale = Vector2(1.29297, 1.3327)
 shape = SubResource("CircleShape2D_wjdh3")
@@ -358,7 +359,7 @@ texture_filter = 1
 texture = ExtResource("2_sxjll")
 hframes = 14
 vframes = 14
-frame = 83
+frame = 24
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -401,6 +402,7 @@ one_shot = true
 position = Vector2(14, 30)
 
 [node name="MimicTempArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 19
 

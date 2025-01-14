@@ -1,32 +1,35 @@
 class_name OrbBoss
 extends Boss
 
+#signals
+signal take_damage(damage)
+signal ready_to_fight
+signal create_mimic(pos)
+signal boss_dead
+
+#local references
 var anim_player :AnimationPlayer
 var sprite : Sprite2D
 var collider : CollisionShape2D 
 
+# trackers
 var is_mimic: bool = false
 var is_ready : bool = false
 var facing_changed: bool = false
+@export var facing: int = 1
+@export var current_phase : int = 1
+
+# external references and tranckers
+@export var move_target_container : Node2D
+var move_targets : Array[Node]
+var move_position :Vector2 = Vector2.ZERO
+@export var player_position : Vector2 = Vector2.ZERO
 
 #Audio Stream Setup
 @export var bally_laugh: AudioStream
 @export var bally_hurt: AudioStream
 
-@export var current_phase : int = 1
-
-@export var facing: int = 1
-signal take_damage(damage)
-#signal enter_phase_2
-signal ready_to_fight
-signal create_mimic(pos)
-
-@export var player_position : Vector2 = Vector2.ZERO
-@export var move_target_container : Node2D
-
-var move_targets : Array[Node]
-var move_position :Vector2 = Vector2.ZERO
-
+#balance vars
 @export var min_idle_timer:  float = 5.0
 @export var max_idle_timer: float = 0.5
 var idle_timer : float = 0.0
@@ -34,6 +37,8 @@ var idle_timer : float = 0.0
 @export var bite_range : Vector2 = Vector2(50,50)
 @export var health : int = 100
 const max_health : int = 100
+
+#projectile prefab
 @onready var projectile_prefab = preload("res://Enemy/Boss/OrbBoss/projectile_orb.tscn")
 
 enum boss_states {
@@ -60,9 +65,10 @@ func _ready():
 	collider = $CollisionShape2D
 	move_targets = move_target_container.get_children()
 	
-	
+	# for mimic start as a monster
 	if is_mimic: _set_state(boss_states.idle_monster)
 	
+	# for main boss start as human
 	else:
 		_set_state(boss_states.idle_human)
 		$ReadyTimer.start()
@@ -72,15 +78,11 @@ func _ready():
 		
 	print(sprite.name)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta) -> void:
-	pass
-
-func _set_state(new_state) -> void:
-	super(new_state)
-	
+# Called every _physics_process -> every physics frame
 func _on_state_tick(state, delta) -> void:
 	super(state, delta)
+	
+	#set the boss to face player
 	set_facing_player()
 	
 	if state == boss_states.idle_monster:
@@ -90,7 +92,7 @@ func _on_state_tick(state, delta) -> void:
 		else:
 			idle_timer -= delta
 		
-		#set facing and anim
+		#apply facing and anim
 		if facing_changed:
 			var anim_position = anim_player.current_animation_position
 			if facing == 1: 
@@ -98,17 +100,23 @@ func _on_state_tick(state, delta) -> void:
 			else: anim_player.play("idle2_left")
 			anim_player.seek(anim_position)
 	
+	#
 	if state == boss_states.move:
+		# if should bite the player
 		if player_in_bite_range():
 			_set_state(boss_states.bite)
+		
+		# if near the target go back to idle
 		var relative_pos = move_position - position
 		if relative_pos.length() < 1:
 			_set_state(boss_states.idle_monster)
 		else:
+			# else move towards the target
 			var dir = relative_pos.normalized()
 			var speed = move_speed
 			move_and_collide(dir * speed*delta)
 			if facing_changed:
+				# turn around if facing changed
 				var anim_position = anim_player.current_animation_position
 				if facing == 1: 
 					anim_player.play("idle2_right")
@@ -116,15 +124,14 @@ func _on_state_tick(state, delta) -> void:
 				else:
 					anim_player.play("idle_up")
 				anim_player.seek(anim_position)
-		
-		
-		
-		
+
 func _on_state_enter(state) -> void:
-	print(name, " State: " , boss_states.keys()[state])
+	#print(name, " State: " , boss_states.keys()[state])
 	super(state)
+	
 	if state == boss_states.idle_human:
 		anim_player.play("idle")
+		
 	if state == boss_states.idle_monster:
 		idle_timer = randf_range(min_idle_timer, max_idle_timer)
 		
@@ -134,22 +141,35 @@ func _on_state_enter(state) -> void:
 		AudioPlayer.play_music("res://Assets/Audio/music/worm boss updated drums.mp3", 0.2, true)
 		
 	if state == boss_states.splitting:
+		$MimicTempArea.visible = true
 		anim_player.play("splitting")
 		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballysplit.wav", 0.5)
+	
 	if state == boss_states.laughing:
 		anim_player.play("laughing")
 		AudioPlayer.play_stream(bally_laugh)
+	
 	if state == boss_states.death:
 		anim_player.play("death")
 		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballydeath1.wav")
+	
 	if state== boss_states.destroy_object:
 		queue_free()
 		
 	if state == boss_states.move:
+		#if near the old move target, pick a new one
+		# this is provision for coming from bite while in move and 
+		# not yet at target so should finish move before going on
 		if near_move_target():
 			pick_move_target()
+		#apply facing
+		if facing == -1 : anim_player.play("idle2_left")
+		if facing == 1 : anim_player.play("idle2_right")
+		else: anim_player.play("idle_up")
 
 	if state == boss_states.bite:
+		#appy facing and execute bite
+		
 		if facing ==-1:
 			anim_player.play("bite_left")
 			AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballychomp1.wav")
@@ -169,20 +189,21 @@ func _on_state_enter(state) -> void:
 			anim_player.play("projectile_up")
 			print('pojectile up')
 			AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballyshoot1.wav")
+		#TODO: do some timing to create and launch 
+		#		projectile at the correct time for the animation
 		create_projectile()
 		
-		
-		
-		
-		
-	
+
 func _on_state_exit(state) -> void:
 	super(state)
-	
 	if current_state  == boss_states.splitting:
+		$MimicTempArea.visible = false
 		create_mimic.emit($MimicSpawnLocation.position + position)
-
+	if current_state == boss_states.death: boss_dead.emit()
+		
 func on_take_damage(damage):
+	if current_state == boss_states.death:
+		return
 	AudioPlayer.play_stream(bally_hurt, 0.5)
 	AudioPlayer.play_sound("res://Assets/Audio/enemy/yoyo_enemyhit1.wav", 0.75)
 	if is_mimic:
@@ -191,7 +212,8 @@ func on_take_damage(damage):
 	else:
 		print("Orb Boss Took Damage: " , damage)
 		take_damage.emit(damage)
-	
+		health -= damage
+		if health <= 0: _set_state(boss_states.death)
 
 func _on_area_2d_body_entered(body) -> void:
 	if body is Yoyo:
@@ -217,16 +239,7 @@ func set_facing_player() -> void:
 		facing = new_facing
 	else: facing_changed = false
 
-
-func _on_ready_timer_timeout():
-	if !is_mimic:
-		_set_state(boss_states.transform)
-		ready_to_fight.emit()
-
-
 func _on_animation_player_animation_finished(anim_name):
-
-		
 	if current_state == boss_states.death:
 		_set_state(boss_states.destroy_object)
 		
@@ -274,3 +287,8 @@ func create_projectile():
 	
 func near_move_target() -> bool:
 	return (position - move_position).length() < 10
+
+func _on_activate_fight_detector_body_entered(body):
+	if body is Player and current_state == boss_states.idle_human:
+		_set_state(boss_states.transform)
+		ready_to_fight.emit()

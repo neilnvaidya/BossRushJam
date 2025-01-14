@@ -1,7 +1,37 @@
 [gd_scene load_steps=15 format=3 uid="uid://dub307joo07su"]
 
-[ext_resource type="Script" path="res://Enemy/Boss/boss_prefab.gd" id="1_8mhcv"]
 [ext_resource type="Texture2D" uid="uid://lthbtn25114v" path="res://Assets/Art/Sprites/bosses/Boss1/boss.png" id="2_h01a5"]
+
+[sub_resource type="GDScript" id="GDScript_x6ufe"]
+script/source = "extends Boss
+
+@onready var anim_player :AnimationPlayer = $AnimationPlayer
+@onready var sprite : Sprite2D = $Sprite
+@onready var collider : CollisionShape2D = $CollisionShape2D
+
+func _init():
+	super()
+	
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	super()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _set_state(new_state):
+	super(new_state)
+	
+func _on_state_tick(state):
+	super(state)
+	
+func _on_state_enter(state):
+	super(state)
+
+func _on_state_exit(state):
+	super(state)
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjdh3"]
 radius = 18.4783
@@ -169,7 +199,7 @@ _data = {
 }
 
 [node name="BossPrefab" type="CharacterBody2D"]
-script = ExtResource("1_8mhcv")
+script = SubResource("GDScript_x6ufe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8, 35)

@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://do52xs7ajhxbj"]
+[gd_scene load_steps=6 format=4 uid="uid://do52xs7ajhxbj"]
 
-[ext_resource type="Script" path="res://Levels/level_1.gd" id="1_mkdwf"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="2_qb2k1"]
 [ext_resource type="Texture2D" uid="uid://gnq1pt1qgxl3" path="res://Assets/Art/Tilemaps/foreground_classroom.png" id="3_k6ute"]
-[ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="4_juunu"]
-[ext_resource type="PackedScene" uid="uid://kf4ulr72cvgh" path="res://GUI/gui.tscn" id="5_qeprb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyfae"]
 texture = ExtResource("2_qb2k1")
@@ -818,7 +815,6 @@ sources/0 = SubResource("TileSetAtlasSource_nyfae")
 sources/2 = SubResource("TileSetAtlasSource_fx3lm")
 
 [node name="hallway2" type="Node2D"]
-script = ExtResource("1_mkdwf")
 
 [node name="TerrainContainer" type="Node2D" parent="."]
 
@@ -840,15 +836,3 @@ tile_set = SubResource("TileSet_uia72")
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAMAAEAAgANAAQAAAARAAEAAgANAAQAAAAMAAoAAgAFAAIAAAAMAAsAAgAFAAMAAAANAAoAAgAGAAIAAAANAAsAAgAGAAMAAAAOAAoAAgAHAAIAAAAOAAsAAgAHAAMAAAAPAAoAAgAIAAIAAAAPAAsAAgAIAAMAAAAQAAoAAgAFAAIAAAAQAAsAAgAFAAMAAAARAAoAAgAGAAIAAAARAAsAAgAGAAMAAAASAAoAAgAHAAIAAAASAAsAAgAHAAMAAAATAAoAAgAIAAIAAAATAAsAAgAIAAMAAAAUAAoAAgAFAAIAAAAUAAsAAgAFAAMAAAAVAAoAAgAGAAIAAAAVAAsAAgAGAAMAAAAWAAoAAgAHAAIAAAAWAAsAAgAHAAMAAAAXAAoAAgAIAAIAAAAXAAsAAgAIAAMAAAAYAAoAAgAFAAIAAAAYAAsAAgAFAAMAAAAZAAoAAgAGAAIAAAAZAAsAAgAGAAMAAAAaAAoAAgAHAAIAAAAaAAsAAgAHAAMAAAAbAAoAAgAIAAIAAAAbAAsAAgAIAAMAAAATAAAAAgAFAAIAAAATAAEAAgAFAAMAAAAUAAAAAgAGAAIAAAAUAAEAAgAGAAMAAAAVAAAAAgAHAAIAAAAVAAEAAgAHAAMAAAAWAAAAAgAIAAIAAAAWAAEAAgAIAAMAAAAXAAAAAgAFAAIAAAAXAAEAAgAFAAMAAAAYAAAAAgAGAAIAAAAYAAEAAgAGAAMAAAAZAAAAAgAHAAIAAAAZAAEAAgAHAAMAAAAaAAAAAgAIAAIAAAAaAAEAAgAIAAMAAAAbAAAAAgAFAAIAAAAbAAEAAgAFAAMAAAAcAAAAAgAGAAIAAAAcAAEAAgAGAAMAAAAdAAAAAgAHAAIAAAAdAAEAAgAHAAMAAAAeAAAAAgAIAAIAAAAeAAEAAgAIAAMAAAAfAAAAAgAFAAIAAAAfAAEAAgAFAAMAAAAgAAAAAgAGAAIAAAAgAAEAAgAGAAMAAAAhAAAAAgAHAAIAAAAhAAEAAgAHAAMAAAAiAAAAAgAIAAIAAAAiAAEAAgAIAAMAAAAOAAwAAgAGAAYAAAAOAA0AAgAGAAcAAAAPAAwAAgAHAAYAAAAPAA0AAgAHAAcAAAAQAAwAAgAIAAYAAAAQAA0AAgAIAAcAAAARAAwAAgAJAAYAAAARAA0AAgAJAAcAAAATAAwAAgAGAAYAAAATAA0AAgAGAAcAAAAUAAwAAgAHAAYAAAAUAA0AAgAHAAcAAAAVAAwAAgAIAAYAAAAVAA0AAgAIAAcAAAAWAAwAAgAJAAYAAAAWAA0AAgAJAAcAAAAYAAwAAgAGAAYAAAAYAA0AAgAGAAcAAAAZAAwAAgAHAAYAAAAZAA0AAgAHAAcAAAAaAAwAAgAIAAYAAAAaAA0AAgAIAAcAAAAbAAwAAgAJAAYAAAAbAA0AAgAJAAcAAAA=")
 tile_set = SubResource("TileSet_uia72")
-
-[node name="Player" parent="." instance=ExtResource("4_juunu")]
-position = Vector2(221, 153)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_scale = 0.5
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource("5_qeprb")]
-visible = false
