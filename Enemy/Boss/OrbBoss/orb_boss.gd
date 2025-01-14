@@ -135,7 +135,7 @@ func _on_state_enter(state) -> void:
 		
 	if state == boss_states.splitting:
 		anim_player.play("splitting")
-		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballysplit.wav")
+		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballysplit.wav", 0.5)
 	if state == boss_states.laughing:
 		anim_player.play("laughing")
 		AudioPlayer.play_stream(bally_laugh)
