@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcavdlbw8g54h"]
+[gd_scene load_steps=8 format=3 uid="uid://bcavdlbw8g54h"]
 
 [ext_resource type="PackedScene" uid="uid://cfx77vprqrctc" path="res://Player/player.tscn" id="1_bwjs7"]
 [ext_resource type="Script" path="res://game.gd" id="1_f8io0"]
 [ext_resource type="PackedScene" uid="uid://do52xs7ajhxbj" path="res://Levels/hallway2.tscn" id="2_6s6bk"]
-[ext_resource type="PackedScene" uid="uid://ci02668sg1245" path="res://Levels/level_1.tscn" id="4_5q4rh"]
+[ext_resource type="PackedScene" uid="uid://ci02668sg1245" path="res://Levels/tutorial.tscn" id="4_5q4rh"]
 [ext_resource type="PackedScene" uid="uid://kf4ulr72cvgh" path="res://GUI/gui.tscn" id="4_fth0p"]
 [ext_resource type="PackedScene" uid="uid://co1otcvcv8xkh" path="res://Levels/bossroom_2.tscn" id="4_yy38h"]
+[ext_resource type="Script" path="res://Levels/level.gd" id="5_q7hef"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_f8io0")
@@ -14,11 +15,13 @@ script = ExtResource("1_f8io0")
 
 [node name="Hall1" parent="LevelsContainer" instance=ExtResource("2_6s6bk")]
 position = Vector2(14, -353)
+script = null
 
 [node name="Level 2" parent="LevelsContainer" instance=ExtResource("4_yy38h")]
 position = Vector2(-35, -1074)
 
 [node name="Level 1" parent="LevelsContainer" instance=ExtResource("4_5q4rh")]
+script = ExtResource("5_q7hef")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -36,5 +39,4 @@ offset_right = 1.0
 offset_bottom = 1.0
 metadata/_edit_use_anchors_ = true
 
-[connection signal="boss_health_gui_update" from="LevelsContainer/Level 1" to="CanvasLayer/GUI" method="_on_level_1_boss_health_gui_update"]
 [connection signal="announce_position" from="Player" to="LevelsContainer/Level 1" method="_on_player_announce_position"]
