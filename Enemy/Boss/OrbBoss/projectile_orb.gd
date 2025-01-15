@@ -1,8 +1,9 @@
-extends CharacterBody2D
+extends Area2D
 
 var travel_direction : Vector2 = Vector2.ZERO
 var is_launched : bool = false
 const speed : float = 100
+@onready var animation_player = $Sprite2D/AnimationPlayer
 
 func _ready():
 	pass
@@ -11,17 +12,17 @@ func _ready():
 
 func _physics_process(delta):
 	if is_launched:
-		var collision = move_and_collide(travel_direction*speed*delta)
-		if collision:
-			on_collision(collision)
-	
+		translate(travel_direction * speed * delta)
 
-func on_collision(col):
-	print("Projectile Collision: ", col.get_collider().name)
-	queue_free()
 
 func launch(dir):
 	#print("PROJECTILE dLAUNCH")
 	is_launched = true
 	travel_direction = dir
-	
+	animation_player.play("default")
+
+func _on_body_entered(body):
+	if body is Player:
+		body.take_damage()
+	if body is not Boss:
+		queue_free()
