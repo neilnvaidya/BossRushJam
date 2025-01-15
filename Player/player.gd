@@ -18,13 +18,18 @@ const epsilon = 0.05
 @export var move_input_multiplier : float = 0.0
 @export var input_vec: Vector2 = Vector2.ZERO
 @export var can_move : bool = true
-@export var facing: int = 1
+@export var facing: int = 2
 @export var last_nonzero_x: float = 0.0  # To track last meaningful horizontal input
+
+
 
 #Balance Variables
 @export_group('Balace Variables')
 @export var speed_modifier: float = 100.0
-var test_health = 1
+
+#test variables
+var test_health = 10
+var knock_back_force = 1000
 
 signal announce_position(pos)
 
@@ -130,6 +135,12 @@ func set_state(new_state):
 
 	current_move_state = new_state
 	
+#knock back function so player can get knock back
+func knock_back():
+	var knock_back = -velocity.normalized() * knock_back_force
+	velocity = knock_back
+	move_and_slide()
+	
 func take_damage():
 	#add timer so the game can pause to see the player die
 	var timer : Timer = Timer.new()
@@ -142,12 +153,14 @@ func take_damage():
 	
 	test_health = test_health - 1;
 	anim_player.play("hurt")
+	knock_back()
 	print("play hurt ",test_health)
+	
 	
 	#this check to see if the health is 0 or less if it is that it gonna pause 
 	#game and play the animation of the player death
 	
-	if (test_health >= 0):
+	if (test_health <= 0):
 		print("play die")
 		get_tree().paused = true
 		can_move = false
@@ -161,4 +174,5 @@ func _timer_Timeout():
 	can_move = true
 	get_tree().paused = false
 	queue_free()
-	get_tree().reload_current_scene()
+	#Game over screne goes here
+	#get_tree().reload_current_scene()
