@@ -54,8 +54,8 @@ func _on_orb_boss_take_damage(damage):
 func _on_player_announce_position(pos):
 	if boss_alive:
 		var boss = get_node("OrbBoss") as OrbBoss
-		boss.player_position = pos + position
-	
+
+
 func _on_orb_boss_create_mimic(pos):
 	print("creating mimic")
 	mimic = mimic_prefab.instantiate() as OrbBoss
