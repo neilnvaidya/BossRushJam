@@ -24,9 +24,10 @@ const epsilon = 0.05
 #Balance Variables
 @export_group('Balace Variables')
 @export var speed_modifier: float = 100.0
-
+var test_health = 1
 
 signal announce_position(pos)
+
 
 # Enum for movement, may be joined to greater state machine later.
 enum move_state {
@@ -128,3 +129,36 @@ func set_state(new_state):
 		anim_player.play("up")
 
 	current_move_state = new_state
+	
+func take_damage():
+	#add timer so the game can pause to see the player die
+	var timer : Timer = Timer.new()
+	self.add_child(timer)
+	timer.one_shot = true
+	timer.autostart = false
+	timer.wait_time = 3.0
+	timer.timeout.connect(_timer_Timeout)
+	#test_health can be change into health but leaving for now
+	
+	test_health = test_health - 1;
+	anim_player.play("hurt")
+	print("play hurt ",test_health)
+	
+	#this check to see if the health is 0 or less if it is that it gonna pause 
+	#game and play the animation of the player death
+	
+	if (test_health >= 0):
+		print("play die")
+		get_tree().paused = true
+		can_move = false
+		anim_player.play("death")
+		timer.start()
+		#when die resest the game
+
+#reload the game scene 
+func _timer_Timeout():
+	print("time done")
+	can_move = true
+	get_tree().paused = false
+	queue_free()
+	get_tree().reload_current_scene()

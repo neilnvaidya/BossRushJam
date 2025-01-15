@@ -225,7 +225,8 @@ func _on_area_2d_body_entered(body) -> void:
 		on_take_damage(damage)
 	#TODO: impliment player death on touching boss
 	if body is Player:
-		print("PLAYER SHOULD DIE NOW!!!!!!!!")
+		body.take_damage()
+		
 		
 func set_facing_player() -> void:
 	var new_facing : int
