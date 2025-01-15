@@ -28,6 +28,9 @@ var move_position :Vector2 = Vector2.ZERO
 #Audio Stream Setup
 @export var bally_laugh: AudioStream
 @export var bally_hurt: AudioStream
+var orb_music 
+
+
 
 #balance vars
 @export var min_idle_timer:  float = 5.0
@@ -138,7 +141,7 @@ func _on_state_enter(state) -> void:
 	if state == boss_states.transform:
 		anim_player.play("transform")
 		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballytransform1.wav")
-		AudioPlayer.play_music("res://Assets/Audio/music/worm boss updated drums.mp3", 0.2, true)
+		orb_music = AudioPlayer.play_music("res://Assets/Audio/music/worm boss updated drums.mp3", 0.2, true)
 		
 	if state == boss_states.splitting:
 		$MimicTempArea.visible = true
@@ -152,6 +155,7 @@ func _on_state_enter(state) -> void:
 	if state == boss_states.death:
 		anim_player.play("death")
 		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballydeath1.wav")
+		AudioPlayer.stop_audio(orb_music, 1)
 	
 	if state== boss_states.destroy_object:
 		queue_free()
@@ -242,6 +246,7 @@ func set_facing_player() -> void:
 func _on_animation_player_animation_finished(anim_name):
 	if current_state == boss_states.death:
 		_set_state(boss_states.destroy_object)
+		
 		
 	if current_state == boss_states.bite:
 		if near_move_target():

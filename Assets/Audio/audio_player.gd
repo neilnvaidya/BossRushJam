@@ -1,5 +1,7 @@
 extends Node
 
+#Script created by Silvyger aka Silver
+
 @export var MUSIC_BUS : StringName = "Music"
 @export var SOUND_BUS : StringName = "Sound"
 @export var YOYO_BUS : StringName = "YoYoLoop"
