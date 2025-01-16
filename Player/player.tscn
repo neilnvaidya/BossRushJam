@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_18k2p"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
-[ext_resource type="PackedScene" uid="uid://cxm3mfndtqwrq" path="res://Player/yoyo_handler.tscn" id="4_n1ag8"]
+[ext_resource type="PackedScene" uid="uid://d0trk4efubyp8" path="res://Yoyo/yoyo_prefab.tscn" id="3_qwt8q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdi2m"]
 size = Vector2(8, 14)
@@ -158,4 +158,15 @@ libraries = {
 "": SubResource("AnimationLibrary_qx06p")
 }
 
-[node name="YoyoHandler" parent="." instance=ExtResource("4_n1ag8")]
+[node name="YoyoHolder" type="Node2D" parent="."]
+
+[node name="YoyoPrefab" parent="YoyoHolder" instance=ExtResource("3_qwt8q")]
+position = Vector2(-6, 52)
+gravity_scale = 0.4
+can_sleep = false
+
+[node name="PinJoint2D" type="PinJoint2D" parent="YoyoHolder/YoyoPrefab"]
+position = Vector2(6, -52)
+node_a = NodePath("../../..")
+node_b = NodePath("..")
+softness = 16.0

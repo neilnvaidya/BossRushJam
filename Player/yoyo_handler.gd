@@ -12,8 +12,8 @@ var yoyo_speed: int
 const ARC_POINTS := 10
 #const TEST_YOYO = preload("res://Resources/YoYo/test_yoyo.tres")
 const STRING = preload("res://Yoyo/String.tscn")
-const TEST_YOYO = preload("res://Yoyo/TestYoyo/test_yoyo.tres")
-const YOYO_PREFAB = preload("res://Yoyo/TestYoyo/test_yoyo.tscn")
+const TEST_YOYO = preload("res://Yoyo/yoyo_resource.tres")
+const YOYO_PREFAB = preload("res://Yoyo/yoyo_prefab.tscn")
 
 
 

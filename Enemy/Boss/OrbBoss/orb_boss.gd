@@ -30,8 +30,6 @@ var move_position :Vector2 = Vector2.ZERO
 @export var bally_hurt: AudioStream
 var orb_music 
 
-
-
 #balance vars
 @export var min_idle_timer:  float = 5.0
 @export var max_idle_timer: float = 0.5
@@ -220,9 +218,9 @@ func on_take_damage(damage):
 		if health <= 0: _set_state(boss_states.death)
 
 func _on_area_2d_body_entered(body) -> void:
+	print(body)
 	if body is Yoyo:
-		var damage = body.yoyo_stats.base_damage
-		#Dan - shouldnt this be body.damage_multiplier * body.yoyo_stats.base_damage
+		var damage = body.yoyo_stats.base_damage*body.damage_multiplier
 		on_take_damage(damage)
 	#TODO: impliment player death on touching boss
 	if body is Player:

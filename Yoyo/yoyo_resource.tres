@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="YoyoStats" load_steps=3 format=3 uid="uid://co1nxalr1yyea"]
+
+[ext_resource type="Texture2D" uid="uid://j7qrn4dc73ss" path="res://Yoyo/yoyos 16bit/yoyo_blue.png" id="1_1ncsf"]
+[ext_resource type="Script" path="res://Yoyo/yoyo_resource.gd" id="2_xgrp1"]
+
+[resource]
+script = ExtResource("2_xgrp1")
+id = "test_yoyo"
+tootip_text = ""
+base_damage = 50
+icon = ExtResource("1_1ncsf")

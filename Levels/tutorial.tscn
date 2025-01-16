@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Levels/tutorial.gd" id="1_fqque"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="2_npujf"]
 [ext_resource type="Texture2D" uid="uid://gnq1pt1qgxl3" path="res://Assets/Art/Tilemaps/foreground_classroom.png" id="3_ivxng"]
-[ext_resource type="PackedScene" uid="uid://vh7xp03vpbmg" path="res://GUI/w_button.tscn" id="4_4vlbi"]
-[ext_resource type="PackedScene" uid="uid://cq4rvotyndxbi" path="res://GUI/a_button.tscn" id="5_sfhru"]
-[ext_resource type="PackedScene" uid="uid://dmqpe1xqb1g15" path="res://GUI/d_button.tscn" id="6_t3hwo"]
-[ext_resource type="PackedScene" uid="uid://did2mibt6m5mp" path="res://GUI/s_button.tscn" id="7_70sh4"]
-[ext_resource type="PackedScene" uid="uid://dlhug6pvueefh" path="res://GUI/e_button.tscn" id="8_0ewjs"]
+[ext_resource type="PackedScene" path="res://GUI/w_button.tscn" id="4_4vlbi"]
+[ext_resource type="PackedScene" path="res://GUI/a_button.tscn" id="5_sfhru"]
+[ext_resource type="PackedScene" path="res://GUI/d_button.tscn" id="6_t3hwo"]
+[ext_resource type="PackedScene" path="res://GUI/s_button.tscn" id="7_70sh4"]
+[ext_resource type="PackedScene" path="res://GUI/e_button.tscn" id="8_0ewjs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyfae"]
 texture = ExtResource("2_npujf")
