@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq4rvotyndxbi"]
+
+[ext_resource type="Texture2D" uid="uid://d0nrywnurnirw" path="res://Assets/Art/GUI/buttons/a-Sheet.png" id="1_fofwo"]
+
+[node name="a_button" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_fofwo")
+hframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Art/GUI/buttons",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "C:/Asesprite/Projects/bossrush/gui/buttons/a-Sheet.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "9602c9a5e71aaebf6570d285fd9af5cc"
