@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://xtg21amigi83"]
 
 [ext_resource type="Script" path="res://Yoyo/yoyo.gd" id="1_50wye"]
-[ext_resource type="Resource" uid="uid://j2kyh26o5gy7" path="res://Yoyo/Axe/axe_yoyo_resource.tres" id="2_gr0pv"]
+[ext_resource type="Resource" uid="uid://j2kyh26o5gy7" path="res://Yoyo/temp/Axe/axe_yoyo_resource.tres" id="2_gr0pv"]
 [ext_resource type="Texture2D" uid="uid://bguqfyu3fbxqn" path="res://Assets/Art/Sprites/items/item_axe.png" id="2_oqjq8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewplv"]

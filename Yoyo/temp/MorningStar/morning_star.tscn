@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b3kxgh8jbxbxv"]
 
 [ext_resource type="Script" path="res://Yoyo/yoyo.gd" id="1_dd4f8"]
-[ext_resource type="Resource" uid="uid://dgo6rbyqnkopd" path="res://Yoyo/MorningStar/morning_star.tres" id="2_hb8lv"]
+[ext_resource type="Resource" uid="uid://dgo6rbyqnkopd" path="res://Yoyo/temp/MorningStar/morning_star.tres" id="2_hb8lv"]
 [ext_resource type="Texture2D" uid="uid://c717vupvaxgcc" path="res://Assets/Art/Sprites/items/DevMorningStar.png" id="3_31jw7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewplv"]
