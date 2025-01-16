@@ -222,6 +222,7 @@ func on_take_damage(damage):
 func _on_area_2d_body_entered(body) -> void:
 	if body is Yoyo:
 		var damage = body.yoyo_stats.base_damage
+		#Dan - shouldnt this be body.damage_multiplier * body.yoyo_stats.base_damage
 		on_take_damage(damage)
 	#TODO: impliment player death on touching boss
 	if body is Player:
@@ -230,6 +231,7 @@ func _on_area_2d_body_entered(body) -> void:
 		
 func set_facing_player() -> void:
 	var new_facing : int
+	player_position = get_tree().get_first_node_in_group("Player").global_position as Vector2
 	if player_position.y > abs(player_position.x) and (player_position.y - position.y) > 0:
 		new_facing = 0
 	else:	
@@ -282,11 +284,12 @@ func player_in_bite_range() -> bool:
 	
 	
 func create_projectile():
+	await get_tree().create_timer(0.3).timeout
 	var projectile = projectile_prefab.instantiate()
 	projectile.position = position
-	if facing == 0:
-		projectile.position.y += 25
-	else: projectile.position.x += 25*facing
+	projectile.position.y += 25
+	if facing != 0:
+		projectile.position.x += 25*facing
 	get_parent().add_child(projectile)
 	var dir = (player_position - position).normalized()
 	projectile.launch(dir)
