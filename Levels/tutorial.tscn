@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=4 uid="uid://ci02668sg1245"]
+[gd_scene load_steps=14 format=4 uid="uid://ci02668sg1245"]
 
 [ext_resource type="Script" path="res://Levels/tutorial.gd" id="1_fqque"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="2_npujf"]
 [ext_resource type="Texture2D" uid="uid://gnq1pt1qgxl3" path="res://Assets/Art/Tilemaps/foreground_classroom.png" id="3_ivxng"]
-[ext_resource type="PackedScene" path="res://GUI/w_button.tscn" id="4_4vlbi"]
-[ext_resource type="PackedScene" path="res://GUI/a_button.tscn" id="5_sfhru"]
-[ext_resource type="PackedScene" path="res://GUI/d_button.tscn" id="6_t3hwo"]
-[ext_resource type="PackedScene" path="res://GUI/s_button.tscn" id="7_70sh4"]
-[ext_resource type="PackedScene" path="res://GUI/e_button.tscn" id="8_0ewjs"]
+[ext_resource type="PackedScene" uid="uid://brd1jah8mton6" path="res://GUI/button_display.tscn" id="4_4vlbi"]
+[ext_resource type="Script" path="res://Levels/button_container.gd" id="4_hqecs"]
+[ext_resource type="Texture2D" uid="uid://cdq764y4amure" path="res://Assets/Art/GUI/buttons/w-Sheet.png" id="6_exfb6"]
+[ext_resource type="Texture2D" uid="uid://d0nrywnurnirw" path="res://Assets/Art/GUI/buttons/a-Sheet.png" id="7_dr737"]
+[ext_resource type="Texture2D" uid="uid://0mf0pxgyynio" path="res://Assets/Art/GUI/buttons/d-Sheet.png" id="8_cy37l"]
+[ext_resource type="Texture2D" uid="uid://ucwi2ssiu5ox" path="res://Assets/Art/GUI/buttons/s-Sheet.png" id="9_mtssj"]
+[ext_resource type="Texture2D" uid="uid://dvt5kq68t1hy5" path="res://Assets/Art/GUI/buttons/e-Sheet.png" id="10_khm8f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyfae"]
 texture = ExtResource("2_npujf")
@@ -752,20 +754,28 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAFAA8AAgAOAAYAAAAFABAAAgAOAAcAAAAFABEAAgAOAAgAAAAGAA8AAgAPAAYAAAAGABAAAgAPAAcAAAAGABEAAgAPAAgAAAATAAkAAgAMAAcAAAATAAoAAgAMAAgAAAATAAwAAgAMAAcAAAATAA0AAgAMAAgAAAATAA8AAgAMAAcAAAATABAAAgAMAAgAAAAUAAkAAgANAAcAAAAUAAoAAgANAAgAAAAUAAwAAgANAAcAAAAUAA0AAgANAAgAAAAUAA8AAgANAAcAAAAUABAAAgANAAgAAAAWAAkAAgAMAAcAAAAWAAoAAgAMAAgAAAAWAAwAAgAMAAcAAAAWAA0AAgAMAAgAAAAWAA8AAgAMAAcAAAAWABAAAgAMAAgAAAAXAAkAAgANAAcAAAAXAAoAAgANAAgAAAAXAAwAAgANAAcAAAAXAA0AAgANAAgAAAAXAA8AAgANAAcAAAAXABAAAgANAAgAAAAZAAkAAgAMAAcAAAAZAAoAAgAMAAgAAAAZAAwAAgAMAAcAAAAZAA0AAgAMAAgAAAAZAA8AAgAMAAcAAAAZABAAAgAMAAgAAAAaAAkAAgANAAcAAAAaAAoAAgANAAgAAAAaAAwAAgANAAcAAAAaAA0AAgANAAgAAAAaAA8AAgANAAcAAAAaABAAAgANAAgAAAA=")
 tile_set = SubResource("TileSet_uia72")
 
-[node name="w_button" parent="TerrainContainer" instance=ExtResource("4_4vlbi")]
-position = Vector2(187, 225)
+[node name="ButtonContainer" type="Node2D" parent="TerrainContainer"]
+script = ExtResource("4_hqecs")
 
-[node name="a_button" parent="TerrainContainer" instance=ExtResource("5_sfhru")]
+[node name="w_button" parent="TerrainContainer/ButtonContainer" instance=ExtResource("4_4vlbi")]
+position = Vector2(187, 223)
+texture = ExtResource("6_exfb6")
+
+[node name="a_button" parent="TerrainContainer/ButtonContainer" instance=ExtResource("4_4vlbi")]
 position = Vector2(151, 261)
+texture = ExtResource("7_dr737")
 
-[node name="d_button" parent="TerrainContainer" instance=ExtResource("6_t3hwo")]
+[node name="d_button" parent="TerrainContainer/ButtonContainer" instance=ExtResource("4_4vlbi")]
 position = Vector2(223, 261)
+texture = ExtResource("8_cy37l")
 
-[node name="s_button" parent="TerrainContainer" instance=ExtResource("7_70sh4")]
+[node name="s_button" parent="TerrainContainer/ButtonContainer" instance=ExtResource("4_4vlbi")]
 position = Vector2(187, 261)
+texture = ExtResource("9_mtssj")
 
-[node name="e_button" parent="TerrainContainer" instance=ExtResource("8_0ewjs")]
+[node name="e_button" parent="TerrainContainer/ButtonContainer" instance=ExtResource("4_4vlbi")]
 position = Vector2(223, 190)
+texture = ExtResource("10_khm8f")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

@@ -2,7 +2,7 @@
 
 [ext_resource type="Curve" uid="uid://d0btpj3oto5cd" path="res://Yoyo/string.tres" id="1_wce2g"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="StringCanvas" type="CanvasLayer"]
 follow_viewport_enabled = true
 
 [node name="String" type="Line2D" parent="."]

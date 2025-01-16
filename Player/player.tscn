@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfx77vprqrctc"]
+[gd_scene load_steps=15 format=3 uid="uid://cfx77vprqrctc"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_18k2p"]
 [ext_resource type="Texture2D" uid="uid://66ul20h8dlvp" path="res://Assets/Art/Sprites/player/player-Sheet.png" id="2_frmg2"]
+[ext_resource type="Script" path="res://Player/yoyo_holder.gd" id="3_mjtqo"]
 [ext_resource type="PackedScene" uid="uid://d0trk4efubyp8" path="res://Yoyo/yoyo_prefab.tscn" id="3_qwt8q"]
+[ext_resource type="PackedScene" uid="uid://bv1rdxj167jq8" path="res://Yoyo/String.tscn" id="4_516ar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdi2m"]
 size = Vector2(8, 14)
@@ -159,6 +161,9 @@ libraries = {
 }
 
 [node name="YoyoHolder" type="Node2D" parent="."]
+script = ExtResource("3_mjtqo")
+
+[node name="StringCanvas" parent="YoyoHolder" instance=ExtResource("4_516ar")]
 
 [node name="YoyoPrefab" parent="YoyoHolder" instance=ExtResource("3_qwt8q")]
 position = Vector2(-6, 52)
