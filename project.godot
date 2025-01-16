@@ -21,6 +21,7 @@ buses/default_bus_layout="res://Assets/Audio/default_bus_layout.tres"
 
 [autoload]
 
+Messenger="*res://Messenger.gd"
 AudioPlayer="*res://Assets/Audio/audio_player.gd"
 
 [display]

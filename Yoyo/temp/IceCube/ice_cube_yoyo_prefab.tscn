@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://jm46ytklaw6e"]
 
 [ext_resource type="Script" path="res://Yoyo/yoyo.gd" id="1_20jt5"]
-[ext_resource type="Resource" uid="uid://btrcsf05q6usf" path="res://Yoyo/IceCube/ice_cube_yoyo_resource.tres" id="2_6ysl5"]
+[ext_resource type="Resource" uid="uid://btrcsf05q6usf" path="res://Yoyo/temp/IceCube/ice_cube_yoyo_resource.tres" id="2_6ysl5"]
 [ext_resource type="Texture2D" uid="uid://d01e3lxishplw" path="res://Assets/Art/Sprites/items/item_icecube.png" id="2_uiyro"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewplv"]
