@@ -38,6 +38,7 @@ var idle_timer : float = 0.0
 @export var bite_range : Vector2 = Vector2(50,50)
 @export var health : int = 100
 const max_health : int = 100
+@onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 
 #projectile prefab
 @onready var projectile_prefab = preload("res://Enemy/Boss/OrbBoss/projectile_orb.tscn")
@@ -105,6 +106,7 @@ func _on_state_tick(state, delta) -> void:
 	if state == boss_states.move:
 		# if should bite the player
 		if player_in_bite_range():
+			collision_shape_2d.set
 			_set_state(boss_states.bite)
 		
 		# if near the target go back to idle
@@ -155,7 +157,7 @@ func _on_state_enter(state) -> void:
 		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballydeath1.wav")
 		AudioPlayer.stop_audio(orb_music, 1)
 	
-	if state== boss_states.destroy_object:
+	if state == boss_states.destroy_object:
 		queue_free()
 		
 	if state == boss_states.move:
