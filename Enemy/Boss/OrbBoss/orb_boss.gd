@@ -208,7 +208,7 @@ func _on_state_exit(state) -> void:
 func on_take_damage(damage):
 	if current_state == boss_states.death:
 		return
-	AudioPlayer.play_stream(bally_hurt, 0.5)
+	AudioPlayer.play_stream(bally_hurt, 0.75)
 	AudioPlayer.play_sound("res://Assets/Audio/enemy/yoyo_enemyhit1.wav", 0.75)
 	if is_mimic:
 		_set_state(boss_states.death)

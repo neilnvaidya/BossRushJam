@@ -153,6 +153,7 @@ func take_damage():
 	
 	test_health = test_health - 1;
 	anim_player.play("hurt")
+	AudioPlayer.play_sound("res://Assets/Audio/player/yoyo_takedamage1.wav")
 	knock_back()
 	print("play hurt ",test_health)
 	
