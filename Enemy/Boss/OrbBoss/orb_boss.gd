@@ -28,7 +28,10 @@ var move_position :Vector2 = Vector2.ZERO
 #Audio Stream Setup
 @export var bally_laugh: AudioStream
 @export var bally_hurt: AudioStream
+@export var AREA_BUS = AudioServer.get_bus_index("Area")
 var orb_music 
+var area_volume:AudioEffectAmplify = AudioServer.get_bus_effect(4,0)
+
 
 #balance vars
 @export var min_idle_timer:  float = 5.0
@@ -140,7 +143,9 @@ func _on_state_enter(state) -> void:
 		
 	if state == boss_states.transform:
 		anim_player.play("transform")
-		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballytransform1.wav")
+		var tween := create_tween()
+		tween.tween_property(area_volume, "volume_db", -80, 4)
+		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballytransform1.wav") 
 		orb_music = AudioPlayer.play_music("res://Assets/Audio/music/worm boss updated drums.mp3", 0.2, true)
 		
 	if state == boss_states.splitting:
@@ -159,6 +164,7 @@ func _on_state_enter(state) -> void:
 	
 	if state == boss_states.destroy_object:
 		queue_free()
+		
 		
 	if state == boss_states.move:
 		#if near the old move target, pick a new one
@@ -218,6 +224,7 @@ func on_take_damage(damage):
 		take_damage.emit(damage)
 		health -= damage
 		if health <= 0: _set_state(boss_states.death)
+		
 
 func _on_area_2d_body_entered(body) -> void:
 	print(body)
@@ -248,8 +255,10 @@ func set_facing_player() -> void:
 
 func _on_animation_player_animation_finished(anim_name):
 	if current_state == boss_states.death:
+		var tween2 := create_tween()
+		tween2.tween_property(area_volume, "volume_db", 0, 2)
+		await tween2.finished
 		_set_state(boss_states.destroy_object)
-		
 		
 	if current_state == boss_states.bite:
 		if near_move_target():
