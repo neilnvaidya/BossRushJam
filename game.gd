@@ -3,6 +3,9 @@ extends Node2D
 
 var current_level_index : int = game_level.tutorial
 
+#Music Variables
+var sleeper
+
 enum game_level {
 	tutorial,
 	level_1,
@@ -24,6 +27,7 @@ func _ready():
 			levels.append(c)
 		
 	camera.position = player.position
+	var sleeper = AudioPlayer.play_area("res://Assets/Audio/music/Sleeper.ogg")
 
 func _physics_process(_delta):
 	camera.position = player.position
