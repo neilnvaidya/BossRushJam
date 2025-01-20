@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbp0kyg7cy08e"]
+
+[ext_resource type="Texture2D" uid="uid://dguy6mopxhkws" path="res://Assets/Art/GUI/titlescreen.png" id="1_6fcwn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asaig"]
+atlas = ExtResource("1_6fcwn")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdgbh"]
+atlas = ExtResource("1_6fcwn")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk6vs"]
+atlas = ExtResource("1_6fcwn")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdk6o"]
+atlas = ExtResource("1_6fcwn")
+region = Rect2(0, 360, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ad3n"]
+atlas = ExtResource("1_6fcwn")
+region = Rect2(640, 360, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkl47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asaig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdgbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tk6vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdk6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ad3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdk6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tk6vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdgbh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 7.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_jkl47")
+animation = &"Idle"
+frame_progress = 0.922945
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Art/GUI",
+"o_name": "",
+"only_visible": false,
+"should_round_fps": true,
+"slice": "",
+"source": "C:/Asesprite/Projects/bossrush/gui/titlescreen.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "3946efaafaabd8e6e6db4de1ae78dce1"
