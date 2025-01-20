@@ -294,7 +294,7 @@ texture_filter = 1
 texture = ExtResource("1_hm2ht")
 hframes = 12
 vframes = 12
-frame = 44
+frame = 102
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}

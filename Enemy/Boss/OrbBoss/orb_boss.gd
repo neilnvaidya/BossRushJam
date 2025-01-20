@@ -259,7 +259,7 @@ func _on_animation_player_animation_finished(anim_name):
 		tween2.tween_property(area_volume, "volume_db", 0, 2)
 		await tween2.finished
 		_set_state(boss_states.destroy_object)
-		
+		$CanvasLayer/GUI.remove_child($BossStatsContainer)
 	if current_state == boss_states.bite:
 		if near_move_target():
 			_set_state(boss_states.idle_monster)
