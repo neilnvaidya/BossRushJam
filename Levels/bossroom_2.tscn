@@ -972,5 +972,26 @@ position = Vector2(-18, 240)
 tile_map_data = PackedByteArray("AAASABwAAAAMAAwAAAASAB0AAAAMAA0AAAATABwAAAANAAwAAAATAB0AAAANAA0AAAARAB0AAAANAA0AAAARAB4AAAASAAkAAAASAB4AAAATAAkAAAATAB4AAAASAAkAAAAUAB0AAAAMAA0AAAAUAB4AAAATAAkAAAAUABwAAAAMAAwAAAARABwAAAANAAwAAAAQABwAAAAMAAwAAAAQAB0AAAAMAA0AAAAVABwAAAANAAwAAAAVAB0AAAANAA0AAAA=")
 tile_set = SubResource("TileSet_uia72")
 
-[node name="Mrs_Melodie" parent="TerrainContainer" instance=ExtResource("4_u1aat")]
+[node name="Mrs_Melodie" parent="." node_paths=PackedStringArray("move_target_container") instance=ExtResource("4_u1aat")]
 position = Vector2(298, 116)
+move_target_container = NodePath("../MoveTargetContainer")
+
+[node name="MoveTargetContainer" type="Node2D" parent="."]
+
+[node name="Target1" type="Node2D" parent="MoveTargetContainer"]
+position = Vector2(202, 180)
+
+[node name="Target2" type="Node2D" parent="MoveTargetContainer"]
+position = Vector2(99, 380)
+
+[node name="Target3" type="Node2D" parent="MoveTargetContainer"]
+position = Vector2(472, 216)
+
+[node name="Target4" type="Node2D" parent="MoveTargetContainer"]
+position = Vector2(271, 524)
+
+[node name="Target5" type="Node2D" parent="MoveTargetContainer"]
+position = Vector2(493, 385)
+
+[node name="Target6" type="Node2D" parent="MoveTargetContainer"]
+position = Vector2(379, 138)

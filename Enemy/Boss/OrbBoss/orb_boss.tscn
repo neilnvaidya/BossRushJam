@@ -580,7 +580,7 @@ texture_filter = 1
 texture = ExtResource("2_sxjll")
 hframes = 14
 vframes = 14
-frame = 5
+frame = 52
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -629,7 +629,7 @@ collision_layer = 4
 collision_mask = 19
 
 [node name="MimicCollisionShape2D" type="CollisionShape2D" parent="MimicTempArea"]
-position = Vector2(-8, 29)
+position = Vector2(13, 29)
 scale = Vector2(1.29297, 1.3327)
 shape = SubResource("CircleShape2D_731oa")
 

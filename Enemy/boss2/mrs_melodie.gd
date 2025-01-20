@@ -66,6 +66,12 @@ func _ready():
 	sprite = $Sprite2D
 	anim_player = $AnimationPlayer
 	collider = $CollisionShape2D
+	move_targets = move_target_container.get_children()
+	
+	_set_state(boss_states.idle)
+	$ReadyTimer.start()
+	pick_move_target()
+	position = move_position
 	
 func _on_state_tick(state, delta) -> void:
 	super(state, delta)
@@ -115,8 +121,8 @@ func pick_attack_pattern():
 	var i = randf_range(0,1) 
 	if i < 0.45:
 		pass
-	elif i < 0.9 : _set_state(boss_states.idle)
-	else : _set_state(boss_states.idle)
+	elif i < 0.9 : _set_state(boss_states.aoe_attack)
+	else : _set_state(boss_states.double_attack)
 	
 func set_facing_player() -> void:
 	var new_facing : int
@@ -134,3 +140,6 @@ func set_facing_player() -> void:
 		print(facing)
 		facing = new_facing
 	else: facing_changed = false
+
+func pick_move_target() -> void:
+	move_position = move_targets.pick_random().position

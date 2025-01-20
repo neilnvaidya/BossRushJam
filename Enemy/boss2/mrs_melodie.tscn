@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://rc75uhplgnjb"]
+[gd_scene load_steps=22 format=3 uid="uid://rc75uhplgnjb"]
 
 [ext_resource type="Script" path="res://Enemy/boss2/mrs_melodie.gd" id="1_aonj5"]
 [ext_resource type="Texture2D" uid="uid://xegrkiu6r3x5" path="res://Assets/Art/Sprites/bosses/boss2/boss2.png" id="1_hm2ht"]
@@ -282,6 +282,9 @@ _data = {
 "transformation": SubResource("Animation_57cvp")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkufl"]
+size = Vector2(85, 54)
+
 [node name="Mrs_Melodie" type="CharacterBody2D"]
 script = ExtResource("1_aonj5")
 
@@ -294,7 +297,7 @@ texture_filter = 1
 texture = ExtResource("1_hm2ht")
 hframes = 12
 vframes = 12
-frame = 102
+frame = 48
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -318,3 +321,15 @@ root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_r2nki")
 }
+
+[node name="ReadyTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_tkufl")
+disabled = true
