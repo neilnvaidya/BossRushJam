@@ -812,7 +812,6 @@ tile_map_data = PackedByteArray("AAAXAAUAAAAfAAYAAAAXAAYAAAAfAAcAAAAYAAUAAAAcABY
 tile_set = SubResource("TileSet_uia72")
 
 [node name="door_closed" type="TileMapLayer" parent="TerrainContainer"]
-visible = false
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAoAAwAAAAOACAAAAAoAA0AAAAOACEAAAApAAwAAAAPACAAAAApAA0AAAAPACEAAAAKABwAAAANAAwAAAALABwAAAAMAAwAAAAJABwAAAAMAAwAAAAMABwAAAANAAwAAAAJAB0AAAASAAcAAAAKAB0AAAATAAcAAAALAB0AAAASAAcAAAAMAB0AAAATAAcAAAAmAAsAAAAMAB8AAAAmAAwAAAAMACAAAAAmAA0AAAAMACEAAAAmAA4AAAAMACIAAAAnAAsAAAANAB8AAAAnAAwAAAANACAAAAAnAA0AAAANACEAAAAnAA4AAAANACIAAAAoAAsAAAAOAB8AAAAoAA4AAAAOACIAAAApAAsAAAAPAB8AAAApAA4AAAAPACIAAAAqAAsAAAAQAB8AAAAqAAwAAAAQACAAAAAqAA0AAAAQACEAAAAqAA4AAAAQACIAAAArAAsAAAARAB8AAAArAAwAAAARACAAAAArAA0AAAARACEAAAArAA4AAAARACIAAAA=")
 tile_set = SubResource("TileSet_uia72")
@@ -824,7 +823,7 @@ move_target_container = NodePath("../MoveTargetContainer")
 [node name="ActivateFightDetector" type="Area2D" parent="OrbBoss"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbBoss/ActivateFightDetector"]
-position = Vector2(-8, 28)
+position = Vector2(-5, 36)
 shape = SubResource("RectangleShape2D_ctnqt")
 
 [node name="MoveTargetContainer" type="Node2D" parent="."]

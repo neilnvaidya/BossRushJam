@@ -46,6 +46,7 @@ const max_health : int = 100
 #projectile prefab
 @onready var projectile_prefab = preload("res://Enemy/Boss/OrbBoss/projectile_orb.tscn")
 
+
 enum boss_states {
 	idle_human,
 	idle_monster,
@@ -161,7 +162,6 @@ func _on_state_enter(state) -> void:
 		anim_player.play("death")
 		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballydeath1.wav")
 		AudioPlayer.stop_audio(orb_music, 1)
-	
 	if state == boss_states.destroy_object:
 		queue_free()
 		
@@ -259,7 +259,7 @@ func _on_animation_player_animation_finished(anim_name):
 		tween2.tween_property(area_volume, "volume_db", 0, 2)
 		await tween2.finished
 		_set_state(boss_states.destroy_object)
-		$CanvasLayer/GUI.remove_child($BossStatsContainer)
+		
 	if current_state == boss_states.bite:
 		if near_move_target():
 			_set_state(boss_states.idle_monster)

@@ -40,7 +40,9 @@ func start_next_level():
 	
 func _on_tutorial_tutorial_complete():
 	start_next_level()
-
-
+	
+func change_boss():
+	gui.remove_child($BossStatsContainer)
+	
 func _on_bossroom_1_level_complete():
 	start_next_level()

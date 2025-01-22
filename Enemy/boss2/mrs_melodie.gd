@@ -56,6 +56,7 @@ enum boss_states {
 	phase2_hurt,
 	phase2_return_idle,
 	phase2_single,
+	destroy_object
 	}
 	
 func _init():
@@ -134,3 +135,18 @@ func set_facing_player() -> void:
 		print(facing)
 		facing = new_facing
 	else: facing_changed = false
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if current_state == boss_states.death:
+		_set_state(boss_states.destroy_object)
+		
+	if current_state == boss_states.aoe_attack:
+		_set_state(boss_states.idle)
+
+
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	print(body)
+	if body is Player and current_state == boss_states.idle:
+		ready_to_fight.emit()
+	

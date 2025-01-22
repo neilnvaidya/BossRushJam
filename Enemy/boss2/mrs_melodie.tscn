@@ -1,10 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://rc75uhplgnjb"]
+[gd_scene load_steps=22 format=3 uid="uid://rc75uhplgnjb"]
 
 [ext_resource type="Script" path="res://Enemy/boss2/mrs_melodie.gd" id="1_aonj5"]
 [ext_resource type="Texture2D" uid="uid://xegrkiu6r3x5" path="res://Assets/Art/Sprites/bosses/boss2/boss2.png" id="1_hm2ht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ba8y"]
 size = Vector2(140, 97)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvu70"]
+size = Vector2(267, 212.25)
 
 [sub_resource type="Animation" id="Animation_adykg"]
 length = 0.4
@@ -284,6 +287,14 @@ _data = {
 
 [node name="Mrs_Melodie" type="CharacterBody2D"]
 script = ExtResource("1_aonj5")
+facing = null
+current_phase = null
+player_position = null
+min_idle_timer = null
+max_idle_timer = null
+move_speed = null
+bite_range = null
+health = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
@@ -294,7 +305,7 @@ texture_filter = 1
 texture = ExtResource("1_hm2ht")
 hframes = 12
 vframes = 12
-frame = 102
+frame = 28
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -313,8 +324,18 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "800af705a0927f5f9107f31f3f623e60"
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-37, 124)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(36, -85.125)
+shape = SubResource("RectangleShape2D_bvu70")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_r2nki")
 }
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

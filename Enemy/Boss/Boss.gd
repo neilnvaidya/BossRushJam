@@ -23,8 +23,8 @@ func _set_state(new_state):
 	current_state = new_state
 	
 func _on_state_tick(_state,delta):
-	if current_state ==null:
-		print("On State Tick - Current State Null")
+	if current_state == null:
+		pass#print("On State Tick - Current State Null")
 
 func _on_state_enter(_state):
 	pass
