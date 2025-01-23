@@ -148,4 +148,4 @@ func create_projectile():
 		projectile.position.x += 25*facing
 	get_parent().add_child(projectile)
 	var dir = (player_position - position).normalized()
-	projectile.launch(dir)
+	#projectile.launch(dir)

@@ -294,6 +294,7 @@ script = ExtResource("1_aonj5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -60)
 shape = SubResource("RectangleShape2D_4ba8y")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
