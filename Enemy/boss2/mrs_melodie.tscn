@@ -286,15 +286,9 @@ _data = {
 }
 
 [node name="Mrs_Melodie" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_aonj5")
-facing = null
-current_phase = null
-player_position = null
-min_idle_timer = null
-max_idle_timer = null
-move_speed = null
-bite_range = null
-health = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)

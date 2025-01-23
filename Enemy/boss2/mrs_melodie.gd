@@ -68,6 +68,13 @@ func _ready():
 	anim_player = $AnimationPlayer
 	collider = $CollisionShape2D
 	
+	_set_state(boss_states.idle)
+	
+func _on_state_exit(state) -> void:
+	super(state)
+	if current_state == boss_states.death: boss_dead.emit()
+	
+
 func _on_state_tick(state, delta) -> void:
 	super(state, delta)
 	
@@ -147,6 +154,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_area_2d_2_body_entered(body: Node2D) -> void:
 	print(body)
+	print(body is Player)
+	print("boss state ",boss_states)
+	print("current_state ", current_state)
 	if body is Player and current_state == boss_states.idle:
+		print("here")
 		ready_to_fight.emit()
 	

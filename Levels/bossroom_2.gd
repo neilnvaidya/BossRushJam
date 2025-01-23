@@ -10,12 +10,16 @@ signal boss_death_gui_update
 signal boss_start_fight_gui_update
 signal level_complete
 
+var mrs_melodie_prefab: PackedScene = preload("res://Enemy/boss2/mrs_melodie.tscn")
+var mrs_meloide
+var boss_alive = true
+
 func start_level():
 	print("starting level 2")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	close_doors()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -28,8 +32,7 @@ func _on_player_announce_position(pos):
 
 func _on_mrs_melodie_ready_to_fight() -> void:
 	print("Mrs_Melodie Boss Ready!")
-	$Area2D/CollisionShape2D.visible = false
-
+	$Mrs_Melodie/ActivateFightDetector.visible = false
 func close_doors():
 	$TerrainContainer/door_toggle.visible = true
 

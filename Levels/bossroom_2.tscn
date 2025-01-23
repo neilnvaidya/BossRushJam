@@ -975,18 +975,18 @@ position = Vector2(-18, 240)
 tile_map_data = PackedByteArray("AAASABwAAAAMAAwAAAASAB0AAAAMAA0AAAATABwAAAANAAwAAAATAB0AAAANAA0AAAARAB0AAAANAA0AAAARAB4AAAASAAkAAAASAB4AAAATAAkAAAATAB4AAAASAAkAAAAUAB0AAAAMAA0AAAAUAB4AAAATAAkAAAAUABwAAAAMAAwAAAARABwAAAANAAwAAAAQABwAAAAMAAwAAAAQAB0AAAAMAA0AAAAVABwAAAANAAwAAAAVAB0AAAANAA0AAAA=")
 tile_set = SubResource("TileSet_uia72")
 
-[node name="Mrs_Melodie" parent="TerrainContainer" instance=ExtResource("4_u1aat")]
+[node name="Mrs_Melodie" parent="." instance=ExtResource("4_u1aat")]
 position = Vector2(298, 116)
 
-[node name="Area2D2" type="Area2D" parent="TerrainContainer/Mrs_Melodie"]
+[node name="ActivateFightDetector" type="Area2D" parent="Mrs_Melodie"]
 position = Vector2(135, -64)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainContainer/Mrs_Melodie/Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mrs_Melodie/ActivateFightDetector"]
 position = Vector2(-132.5, 186.5)
 shape = SubResource("RectangleShape2D_hdwp7")
 
-[connection signal="boss_dead" from="TerrainContainer/Mrs_Melodie" to="." method="_on_mrs_melodie_boss_dead"]
-[connection signal="create_mimic" from="TerrainContainer/Mrs_Melodie" to="." method="_on_mrs_melodie_create_mimic"]
-[connection signal="ready_to_fight" from="TerrainContainer/Mrs_Melodie" to="." method="_on_mrs_melodie_ready_to_fight"]
-[connection signal="take_damage" from="TerrainContainer/Mrs_Melodie" to="." method="_on_mrs_melodie_take_damage"]
-[connection signal="body_entered" from="TerrainContainer/Mrs_Melodie/Area2D2" to="TerrainContainer/Mrs_Melodie" method="_on_area_2d_2_body_entered"]
+[connection signal="boss_dead" from="Mrs_Melodie" to="." method="_on_mrs_melodie_boss_dead"]
+[connection signal="create_mimic" from="Mrs_Melodie" to="." method="_on_mrs_melodie_create_mimic"]
+[connection signal="ready_to_fight" from="Mrs_Melodie" to="." method="_on_mrs_melodie_ready_to_fight"]
+[connection signal="take_damage" from="Mrs_Melodie" to="." method="_on_mrs_melodie_take_damage"]
+[connection signal="body_entered" from="Mrs_Melodie/ActivateFightDetector" to="Mrs_Melodie" method="_on_area_2d_2_body_entered"]
