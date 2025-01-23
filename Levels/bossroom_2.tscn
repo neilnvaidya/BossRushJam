@@ -942,7 +942,7 @@ sources/0 = SubResource("TileSetAtlasSource_nyfae")
 sources/2 = SubResource("TileSetAtlasSource_fx3lm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdwp7"]
-size = Vector2(739, 493)
+size = Vector2(739, 560.5)
 
 [node name="bossrom_2" type="Node2D"]
 script = ExtResource("1_arwwi")
@@ -976,13 +976,13 @@ tile_map_data = PackedByteArray("AAASABwAAAAMAAwAAAASAB0AAAAMAA0AAAATABwAAAANAAw
 tile_set = SubResource("TileSet_uia72")
 
 [node name="Mrs_Melodie" parent="." instance=ExtResource("4_u1aat")]
-position = Vector2(298, 116)
+position = Vector2(284, 220)
 
 [node name="ActivateFightDetector" type="Area2D" parent="Mrs_Melodie"]
-position = Vector2(135, -64)
+position = Vector2(162, -62)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mrs_Melodie/ActivateFightDetector"]
-position = Vector2(-132.5, 186.5)
+position = Vector2(-165, 134)
 shape = SubResource("RectangleShape2D_hdwp7")
 
 [connection signal="boss_dead" from="Mrs_Melodie" to="." method="_on_mrs_melodie_boss_dead"]

@@ -33,6 +33,8 @@ func _on_player_announce_position(pos):
 func _on_mrs_melodie_ready_to_fight() -> void:
 	print("Mrs_Melodie Boss Ready!")
 	$Mrs_Melodie/ActivateFightDetector.visible = false
+	boss_start_fight_gui_update.emit()
+	
 func close_doors():
 	$TerrainContainer/door_toggle.visible = true
 
@@ -46,8 +48,8 @@ func _on_mrs_melodie_boss_dead() -> void:
 
 
 func _on_mrs_melodie_create_mimic(pos: Variant) -> void:
-	pass # Replace with function body.
-
+	print(name, " apply damage")
+	
 
 func _on_mrs_melodie_take_damage(damage: Variant) -> void:
 	pass # Replace with function body.

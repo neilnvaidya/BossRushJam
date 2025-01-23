@@ -11,6 +11,7 @@ extends Level
 signal boss_health_gui_update(delta)
 signal boss_death_gui_update
 signal boss_start_fight_gui_update
+signal orb_boss
 signal level_complete
 
 var mimic_prefab : PackedScene = preload("res://Enemy/Boss/OrbBoss/orb_boss.tscn")
@@ -43,6 +44,7 @@ func open_doors():
 
 func _on_orb_boss_ready_to_fight():
 	print("Orb Boss Ready!")
+	boss_start_fight_gui_update.emit()
 	close_doors()
 	$OrbBoss/ActivateFightDetector.visible = false
 
@@ -54,7 +56,7 @@ func _on_orb_boss_take_damage(damage):
 func _on_player_announce_position(pos):
 	if boss_alive:
 		var boss = get_node("OrbBoss") as OrbBoss
-
+	
 
 func _on_orb_boss_create_mimic(pos):
 	print("creating mimic")
@@ -71,4 +73,9 @@ func _on_orb_boss_boss_dead():
 	boss_alive = false
 	open_doors()
 	level_complete.emit()
+	boss_death_gui_update.emit()
 	
+
+
+func _on_orb_boss() -> void:
+	pass # Replace with function body.

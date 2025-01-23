@@ -286,6 +286,7 @@ func pick_attack_pattern():
 	if i < 0.45:
 		_set_state(boss_states.move)
 	elif i < 0.9 : _set_state(boss_states.projectile)
+	
 	else : _set_state(boss_states.laughing)
 	
 func player_in_bite_range() -> bool:

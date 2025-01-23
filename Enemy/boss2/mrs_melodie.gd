@@ -33,12 +33,12 @@ var idle_timer : float = 0.0
 @export var bite_range : Vector2 = Vector2(50,50)
 @export var health : int = 100
 const max_health : int = 100
-@onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 #projectile prefab
-@onready var projectile = [preload("res://Enemy/boss2/eighth_note.tscn"),preload("res://Enemy/boss2/eighth_note.tscn"),
-preload("res://Enemy/boss2/quarter_note.tscn"),preload("res://Enemy/boss2/sinewave.tscn")]
-
+@onready var sinewave = preload("res://Enemy/boss2/sinewave.tscn")
+@onready var eighth_note = preload("res://Enemy/boss2/eighth_note.tscn")
+@onready var quarter_note = preload("res://Enemy/boss2/quarter_note.tscn")
 
 enum boss_states {
 	idle,
@@ -58,7 +58,7 @@ enum boss_states {
 	phase2_single,
 	destroy_object
 	}
-	
+var is_boss_ready = false
 func _init():
 	super()
 
@@ -67,7 +67,7 @@ func _ready():
 	sprite = $Sprite2D
 	anim_player = $AnimationPlayer
 	collider = $CollisionShape2D
-	
+	print(current_state)
 	_set_state(boss_states.idle)
 	
 func _on_state_exit(state) -> void:
@@ -77,53 +77,36 @@ func _on_state_exit(state) -> void:
 
 func _on_state_tick(state, delta) -> void:
 	super(state, delta)
-	
+	print(idle_timer)
 	#set the boss to face player
 	set_facing_player()
-	
-	if state == boss_states.idle:
+	if (state == boss_states.idle) and (is_boss_ready):
 		#check if idle timer triggers
-		if idle_timer <= 0:
+		print(idle_timer)
+		if idle_timer >= -20:
+			print(idle_timer)
 			pick_attack_pattern()
 		else:
 			idle_timer -= delta
+	#TODO:
+	#generata attack
+	if state == boss_states.double_attack:
+		anim_player.play("double_attack")
 		
-		#apply facing and anim
-		if facing_changed:
-			var anim_position = anim_player.current_animation_position
-			if facing == 1: 
-				anim_player.play("idle2_right")
-			else: anim_player.play("idle2_left")
-			anim_player.seek(anim_position)
-	
-	#
-	if state == boss_states.idle:
+	elif state == boss_states.single_attack:
+		anim_player.play("single_attack")
 
-		# if near the target go back to idle
-		var relative_pos = move_position - position
-		if relative_pos.length() < 1:
-			_set_state(boss_states.idle)
-		else:
-			# else move towards the target
-			var dir = relative_pos.normalized()
-			var speed = move_speed
-			move_and_collide(dir * speed*delta)
-			if facing_changed:
-				# turn around if facing changed
-				var anim_position = anim_player.current_animation_position
-				if facing == 1: 
-					anim_player.play("idle2_right")
-				elif facing ==-1 : anim_player.play("idle2_left")
-				else:
-					anim_player.play("idle_up")
-				anim_player.seek(anim_position)
-				
-				
+		
+	create_projectile()
+
 func pick_attack_pattern():
 	var i = randf_range(0,1) 
-	if i < 0.45:
-		pass
-	elif i < 0.9 : _set_state(boss_states.idle)
+	if i < 0.45 and i > 9:
+		_set_state(boss_states.double_attack)
+
+	elif i < 0.9 : 
+		_set_state(boss_states.single_attack)
+
 	else : _set_state(boss_states.idle)
 	
 func set_facing_player() -> void:
@@ -148,16 +131,21 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if current_state == boss_states.death:
 		_set_state(boss_states.destroy_object)
 		
-	if current_state == boss_states.aoe_attack:
-		_set_state(boss_states.idle)
+	_set_state(boss_states.idle)
 
 
 func _on_area_2d_2_body_entered(body: Node2D) -> void:
-	print(body)
-	print(body is Player)
-	print("boss state ",boss_states)
-	print("current_state ", current_state)
 	if body is Player and current_state == boss_states.idle:
-		print("here")
+		is_boss_ready = true
 		ready_to_fight.emit()
-	
+
+func create_projectile():
+	await get_tree().create_timer(0.3).timeout
+	var projectile = eighth_note.instantiate()
+	projectile.position = position
+	projectile.position.y += 25
+	if facing != 0:
+		projectile.position.x += 25*facing
+	get_parent().add_child(projectile)
+	var dir = (player_position - position).normalized()
+	projectile.launch(dir)
