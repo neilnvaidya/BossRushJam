@@ -41,6 +41,7 @@ const max_health : int = 100
 @onready var quarter_note = preload("res://Enemy/boss2/quarter_note.tscn")
 
 enum boss_states {
+	idle_human,
 	idle,
 	aoe_attack,
 	death,
@@ -56,9 +57,9 @@ enum boss_states {
 	phase2_hurt,
 	phase2_return_idle,
 	phase2_single,
-	destroy_object
+	destroy_object,
 	}
-var is_boss_ready = false
+
 func _init():
 	super()
 
@@ -77,31 +78,31 @@ func _on_state_exit(state) -> void:
 
 func _on_state_tick(state, delta) -> void:
 	super(state, delta)
-	print(idle_timer)
-	#set the boss to face player
-	set_facing_player()
-	if (state == boss_states.idle) and (is_boss_ready):
+	
+	if (state == boss_states.idle) and (is_ready):
 		#check if idle timer triggers
-		print(idle_timer)
-		if idle_timer >= -20:
-			print(idle_timer)
+		print("tick")
+		if idle_timer <= 0:
+			print("here")
 			pick_attack_pattern()
 		else:
 			idle_timer -= delta
+
 	#TODO:
 	#generata attack
 	if state == boss_states.double_attack:
 		anim_player.play("double_attack")
-		
+		create_projectile()
 	elif state == boss_states.single_attack:
 		anim_player.play("single_attack")
 
 		
-	create_projectile()
+	
 
 func pick_attack_pattern():
+	print("here")
 	var i = randf_range(0,1) 
-	if i < 0.45 and i > 9:
+	if i < 0.45:
 		_set_state(boss_states.double_attack)
 
 	elif i < 0.9 : 
@@ -109,38 +110,44 @@ func pick_attack_pattern():
 
 	else : _set_state(boss_states.idle)
 	
-func set_facing_player() -> void:
-	var new_facing : int
-	player_position = get_tree().get_first_node_in_group("Player").global_position as Vector2
-	if player_position.y > abs(player_position.x) and (player_position.y - position.y) > 0:
-		new_facing = 0
-	else:	
-		if player_position.x < position.x:
-			new_facing = -1
-		else : 
-			new_facing  = 1
-		
-	if new_facing != facing:
-		facing_changed = true
-		print(facing)
-		facing = new_facing
-	else: facing_changed = false
 
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+func _on_animation_player_animation_finished(anim_name: StringName):
+	print("done")
+	print(anim_name)
+	if (current_state == boss_states.phase2_single or 
+			current_state == boss_states.single_attack or
+			current_state == boss_states.double_attack or
+			current_state == boss_states.aoe_attack or
+			current_state == boss_states.phase2_aoe or 
+			current_state == boss_states.phase2_double or
+			current_state == boss_states.phase2_single or
+			current_state == boss_states.transformation
+			): 
+		_set_state(boss_states.idle)
+
+func on_take_damage(damage):
 	if current_state == boss_states.death:
-		_set_state(boss_states.destroy_object)
-		
-	_set_state(boss_states.idle)
-
-
+		return
+	else:
+		print("Orb Boss Took Damage: " , damage)
+		take_damage.emit(damage)
+		health -= damage
+		if health <= 0: _set_state(boss_states.death)
+	
 func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	print("Body entered: ",body)
+	print("state ",current_state)
+	print("boolean ",body is Player and current_state == boss_states.idle)
 	if body is Player and current_state == boss_states.idle:
-		is_boss_ready = true
+		print("state ",current_state)
+		_set_state(boss_states.transformation)
+		print("state ",current_state)
+		is_ready = true
 		ready_to_fight.emit()
 
 func create_projectile():
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(10).timeout
 	var projectile = eighth_note.instantiate()
 	projectile.position = position
 	projectile.position.y += 25
@@ -148,4 +155,21 @@ func create_projectile():
 		projectile.position.x += 25*facing
 	get_parent().add_child(projectile)
 	var dir = (player_position - position).normalized()
-	#projectile.launch(dir)
+	projectile.launch(dir)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print(body)
+	if body is Yoyo:
+		var damage = body.yoyo_stats.base_damage*body.damage_multiplier
+		on_take_damage(damage)
+	#TODO: impliment player death on touching boss
+	if body is Player:
+		body.take_damage()
+		
+func _on_state_enter(state):
+	super(state)
+	print(state)
+	if state == boss_states.idle:
+		anim_player.play("transformation")
+	

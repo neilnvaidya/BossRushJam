@@ -254,6 +254,7 @@ func set_facing_player() -> void:
 	else: facing_changed = false
 
 func _on_animation_player_animation_finished(anim_name):
+	print("orb", anim_name)
 	if current_state == boss_states.death:
 		var tween2 := create_tween()
 		tween2.tween_property(area_volume, "volume_db", 0, 2)

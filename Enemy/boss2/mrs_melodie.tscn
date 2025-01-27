@@ -7,7 +7,7 @@
 size = Vector2(124, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bvu70"]
-size = Vector2(230.054, 134.915)
+size = Vector2(65.6369, 52.1127)
 
 [sub_resource type="Animation" id="Animation_adykg"]
 length = 0.4
@@ -302,7 +302,7 @@ position = Vector2(7, -55)
 texture = ExtResource("1_hm2ht")
 hframes = 12
 vframes = 12
-frame = 39
+frame = 102
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -326,10 +326,11 @@ position = Vector2(-37, 124)
 collision_layer = 4
 collision_mask = 3
 
-[node name="PushBack" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(47, -105)
+[node name="Collision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(33, -182)
 scale = Vector2(1.53877, 0.978648)
 shape = SubResource("RectangleShape2D_bvu70")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")

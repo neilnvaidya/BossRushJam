@@ -44,7 +44,7 @@ func open_doors():
 
 
 func _on_mrs_melodie_boss_dead() -> void:
-	pass # Replace with function body.
+	print("boss dead")
 
 
 func _on_mrs_melodie_create_mimic(pos: Variant) -> void:
@@ -52,4 +52,5 @@ func _on_mrs_melodie_create_mimic(pos: Variant) -> void:
 	
 
 func _on_mrs_melodie_take_damage(damage: Variant) -> void:
-	pass # Replace with function body.
+	print(name, " apply damage")
+	boss_health_gui_update.emit(-damage)

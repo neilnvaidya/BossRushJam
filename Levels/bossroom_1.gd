@@ -50,6 +50,7 @@ func _on_orb_boss_ready_to_fight():
 
 func _on_orb_boss_take_damage(damage):
 	print(name, " apply damage")
+	print(damage)
 	boss_health_gui_update.emit(-damage)
 
 
@@ -75,7 +76,3 @@ func _on_orb_boss_boss_dead():
 	level_complete.emit()
 	boss_death_gui_update.emit()
 	
-
-
-func _on_orb_boss() -> void:
-	pass # Replace with function body.

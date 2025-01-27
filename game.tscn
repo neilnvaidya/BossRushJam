@@ -18,7 +18,7 @@ position = Vector2(-80, 473)
 
 [node name="bossroom_1" parent="LevelsContainer" instance=ExtResource("2_kxx3s")]
 
-[node name="bossrom_2" parent="LevelsContainer" instance=ExtResource("4_yy38h")]
+[node name="bossroom_2" parent="LevelsContainer" instance=ExtResource("4_yy38h")]
 position = Vector2(368, -878)
 
 [node name="Hall1" parent="LevelsContainer" instance=ExtResource("2_6s6bk")]
@@ -43,9 +43,9 @@ metadata/_edit_use_anchors_ = true
 [connection signal="boss_health_gui_update" from="LevelsContainer/bossroom_1" to="CanvasLayer/GUI" method="_on_boss_health_gui_update"]
 [connection signal="boss_start_fight_gui_update" from="LevelsContainer/bossroom_1" to="CanvasLayer/GUI" method="_on_bossroom_1_boss_start_fight_gui_update"]
 [connection signal="level_complete" from="LevelsContainer/bossroom_1" to="." method="_on_bossroom_1_level_complete"]
-[connection signal="boss_death_gui_update" from="LevelsContainer/bossrom_2" to="CanvasLayer/GUI" method="_on_bossrom_2_boss_death_gui_update"]
-[connection signal="boss_health_gui_update" from="LevelsContainer/bossrom_2" to="CanvasLayer/GUI" method="_on_bossrom_2_boss_health_gui_update"]
-[connection signal="boss_start_fight_gui_update" from="LevelsContainer/bossrom_2" to="CanvasLayer/GUI" method="_on_bossrom_2_boss_start_fight_gui_update"]
-[connection signal="level_complete" from="LevelsContainer/bossrom_2" to="CanvasLayer/GUI" method="_on_bossrom_2_level_complete"]
+[connection signal="boss_death_gui_update" from="LevelsContainer/bossroom_2" to="CanvasLayer/GUI" method="_on_bossrom_2_boss_death_gui_update"]
+[connection signal="boss_health_gui_update" from="LevelsContainer/bossroom_2" to="CanvasLayer/GUI" method="_on_bossrom_2_boss_health_gui_update"]
+[connection signal="boss_start_fight_gui_update" from="LevelsContainer/bossroom_2" to="CanvasLayer/GUI" method="_on_bossrom_2_boss_start_fight_gui_update"]
+[connection signal="level_complete" from="LevelsContainer/bossroom_2" to="CanvasLayer/GUI" method="_on_bossrom_2_level_complete"]
 [connection signal="announce_position" from="Player" to="LevelsContainer/bossroom_1" method="_on_player_announce_position"]
-[connection signal="announce_position" from="Player" to="LevelsContainer/bossrom_2" method="_on_player_announce_position"]
+[connection signal="announce_position" from="Player" to="LevelsContainer/bossroom_2" method="_on_player_announce_position"]
