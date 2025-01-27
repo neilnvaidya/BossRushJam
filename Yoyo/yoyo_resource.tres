@@ -7,5 +7,5 @@
 script = ExtResource("2_xgrp1")
 id = "test_yoyo"
 tootip_text = ""
-base_damage = 50
+base_damage = 4
 icon = ExtResource("1_1ncsf")

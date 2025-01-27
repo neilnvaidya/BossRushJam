@@ -70,6 +70,17 @@ func _ready():
 	collider = $CollisionShape2D
 	print(current_state)
 	_set_state(boss_states.idle)
+
+func _on_state_enter(state):
+	super(state)
+	print(state)
+	if state == boss_states.idle_human:
+		anim_player.play("idle_human")
+	if state == boss_states.idle:
+		anim_player.play("idle")
+	if state == boss_states.transformation:
+		anim_player.play("transformation")
+	
 	
 func _on_state_exit(state) -> void:
 	super(state)
@@ -138,8 +149,8 @@ func on_take_damage(damage):
 func _on_area_2d_2_body_entered(body: Node2D) -> void:
 	print("Body entered: ",body)
 	print("state ",current_state)
-	print("boolean ",body is Player and current_state == boss_states.idle)
-	if body is Player and current_state == boss_states.idle:
+	print("boolean ",body is Player and current_state == boss_states.idle_human)
+	if body is Player and current_state == boss_states.idle_human:
 		print("state ",current_state)
 		_set_state(boss_states.transformation)
 		print("state ",current_state)
@@ -166,10 +177,3 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	#TODO: impliment player death on touching boss
 	if body is Player:
 		body.take_damage()
-		
-func _on_state_enter(state):
-	super(state)
-	print(state)
-	if state == boss_states.idle:
-		anim_player.play("transformation")
-	

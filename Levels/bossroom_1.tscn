@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bephq6udd0wpe"]
+[gd_scene load_steps=10 format=4 uid="uid://bephq6udd0wpe"]
 
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="1_2ypn2"]
 [ext_resource type="Script" path="res://Levels/bossroom_1.gd" id="1_cvlof"]
 [ext_resource type="Texture2D" uid="uid://gnq1pt1qgxl3" path="res://Assets/Art/Tilemaps/foreground_classroom.png" id="2_pc00y"]
 [ext_resource type="PackedScene" uid="uid://buatnjyns8suo" path="res://Enemy/Boss/OrbBoss/orb_boss.tscn" id="4_aatcn"]
+[ext_resource type="Script" path="res://Levels/orb_boss_move_target_container.gd" id="5_qna8b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyfae"]
 texture = ExtResource("1_2ypn2")
@@ -816,17 +817,8 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAoAAwAAAAOACAAAAAoAA0AAAAOACEAAAApAAwAAAAPACAAAAApAA0AAAAPACEAAAAKABwAAAANAAwAAAALABwAAAAMAAwAAAAJABwAAAAMAAwAAAAMABwAAAANAAwAAAAJAB0AAAASAAcAAAAKAB0AAAATAAcAAAALAB0AAAASAAcAAAAMAB0AAAATAAcAAAAmAAsAAAAMAB8AAAAmAAwAAAAMACAAAAAmAA0AAAAMACEAAAAmAA4AAAAMACIAAAAnAAsAAAANAB8AAAAnAAwAAAANACAAAAAnAA0AAAANACEAAAAnAA4AAAANACIAAAAoAAsAAAAOAB8AAAAoAA4AAAAOACIAAAApAAsAAAAPAB8AAAApAA4AAAAPACIAAAAqAAsAAAAQAB8AAAAqAAwAAAAQACAAAAAqAA0AAAAQACEAAAAqAA4AAAAQACIAAAArAAsAAAARAB8AAAArAAwAAAARACAAAAArAA0AAAARACEAAAArAA4AAAARACIAAAA=")
 tile_set = SubResource("TileSet_uia72")
 
-[node name="OrbBoss" parent="." node_paths=PackedStringArray("move_target_container") instance=ExtResource("4_aatcn")]
-position = Vector2(478, 249)
-move_target_container = NodePath("../MoveTargetContainer")
-
-[node name="ActivateFightDetector" type="Area2D" parent="OrbBoss"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbBoss/ActivateFightDetector"]
-position = Vector2(-5, 36)
-shape = SubResource("RectangleShape2D_ctnqt")
-
 [node name="MoveTargetContainer" type="Node2D" parent="."]
+script = ExtResource("5_qna8b")
 
 [node name="Target1" type="Node2D" parent="MoveTargetContainer"]
 position = Vector2(262, 243)
@@ -845,6 +837,16 @@ position = Vector2(448, 177)
 
 [node name="Target6" type="Node2D" parent="MoveTargetContainer"]
 position = Vector2(669, 311)
+
+[node name="OrbBoss" parent="." node_paths=PackedStringArray("move_target_container") instance=ExtResource("4_aatcn")]
+position = Vector2(478, 249)
+move_target_container = NodePath("../MoveTargetContainer")
+
+[node name="ActivateFightDetector" type="Area2D" parent="OrbBoss"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbBoss/ActivateFightDetector"]
+position = Vector2(-5, 36)
+shape = SubResource("RectangleShape2D_ctnqt")
 
 [node name="MimicContainer" type="Node2D" parent="."]
 

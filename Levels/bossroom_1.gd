@@ -66,7 +66,7 @@ func _on_orb_boss_create_mimic(pos):
 	mimic.position= pos
 	mimic.is_mimic = true
 	mimic.name = "Mimic"
-	mimic.move_targets = $MoveTargetContainer.get_children()
+	mimic.move_target_container = $MoveTargetContainer
 	$MimicContainer.add_child(mimic)
 
 

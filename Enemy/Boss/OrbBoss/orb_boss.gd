@@ -17,11 +17,11 @@ var is_mimic: bool = false
 var is_ready : bool = false
 var facing_changed: bool = false
 @export var facing: int = 1
-@export var current_phase : int = 1
-
+@export var current_phase : int = 2
+var current_tracker_position : int
 # external references and tranckers
 @export var move_target_container : Node2D
-var move_targets : Array[Node]
+var move_targets = []
 var move_position :Vector2 = Vector2.ZERO
 @export var player_position : Vector2 = Vector2.ZERO
 
@@ -58,7 +58,8 @@ enum boss_states {
 	death,
 	bite,
 	projectile,
-	destroy_object
+	destroy_object,
+	phase_change
 	}
 	
 func _init():
@@ -68,11 +69,13 @@ func _init():
 func _ready():
 	sprite = $Sprite2D
 	anim_player = $AnimationPlayer
-	collider = $CollisionShape2D
-	move_targets = move_target_container.get_children()
+	collider = $Area2D/CollisionShape2D
+	collider.disabled = false
 	
 	# for mimic start as a monster
-	if is_mimic: _set_state(boss_states.idle_monster)
+	if is_mimic: 
+		pick_move_target()
+		_set_state(boss_states.move)
 	
 	# for main boss start as human
 	else:
@@ -131,6 +134,16 @@ func _on_state_tick(state, delta) -> void:
 				else:
 					anim_player.play("idle_up")
 				anim_player.seek(anim_position)
+				
+	if current_state == boss_states.phase_change:
+		var health_regain = 10*delta
+		if health <= 100 : 
+			health += health_regain
+			take_damage.emit(health_regain)
+		else: 
+			health == 100
+			current_phase = 2
+		
 
 func _on_state_enter(state) -> void:
 	#print(name, " State: " , boss_states.keys()[state])
@@ -159,12 +172,16 @@ func _on_state_enter(state) -> void:
 		AudioPlayer.play_stream(bally_laugh)
 	
 	if state == boss_states.death:
+		if current_phase == 1:
+			_set_state(boss_states.phase_change)
 		anim_player.play("death")
 		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballydeath1.wav")
 		AudioPlayer.stop_audio(orb_music, 1)
 	if state == boss_states.destroy_object:
 		queue_free()
-		
+	
+	if current_state == boss_states.phase_change:
+		anim_player.play("laughing")
 		
 	if state == boss_states.move:
 		#if near the old move target, pick a new one
@@ -202,7 +219,6 @@ func _on_state_enter(state) -> void:
 		#TODO: do some timing to create and launch 
 		#		projectile at the correct time for the animation
 		create_projectile()
-		
 
 func _on_state_exit(state) -> void:
 	super(state)
@@ -274,20 +290,40 @@ func _on_animation_player_animation_finished(anim_name):
 			): 
 		_set_state(boss_states.idle_monster)
 	
-# Timer to test mimic
-#func _on_mimic_timer_timeout():
-	#print(name, " split timeout")
-	#_set_state(boss_states.splitting)
 
 func pick_move_target() -> void:
-	move_position = move_targets.pick_random().position
+	var list = [0,1,2,3,4,5]
+	for x in list:
+		if move_target_container.targets_occupied[x]:
+			list.pop_at(x)
+			
+	var i = list.pick_random()
+	if current_tracker_position: 
+		move_target_container.targets_occupied[current_tracker_position] = false
+	move_position = move_target_container.targets[i].position
+	move_target_container.targets_occupied[i] = true
+	current_tracker_position = i
+	
+	
 	
 func pick_attack_pattern():
 	var i = randf_range(0,1) 
-	if i < 0.45:
+	if current_phase == 2 and !is_mimic:
+		var has_split_target = false
+		print(move_target_container.targets_occupied)
+		for target_occupied in move_target_container.targets_occupied:
+			if !target_occupied:
+				has_split_target = true
+				break
+		if has_split_target: _set_state(boss_states.splitting)
+
+	pick_basic_attack_pattern()
+	
+func pick_basic_attack_pattern():
+	var i = randf_range(0,1) 
+	if i < 0.1:
 		_set_state(boss_states.move)
 	elif i < 0.9 : _set_state(boss_states.projectile)
-	
 	else : _set_state(boss_states.laughing)
 	
 func player_in_bite_range() -> bool:

@@ -348,18 +348,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [45, 46, 47, 47, 48, 49, 48, 50, 51]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="Animation" id="Animation_7a4p7"]
 length = 2.0
@@ -579,7 +567,7 @@ texture_filter = 1
 texture = ExtResource("2_sxjll")
 hframes = 14
 vframes = 14
-frame = 5
+frame = 84
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
