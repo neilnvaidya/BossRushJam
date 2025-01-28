@@ -7,7 +7,6 @@ size = Vector2(117, 20)
 
 [sub_resource type="Animation" id="Animation_vs51k"]
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,7 +22,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_aycjs"]
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -54,7 +52,7 @@ texture_filter = 1
 texture = ExtResource("1_c10gj")
 hframes = 5
 vframes = 4
-frame = 6
+frame = 7
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,

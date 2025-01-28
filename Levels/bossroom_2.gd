@@ -26,10 +26,6 @@ func _process(_delta):
 	pass
 
 
-func _on_player_announce_position(pos):
-	pass # Replace with function body.
-
-
 func _on_mrs_melodie_ready_to_fight() -> void:
 	print("Mrs_Melodie Boss Ready!")
 	$Mrs_Melodie/ActivateFightDetector.visible = false
@@ -45,11 +41,6 @@ func open_doors():
 
 func _on_mrs_melodie_boss_dead() -> void:
 	print("boss dead")
-
-
-func _on_mrs_melodie_create_mimic(pos: Variant) -> void:
-	print(name, " apply damage")
-	
 
 func _on_mrs_melodie_take_damage(damage: Variant) -> void:
 	print(name, " apply damage")

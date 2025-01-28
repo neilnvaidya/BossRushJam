@@ -6,7 +6,6 @@
 
 [sub_resource type="Animation" id="Animation_eo2hh"]
 length = 1.5
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -22,7 +21,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_7ccce"]
 length = 0.1
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -54,7 +52,6 @@ texture_filter = 1
 texture = ExtResource("1_q37av")
 hframes = 4
 vframes = 4
-frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "output_section": true,

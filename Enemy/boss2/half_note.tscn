@@ -7,7 +7,6 @@ radius = 25.2222
 
 [sub_resource type="Animation" id="Animation_yqube"]
 length = 1.5
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,7 +22,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_4dxl3"]
 length = 0.1
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -55,7 +53,6 @@ texture_filter = 1
 texture = ExtResource("1_07gto")
 hframes = 4
 vframes = 4
-frame = 10
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}

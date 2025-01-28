@@ -29,6 +29,7 @@ var move_position :Vector2 = Vector2.ZERO
 @export var min_idle_timer:  float = 5.0
 @export var max_idle_timer: float = 0.5
 var idle_timer : float = 0.0
+
 @export var move_speed : float = 40
 @export var bite_range : Vector2 = Vector2(50,50)
 @export var health : int = 100
@@ -70,7 +71,17 @@ func _ready():
 	collider = $CollisionShape2D
 	print(current_state)
 	_set_state(boss_states.idle)
-	
+
+#start the fight with boss 2
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	ready_to_fight.emit()
+	if body is Player and current_state == boss_states.idle:
+		print("state ",current_state)
+		_set_state(boss_states.transformation)
+		print("state ",current_state)
+		is_ready = true
+		
+
 func _on_state_exit(state) -> void:
 	super(state)
 	if current_state == boss_states.death: boss_dead.emit()
@@ -81,9 +92,9 @@ func _on_state_tick(state, delta) -> void:
 	
 	if (state == boss_states.idle) and (is_ready):
 		#check if idle timer triggers
-		print("tick")
+		print("idle",idle_timer)
 		if idle_timer <= 0:
-			print("here")
+			idle_timer = 20
 			pick_attack_pattern()
 		else:
 			idle_timer -= delta
@@ -93,9 +104,10 @@ func _on_state_tick(state, delta) -> void:
 	if state == boss_states.double_attack:
 		anim_player.play("double_attack")
 		create_projectile()
+		create_projectile()
 	elif state == boss_states.single_attack:
 		anim_player.play("single_attack")
-
+		create_projectile()
 		
 	
 
@@ -114,37 +126,30 @@ func pick_attack_pattern():
 
 func _on_animation_player_animation_finished(anim_name: StringName):
 	print("done")
-	print(anim_name)
-	if (current_state == boss_states.phase2_single or 
-			current_state == boss_states.single_attack or
-			current_state == boss_states.double_attack or
-			current_state == boss_states.aoe_attack or
-			current_state == boss_states.phase2_aoe or 
-			current_state == boss_states.phase2_double or
-			current_state == boss_states.phase2_single or
-			current_state == boss_states.transformation
-			): 
-		_set_state(boss_states.idle)
+	if current_state == boss_states.death:
+		_set_state(boss_states.destroy_object)
+	
+	if (current_state == boss_states.aoe_attack or
+		current_state == boss_states.double_attack or
+		current_state == boss_states.single_attack or
+		current_state == boss_states.return_idle or
+		current_state == boss_states.transformation or
+		current_state == boss_states.phase2_aoe or
+		current_state == boss_states.phase2_double or
+		current_state == boss_states.phase2_single or
+		current_state == boss_states.phase2_return_idle):
+			_set_state(boss_states.idle)
 
 func on_take_damage(damage):
 	if current_state == boss_states.death:
 		return
 	else:
-		print("Orb Boss Took Damage: " , damage)
+		print("Mrs Meldoies Took Damage: " , damage)
 		take_damage.emit(damage)
 		health -= damage
 		if health <= 0: _set_state(boss_states.death)
 	
-func _on_area_2d_2_body_entered(body: Node2D) -> void:
-	print("Body entered: ",body)
-	print("state ",current_state)
-	print("boolean ",body is Player and current_state == boss_states.idle)
-	if body is Player and current_state == boss_states.idle:
-		print("state ",current_state)
-		_set_state(boss_states.transformation)
-		print("state ",current_state)
-		is_ready = true
-		ready_to_fight.emit()
+
 
 func create_projectile():
 	await get_tree().create_timer(10).timeout
@@ -171,5 +176,8 @@ func _on_state_enter(state):
 	super(state)
 	print(state)
 	if state == boss_states.idle:
+		anim_player.play("idle")
+		
+	if state == boss_states.transformation:
 		anim_player.play("transformation")
-	
+		print("end of transformation",state)
