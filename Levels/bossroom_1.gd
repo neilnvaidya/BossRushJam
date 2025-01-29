@@ -21,10 +21,11 @@ var boss_alive = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	close_doors()
-
+	$TerrainContainer/door_closed.visible = false
+	$TerrainContainer/boss_door.collision_enabled = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	$TerrainContainer/door_closed.visible = boss_alive
 
 # start level opens doors the player may enter, does not start fight, 
 # boss will decide fight start conditions
@@ -37,11 +38,13 @@ func start_level():
 
 
 func close_doors():
-	$TerrainContainer/door_closed.visible = true
+	$TerrainContainer/boss_door.visible = true
+	$TerrainContainer/boss_door.collision_enabled = true
 
 func open_doors():
-	$TerrainContainer/door_closed.visible = false
-
+	$TerrainContainer/boss_door.visible = false
+	$TerrainContainer/boss_door.collision_enabled = false
+	
 func _on_orb_boss_ready_to_fight():
 	print("Orb Boss Ready!")
 	boss_start_fight_gui_update.emit()

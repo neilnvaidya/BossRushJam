@@ -937,7 +937,8 @@ texture = ExtResource("2_0jp4t")
 19:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.77008, -8, -8, -8, -8, 3.1748, -3.57165, 3.1748)
 
 [sub_resource type="TileSet" id="TileSet_uia72"]
-physics_layer_0/collision_layer = 0
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 25
 sources/0 = SubResource("TileSetAtlasSource_nyfae")
 sources/2 = SubResource("TileSetAtlasSource_fx3lm")
 
@@ -969,9 +970,9 @@ texture_filter = 1
 tile_set = SubResource("TileSet_uia72")
 
 [node name="door_toggle" type="TileMapLayer" parent="TerrainContainer"]
-visible = false
 texture_filter = 1
 position = Vector2(-18, 240)
+scale = Vector2(1.0071, 1.01414)
 tile_map_data = PackedByteArray("AAASABwAAAAMAAwAAAASAB0AAAAMAA0AAAATABwAAAANAAwAAAATAB0AAAANAA0AAAARAB0AAAANAA0AAAARAB4AAAASAAkAAAASAB4AAAATAAkAAAATAB4AAAASAAkAAAAUAB0AAAAMAA0AAAAUAB4AAAATAAkAAAAUABwAAAAMAAwAAAARABwAAAANAAwAAAAQABwAAAAMAAwAAAAQAB0AAAAMAA0AAAAVABwAAAANAAwAAAAVAB0AAAANAA0AAAA=")
 tile_set = SubResource("TileSet_uia72")
 

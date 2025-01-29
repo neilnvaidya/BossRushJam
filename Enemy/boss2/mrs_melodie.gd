@@ -40,6 +40,7 @@ const max_health : int = 100
 @onready var sinewave = preload("res://Enemy/boss2/sinewave.tscn")
 @onready var eighth_note = preload("res://Enemy/boss2/eighth_note.tscn")
 @onready var quarter_note = preload("res://Enemy/boss2/quarter_note.tscn")
+@onready var half_note = preload("res://Enemy/boss2/half_note.tscn")
 
 enum boss_states {
 	idle_human,
@@ -94,7 +95,7 @@ func _on_state_tick(state, delta) -> void:
 		#check if idle timer triggers
 		print("idle",idle_timer)
 		if idle_timer <= 0:
-			idle_timer = 20
+			idle_timer = 5
 			pick_attack_pattern()
 		else:
 			idle_timer -= delta
@@ -147,19 +148,35 @@ func on_take_damage(damage):
 		print("Mrs Meldoies Took Damage: " , damage)
 		take_damage.emit(damage)
 		health -= damage
-		if health <= 0: _set_state(boss_states.death)
+		if health <= 0: 
+			print(health)
+			_set_state(boss_states.death)
 	
 
 
 func create_projectile():
+	var projectile
 	await get_tree().create_timer(10).timeout
-	var projectile = eighth_note.instantiate()
+	var i = randf_range(0,1) 
+	if i < 0.45:
+		projectile = eighth_note.instantiate()
+		print("eighth_note")
+	elif i>0.45 and i<.90:
+		projectile = half_note.instantiate()
+		print("half")
+	else:
+		projectile = quarter_note.instantiate()
+		print("quarter_note")
+		
 	projectile.position = position
 	projectile.position.y += 25
+	
 	if facing != 0:
 		projectile.position.x += 25*facing
+		
 	get_parent().add_child(projectile)
 	var dir = (player_position - position).normalized()
+	
 	projectile.launch(dir)
 
 
@@ -168,7 +185,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Yoyo:
 		var damage = body.yoyo_stats.base_damage*body.damage_multiplier
 		on_take_damage(damage)
-	#TODO: impliment player death on touching boss
+
 	if body is Player:
 		body.take_damage()
 		

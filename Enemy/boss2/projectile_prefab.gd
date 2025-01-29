@@ -9,12 +9,6 @@ func _ready():
 	pass
 	
 
-
-func _physics_process(delta):
-	if is_launched:
-		translate(travel_direction * speed * delta)
-
-
 func launch(dir):
 	#print("PROJECTILE dLAUNCH")
 	is_launched = true

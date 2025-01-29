@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ees0uec7dx3i"]
+[gd_scene load_steps=7 format=3 uid="uid://ees0uec7dx3i"]
 
 [ext_resource type="Texture2D" uid="uid://vxhk51eb0q4h" path="res://Assets/Art/Sprites/bosses/boss2/quarter_note.png" id="1_fj8ha"]
+[ext_resource type="Script" path="res://Enemy/boss2/quarter_note.gd" id="1_rsgao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qiv7i"]
 
@@ -40,7 +41,8 @@ _data = {
 "static": SubResource("Animation_3toug")
 }
 
-[node name="quarter_note" type="CharacterBody2D"]
+[node name="quarter_note" type="Area2D"]
+script = ExtResource("1_rsgao")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 11)
@@ -75,3 +77,5 @@ metadata/_aseprite_wizard_source_file_hash_ = "988c347748a33cbfd7a05fdef222c638"
 libraries = {
 "": SubResource("AnimationLibrary_0opdi")
 }
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

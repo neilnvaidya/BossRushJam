@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://baviwuuomv1p8"]
+[gd_scene load_steps=7 format=3 uid="uid://baviwuuomv1p8"]
 
+[ext_resource type="Script" path="res://Enemy/boss2/half_note.gd" id="1_0ysu2"]
 [ext_resource type="Texture2D" uid="uid://bvyrqoaqtj16g" path="res://Assets/Art/Sprites/bosses/boss2/half_note.png" id="1_07gto"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_le7ks"]
@@ -41,7 +42,8 @@ _data = {
 "static": SubResource("Animation_4dxl3")
 }
 
-[node name="half_note" type="CharacterBody2D"]
+[node name="half_note" type="Area2D"]
+script = ExtResource("1_0ysu2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 11)
@@ -53,6 +55,7 @@ texture_filter = 1
 texture = ExtResource("1_07gto")
 hframes = 4
 vframes = 4
+frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -75,3 +78,5 @@ metadata/_aseprite_wizard_source_file_hash_ = "8679eb510ed147613b835d86b245ee84"
 libraries = {
 "": SubResource("AnimationLibrary_xpw7s")
 }
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dppn4g8kewgwf"]
+[gd_scene load_steps=7 format=3 uid="uid://dppn4g8kewgwf"]
 
+[ext_resource type="Script" path="res://Enemy/boss2/sinewave.gd" id="1_bxqh4"]
 [ext_resource type="Texture2D" uid="uid://dey2yfmm4bpw7" path="res://Assets/Art/Sprites/bosses/boss2/sinewave_attack.png" id="1_c10gj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoruw"]
@@ -41,7 +42,8 @@ _data = {
 "idle": SubResource("Animation_aycjs")
 }
 
-[node name="sinewave" type="CharacterBody2D"]
+[node name="sinewave" type="Area2D"]
+script = ExtResource("1_bxqh4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3.5, -5)

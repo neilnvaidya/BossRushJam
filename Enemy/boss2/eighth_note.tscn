@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx4qiemy14kbc"]
+[gd_scene load_steps=7 format=3 uid="uid://dx4qiemy14kbc"]
 
+[ext_resource type="Script" path="res://Enemy/boss2/eighth_note.gd" id="1_dr0pi"]
 [ext_resource type="Texture2D" uid="uid://bwj7mot6547eu" path="res://Assets/Art/Sprites/bosses/boss2/eighth_note.png" id="1_q37av"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d02om"]
@@ -40,11 +41,13 @@ _data = {
 "static": SubResource("Animation_7ccce")
 }
 
-[node name="eighth_note" type="CharacterBody2D"]
+[node name="eighth_note" type="Area2D"]
+script = ExtResource("1_dr0pi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 11)
-scale = Vector2(-2.56147, -1.85799)
+rotation = -3.14159
+scale = Vector2(2.56147, 1.85799)
 shape = SubResource("CircleShape2D_d02om")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -52,6 +55,7 @@ texture_filter = 1
 texture = ExtResource("1_q37av")
 hframes = 4
 vframes = 4
+frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "output_section": true,
@@ -75,3 +79,5 @@ metadata/_aseprite_wizard_source_file_hash_ = "f60ecbd616fcb4901912fa2ec11b3deb"
 libraries = {
 "": SubResource("AnimationLibrary_sjt27")
 }
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
