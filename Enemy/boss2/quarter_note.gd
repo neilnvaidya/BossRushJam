@@ -16,7 +16,7 @@ func launch(dir):
 	#print("PROJECTILE dLAUNCH")
 	is_launched = true
 	travel_direction = dir
-	animation_player.play("default")
+	animation_player.play("static")
 
 func _on_body_entered(body):
 	if body is Player:

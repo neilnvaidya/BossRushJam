@@ -58,5 +58,4 @@ func _on_bossrom_2_level_complete() -> void:
 
 #TODO: test
 func _on_bossrom_2_boss_health_gui_update(delta: Variant) -> void:
-	var new_health = boss_health_bar.value + delta
-	boss_health_bar._set_health(new_health)
+	boss_health_bar.resetBar(200)

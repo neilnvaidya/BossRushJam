@@ -30,6 +30,7 @@ func _process(_delta):
 # start level opens doors the player may enter, does not start fight, 
 # boss will decide fight start conditions
 func start_level():
+	close_doors()
 	open_doors()
 	
 ## THis is not connected to anything, see TODO in door

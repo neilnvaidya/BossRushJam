@@ -55,7 +55,6 @@ texture_filter = 1
 texture = ExtResource("1_q37av")
 hframes = 4
 vframes = 4
-frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "output_section": true,

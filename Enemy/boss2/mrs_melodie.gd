@@ -32,8 +32,8 @@ var idle_timer : float = 0.0
 
 @export var move_speed : float = 40
 @export var bite_range : Vector2 = Vector2(50,50)
-@export var health : int = 100
-const max_health : int = 100
+@export var health : int = 200
+const max_health : int = 200
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 #projectile prefab
@@ -99,7 +99,7 @@ func _on_state_tick(state, delta) -> void:
 			pick_attack_pattern()
 		else:
 			idle_timer -= delta
-
+	
 	#TODO:
 	#generata attack
 	if state == boss_states.double_attack:
@@ -109,7 +109,10 @@ func _on_state_tick(state, delta) -> void:
 	elif state == boss_states.single_attack:
 		anim_player.play("single_attack")
 		create_projectile()
-		
+	
+	#health check
+	if health <0:
+		_set_state(boss_states.death)
 	
 
 func pick_attack_pattern():
@@ -117,12 +120,13 @@ func pick_attack_pattern():
 	var i = randf_range(0,1) 
 	if i < 0.45:
 		_set_state(boss_states.double_attack)
-
+		print("double")
 	elif i < 0.9 : 
 		_set_state(boss_states.single_attack)
-
-	else : _set_state(boss_states.idle)
-	
+		print("single")
+	else :
+		_set_state(boss_states.immune)
+		print("immune")
 
 
 func _on_animation_player_animation_finished(anim_name: StringName):
@@ -138,16 +142,24 @@ func _on_animation_player_animation_finished(anim_name: StringName):
 		current_state == boss_states.phase2_aoe or
 		current_state == boss_states.phase2_double or
 		current_state == boss_states.phase2_single or
-		current_state == boss_states.phase2_return_idle):
+		current_state == boss_states.phase2_return_idle or
+		current_state == boss_states.hurt or
+		current_state == boss_states.return_idle):
 			_set_state(boss_states.idle)
 
+	if (current_state == boss_states.immune):
+			_set_state(boss_states.return_idle)
+			
 func on_take_damage(damage):
 	if current_state == boss_states.death:
+		anim_player.play("death")
 		return
 	else:
 		print("Mrs Meldoies Took Damage: " , damage)
 		take_damage.emit(damage)
 		health -= damage
+		boss_states.hurt
+		anim_player.play("hurt")
 		if health <= 0: 
 			print(health)
 			_set_state(boss_states.death)
@@ -170,6 +182,7 @@ func create_projectile():
 		
 	projectile.position = position
 	projectile.position.y += 25
+	projectile.position.x += 25
 	
 	if facing != 0:
 		projectile.position.x += 25*facing

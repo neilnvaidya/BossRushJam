@@ -37,8 +37,8 @@ func _on_mrs_melodie_ready_to_fight() -> void:
 	boss_start_fight_gui_update.emit()
 
 func _on_mrs_melodie_boss_dead() -> void:
-	print("boss dead")
+	level_complete.emit()
+	boss_death_gui_update.emit()
 
 func _on_mrs_melodie_take_damage(damage: Variant) -> void:
-	print(name, " apply damage")
 	boss_health_gui_update.emit(-damage)

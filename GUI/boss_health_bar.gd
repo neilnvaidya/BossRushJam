@@ -25,3 +25,7 @@ func _set_health(new_health):
 
 func _on_timer_timeout():
 	damage_bar.value = health
+
+func resetBar(_health):
+	init_health(_health)
+	
