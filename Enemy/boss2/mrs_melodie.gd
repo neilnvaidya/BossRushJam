@@ -42,6 +42,13 @@ const max_health : int = 200
 @onready var quarter_note = preload("res://Enemy/boss2/quarter_note.tscn")
 @onready var half_note = preload("res://Enemy/boss2/half_note.tscn")
 
+#Audio Var Setup
+@export var AREA_BUS = AudioServer.get_bus_index("Area")
+var piano_music 
+var area_volume:AudioEffectAmplify = AudioServer.get_bus_effect(4,0)
+@export var piano_hurt: AudioStream
+@export var piano_shoot: AudioStream
+
 enum boss_states {
 	idle_human,
 	idle,
@@ -157,6 +164,8 @@ func on_take_damage(damage):
 	else:
 		print("Mrs Meldoies Took Damage: " , damage)
 		take_damage.emit(damage)
+		AudioPlayer.play_sound("res://Assets/Audio/enemy/yoyo_enemyhit1.wav")
+		AudioPlayer.play_stream(piano_hurt)
 		health -= damage
 		boss_states.hurt
 		anim_player.play("hurt")
@@ -167,18 +176,21 @@ func on_take_damage(damage):
 
 
 func create_projectile():
-	var projectile
+	var projectile #Shoot SFX commented out until projectile glitches fixed
 	await get_tree().create_timer(10).timeout
 	var i = randf_range(0,1) 
 	if i < 0.45:
 		projectile = eighth_note.instantiate()
 		print("eighth_note")
+		#AudioPlayer.play_stream(piano_shoot, 0.001)
 	elif i>0.45 and i<.90:
 		projectile = half_note.instantiate()
 		print("half")
+		#AudioPlayer.play_stream(piano_shoot, 0.001)
 	else:
 		projectile = quarter_note.instantiate()
 		print("quarter_note")
+		#AudioPlayer.play_stream(piano_shoot, 0.001)
 		
 	projectile.position = position
 	projectile.position.y += 25
@@ -210,4 +222,8 @@ func _on_state_enter(state):
 		
 	if state == boss_states.transformation:
 		anim_player.play("transformation")
+		var tween := create_tween()
+		tween.tween_property(area_volume, "volume_db", -80, 4)
+		AudioPlayer.play_sound("res://Assets/Audio/enemy/piano boss/yoyo_pianotransform1.wav")
+		var piano_music = AudioPlayer.play_music("res://Assets/Audio/music/Piano Boss.ogg", 0.7)
 		print("end of transformation",state)

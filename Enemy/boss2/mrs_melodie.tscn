@@ -1,7 +1,29 @@
-[gd_scene load_steps=23 format=3 uid="uid://rc75uhplgnjb"]
+[gd_scene load_steps=33 format=3 uid="uid://rc75uhplgnjb"]
 
 [ext_resource type="Script" path="res://Enemy/boss2/mrs_melodie.gd" id="1_aonj5"]
 [ext_resource type="Texture2D" uid="uid://xegrkiu6r3x5" path="res://Assets/Art/Sprites/bosses/boss2/boss2.png" id="1_hm2ht"]
+[ext_resource type="AudioStream" uid="uid://ouhe5lctxmuw" path="res://Assets/Audio/enemy/piano boss/yoyo_pianohurt1.wav" id="2_alam8"]
+[ext_resource type="AudioStream" uid="uid://b55pmquroholx" path="res://Assets/Audio/enemy/piano boss/yoyo_pianohurt2.wav" id="3_r7irs"]
+[ext_resource type="AudioStream" uid="uid://07acaqsu4wk2" path="res://Assets/Audio/enemy/piano boss/yoyo_pianoshootAb.wav" id="4_eygf3"]
+[ext_resource type="AudioStream" uid="uid://bwy8glbsfoy3" path="res://Assets/Audio/enemy/piano boss/yoyo_pianoshootC.wav" id="5_ckqm4"]
+[ext_resource type="AudioStream" uid="uid://cf711nv4lbwtd" path="res://Assets/Audio/enemy/piano boss/yoyo_pianoshootCoct.wav" id="6_gqmlt"]
+[ext_resource type="AudioStream" uid="uid://8haccip2gfwo" path="res://Assets/Audio/enemy/piano boss/yoyo_pianoshootDb.wav" id="7_deo5c"]
+[ext_resource type="AudioStream" uid="uid://bc82e0n3c87hl" path="res://Assets/Audio/enemy/piano boss/yoyo_pianoshootF.wav" id="8_vpebg"]
+[ext_resource type="AudioStream" uid="uid://cm2gmjy3ru1xv" path="res://Assets/Audio/enemy/piano boss/yoyo_pianoshootG.wav" id="9_1h0rn"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8l7xo"]
+streams_count = 2
+stream_0/stream = ExtResource("2_alam8")
+stream_1/stream = ExtResource("3_r7irs")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nxc05"]
+streams_count = 6
+stream_0/stream = ExtResource("4_eygf3")
+stream_1/stream = ExtResource("5_ckqm4")
+stream_2/stream = ExtResource("6_gqmlt")
+stream_3/stream = ExtResource("7_deo5c")
+stream_4/stream = ExtResource("8_vpebg")
+stream_5/stream = ExtResource("9_1h0rn")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ba8y"]
 size = Vector2(124, 62)
@@ -459,6 +481,8 @@ position = Vector2(-303, -170)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_aonj5")
+piano_hurt = SubResource("AudioStreamRandomizer_8l7xo")
+piano_shoot = SubResource("AudioStreamRandomizer_nxc05")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -60)
