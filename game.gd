@@ -1,6 +1,8 @@
 class_name Run
 extends Node2D
 
+signal orb_boss_dead
+
 var current_level_index : int = game_level.tutorial
 
 #Music Variables
@@ -41,8 +43,6 @@ func start_next_level():
 func _on_tutorial_tutorial_complete():
 	start_next_level()
 	
-func change_boss():
-	gui.remove_child($BossStatsContainer)
-	
 func _on_bossroom_1_level_complete():
 	start_next_level()
+	orb_boss_dead.emit()

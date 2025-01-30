@@ -49,13 +49,18 @@ func _on_bossroom_1_boss_start_fight_gui_update() -> void:
 
 
 func _on_bossrom_2_boss_start_fight_gui_update() -> void:
-	label.text = "Mrs. Medodie"
-	show_boss_healthbar()
+	label.text = "Mrs. Melodies"
+	$BossStatsContainer/BossHealthBar.resetBar()
 
 	
 func _on_bossrom_2_level_complete() -> void:
 	pass # Replace with function body.
 
-#TODO: test
-func _on_bossrom_2_boss_health_gui_update(delta: Variant) -> void:
-	boss_health_bar.resetBar(200)
+func _on_boss_health_bar_value_changed(value: float) -> void:
+	self.remove_child($BossStatsContainer/BossHealthBar)
+	self.add_child(boss_stats_container)
+	
+
+
+func _on_game_orb_boss_dead() -> void:
+	pass # Replace with function body.

@@ -112,7 +112,7 @@ func _on_state_tick(state, delta) -> void:
 	if state == boss_states.double_attack:
 		anim_player.play("double_attack")
 		create_projectile()
-		create_projectile()
+	
 	elif state == boss_states.single_attack:
 		anim_player.play("single_attack")
 		create_projectile()
@@ -125,10 +125,10 @@ func _on_state_tick(state, delta) -> void:
 func pick_attack_pattern():
 	print("here")
 	var i = randf_range(0,1) 
-	if i < 0.45:
+	if i < 0.33:
 		_set_state(boss_states.double_attack)
 		print("double")
-	elif i < 0.9 : 
+	elif i > 0.33 or i < 0.66 : 
 		_set_state(boss_states.single_attack)
 		print("single")
 	else :
@@ -179,11 +179,12 @@ func create_projectile():
 	var projectile #Shoot SFX commented out until projectile glitches fixed
 	await get_tree().create_timer(10).timeout
 	var i = randf_range(0,1) 
-	if i < 0.45:
+	if i < 0.33:
 		projectile = eighth_note.instantiate()
 		print("eighth_note")
 		#AudioPlayer.play_stream(piano_shoot, 0.001)
 	elif i>0.45 and i<.90:
+	elif i>0.33 and i<.66:
 		projectile = half_note.instantiate()
 		print("half")
 		#AudioPlayer.play_stream(piano_shoot, 0.001)

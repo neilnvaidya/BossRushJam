@@ -72,3 +72,4 @@ text = "BOSS NAME"
 layout_mode = 2
 
 [connection signal="changed" from="BossStatsContainer/BossHealthBar" to="." method="_on_boss_health_bar_changed"]
+[connection signal="value_changed" from="BossStatsContainer/BossHealthBar" to="." method="_on_boss_health_bar_value_changed"]
