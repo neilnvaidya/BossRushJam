@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bc82e0n3c87hl"
+path="res://.godot/imported/yoyo_pianoshootF.wav-b5f013ff37f17e1fc120b377236189dd.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/enemy/piano boss/yoyo_pianoshootF.wav"
+dest_files=["res://.godot/imported/yoyo_pianoshootF.wav-b5f013ff37f17e1fc120b377236189dd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

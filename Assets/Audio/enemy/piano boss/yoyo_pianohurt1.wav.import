@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ouhe5lctxmuw"
+path="res://.godot/imported/yoyo_pianohurt1.wav-cb05185d4c704fd48d556f96a4cee42d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/enemy/piano boss/yoyo_pianohurt1.wav"
+dest_files=["res://.godot/imported/yoyo_pianohurt1.wav-cb05185d4c704fd48d556f96a4cee42d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
