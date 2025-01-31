@@ -83,7 +83,7 @@ func _ready():
 #start the fight with boss 2
 func _on_area_2d_2_body_entered(body: Node2D) -> void:
 	ready_to_fight.emit()
-	if body is Player and current_state == boss_states.idle:
+	if body is Player and current_state == boss_states.idle and !is_ready:
 		print("state ",current_state)
 		_set_state(boss_states.transformation)
 		print("state ",current_state)
@@ -183,7 +183,6 @@ func create_projectile():
 		projectile = eighth_note.instantiate()
 		print("eighth_note")
 		#AudioPlayer.play_stream(piano_shoot, 0.001)
-	elif i>0.45 and i<.90:
 	elif i>0.33 and i<.66:
 		projectile = half_note.instantiate()
 		print("half")

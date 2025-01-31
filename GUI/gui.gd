@@ -50,16 +50,14 @@ func _on_bossroom_1_boss_start_fight_gui_update() -> void:
 
 func _on_bossrom_2_boss_start_fight_gui_update() -> void:
 	label.text = "Mrs. Melodies"
-	$BossStatsContainer/BossHealthBar.resetBar()
+	$BossStatsContainer/BossHealthBar.resetBar(200)
+	show_boss_healthbar()
+	
 
 	
 func _on_bossrom_2_level_complete() -> void:
 	pass # Replace with function body.
 
-func _on_boss_health_bar_value_changed(value: float) -> void:
-	self.remove_child($BossStatsContainer/BossHealthBar)
-	self.add_child(boss_stats_container)
-	
 
 
 func _on_game_orb_boss_dead() -> void:
