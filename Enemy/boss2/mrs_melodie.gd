@@ -160,6 +160,8 @@ func _on_animation_player_animation_finished(anim_name: StringName):
 func on_take_damage(damage):
 	if current_state == boss_states.death:
 		anim_player.play("death")
+		AudioPlayer.play_sound("res://Assets/Audio/enemy/piano boss/yoyo_pianodeath1.wav", 1.2)
+		AudioPlayer.stop_audio(piano_music, 1)
 		return
 	else:
 		print("Mrs Meldoies Took Damage: " , damage)
@@ -225,5 +227,5 @@ func _on_state_enter(state):
 		var tween := create_tween()
 		tween.tween_property(area_volume, "volume_db", -80, 4)
 		AudioPlayer.play_sound("res://Assets/Audio/enemy/piano boss/yoyo_pianotransform1.wav")
-		var piano_music = AudioPlayer.play_music("res://Assets/Audio/music/Piano Boss.ogg", 0.7)
+		piano_music = AudioPlayer.play_music("res://Assets/Audio/music/Piano Boss.ogg", 0.7)
 		print("end of transformation",state)

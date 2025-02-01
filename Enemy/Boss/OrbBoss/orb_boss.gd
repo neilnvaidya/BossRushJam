@@ -147,7 +147,7 @@ func _on_state_enter(state) -> void:
 		var tween := create_tween()
 		tween.tween_property(area_volume, "volume_db", -80, 4)
 		AudioPlayer.play_sound("res://Assets/Audio/enemy/ball boss/yoyo_ballytransform1.wav") 
-		orb_music = AudioPlayer.play_music("res://Assets/Audio/music/worm boss updated drums.mp3", 0.2, true)
+		orb_music = AudioPlayer.play_music("res://Assets/Audio/music/Ball-Boss-Final-Theme-Loop-Phase-2-1.29.25-SCAtticus.ogg", 0.39, true)
 		
 	if state == boss_states.splitting:
 		$MimicTempArea.visible = true
