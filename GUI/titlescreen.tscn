@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbp0kyg7cy08e"]
+[gd_scene load_steps=9 format=3 uid="uid://dbp0kyg7cy08e"]
 
 [ext_resource type="Texture2D" uid="uid://dguy6mopxhkws" path="res://Assets/Art/GUI/titlescreen.png" id="1_6fcwn"]
+[ext_resource type="AudioStream" uid="uid://ckeap01j8qoqb" path="res://Assets/Audio/music/Foes-and-Yoyos.ogg" id="2_kyacq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_asaig"]
 atlas = ExtResource("1_6fcwn")
@@ -77,3 +78,8 @@ metadata/_aseprite_wizard_config_ = {
 "source": "C:/Asesprite/Projects/bossrush/gui/titlescreen.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "3946efaafaabd8e6e6db4de1ae78dce1"
+
+[node name="Title Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kyacq")
+autoplay = true
+bus = &"Music"
