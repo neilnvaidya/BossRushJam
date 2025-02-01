@@ -27,13 +27,13 @@ func _process(_delta):
 	##Yoyo Audio System
 	if current_speed < 150:
 		AudioServer.set_bus_volume_db(YOYOLOOP_BUS, -30)
-	elif 400 < current_speed and 600 > current_speed:
+	elif 400 < current_speed and 1000 > current_speed:
 		AudioServer.set_bus_volume_db(YOYOLOOP_BUS, 0)
 	else:
 		AudioServer.set_bus_mute(YOYOLOOP_BUS, 0)
 		AudioServer.set_bus_volume_db(YOYOLOOP_BUS, (((current_speed) / 10)-40))
 	
-	if 400 < current_speed and 600 > current_speed:
+	if 400 < current_speed and 1000 > current_speed:
 		pitch = 1
 	elif current_speed < 200:
 		pitch = 0.5
