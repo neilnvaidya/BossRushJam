@@ -3,12 +3,12 @@ extends Control
 @onready var boss_health_bar: ProgressBar = $BossStatsContainer/BossHealthBar
 @onready var label: Label = $BossStatsContainer/Control/Label
 @onready var boss_stats_container: VBoxContainer = $BossStatsContainer
+@onready var title_screen = $Control/TitleScreen
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide_boss_healthbar()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -62,3 +62,9 @@ func _on_bossrom_2_level_complete() -> void:
 
 func _on_game_orb_boss_dead() -> void:
 	pass # Replace with function body.
+
+
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed:
+			title_screen.hide_screen()

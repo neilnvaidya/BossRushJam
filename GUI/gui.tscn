@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://kf4ulr72cvgh"]
+[gd_scene load_steps=7 format=3 uid="uid://kf4ulr72cvgh"]
 
 [ext_resource type="Script" path="res://GUI/portrait.gd" id="1_nngm5"]
 [ext_resource type="Script" path="res://GUI/gui.gd" id="1_st5d1"]
+[ext_resource type="PackedScene" uid="uid://dbp0kyg7cy08e" path="res://GUI/titlescreen.tscn" id="2_gc6gg"]
 [ext_resource type="Texture2D" uid="uid://dsxw00tdqu3ih" path="res://Assets/Art/GUI/portrait_gui.png" id="2_otfw2"]
 [ext_resource type="Texture2D" uid="uid://8ssoum6d3wwj" path="res://Assets/Art/GUI/Expressions/portrait_expression1.png" id="3_wxt4i"]
 [ext_resource type="PackedScene" uid="uid://o0utinwbjo1k" path="res://GUI/boss_health_bar.tscn" id="4_otjng"]
@@ -18,6 +19,18 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_st5d1")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleScreen" parent="Control" instance=ExtResource("2_gc6gg")]
+z_index = 1
+position = Vector2(-1, -2)
 
 [node name="PotraitContaner" type="Control" parent="."]
 layout_mode = 1
@@ -71,5 +84,6 @@ text = "BOSS NAME"
 [node name="BossHealthBar" parent="BossStatsContainer" instance=ExtResource("4_otjng")]
 layout_mode = 2
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="changed" from="BossStatsContainer/BossHealthBar" to="." method="_on_boss_health_bar_changed"]
 [connection signal="value_changed" from="BossStatsContainer/BossHealthBar" to="." method="_on_boss_health_bar_value_changed"]
