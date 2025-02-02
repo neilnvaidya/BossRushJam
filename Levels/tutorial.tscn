@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Levels/tutorial.gd" id="1_fqque"]
 [ext_resource type="Texture2D" uid="uid://dyu1broamre4i" path="res://Assets/Art/Tilemaps/school.png" id="2_npujf"]
 [ext_resource type="Texture2D" uid="uid://gnq1pt1qgxl3" path="res://Assets/Art/Tilemaps/foreground_classroom.png" id="3_ivxng"]
-[ext_resource type="PackedScene" uid="uid://brd1jah8mton6" path="res://GUI/button_display.tscn" id="4_4vlbi"]
+[ext_resource type="PackedScene" path="res://GUI/button_display.tscn" id="4_4vlbi"]
 [ext_resource type="Script" path="res://Levels/button_container.gd" id="4_hqecs"]
 [ext_resource type="Texture2D" uid="uid://cdq764y4amure" path="res://Assets/Art/GUI/buttons/w-Sheet.png" id="6_exfb6"]
 [ext_resource type="Texture2D" uid="uid://d0nrywnurnirw" path="res://Assets/Art/GUI/buttons/a-Sheet.png" id="7_dr737"]
